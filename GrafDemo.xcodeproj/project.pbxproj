@@ -13,6 +13,7 @@
 		7D077FE819AEE01300E431A5 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D077FE619AEE01300E431A5 /* MainMenu.xib */; };
 		7D077FF419AEE01300E431A5 /* GrafDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D077FF319AEE01300E431A5 /* GrafDemoTests.m */; };
 		7D07800119AEE08100E431A5 /* BNRSimpleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D07800019AEE08100E431A5 /* BNRSimpleView.m */; };
+		7D07800419AEEA9B00E431A5 /* SimpleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D07800319AEEA9B00E431A5 /* SimpleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,8 @@
 		7D077FF319AEE01300E431A5 /* GrafDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GrafDemoTests.m; sourceTree = "<group>"; };
 		7D077FFF19AEE08100E431A5 /* BNRSimpleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRSimpleView.h; sourceTree = "<group>"; };
 		7D07800019AEE08100E431A5 /* BNRSimpleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRSimpleView.m; sourceTree = "<group>"; };
+		7D07800219AEEA9B00E431A5 /* GrafDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GrafDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		7D07800319AEEA9B00E431A5 /* SimpleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +131,8 @@
 		7D077FFE19AEE04F00E431A5 /* Swift Styles */ = {
 			isa = PBXGroup;
 			children = (
+				7D07800319AEEA9B00E431A5 /* SimpleView.swift */,
+				7D07800219AEEA9B00E431A5 /* GrafDemo-Bridging-Header.h */,
 			);
 			name = "Swift Styles";
 			sourceTree = "<group>";
@@ -231,6 +236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D07800419AEEA9B00E431A5 /* SimpleView.swift in Sources */,
 				7D077FE319AEE01300E431A5 /* AppDelegate.m in Sources */,
 				7D07800119AEE08100E431A5 /* BNRSimpleView.m in Sources */,
 				7D077FE019AEE01300E431A5 /* main.m in Sources */,
@@ -347,10 +353,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = GrafDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "GrafDemo/GrafDemo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -358,10 +367,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = GrafDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "GrafDemo/GrafDemo-Bridging-Header.h";
 			};
 			name = Release;
 		};

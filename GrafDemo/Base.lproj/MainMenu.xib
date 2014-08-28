@@ -14,6 +14,7 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
                 <outlet property="simpleView" destination="u1E-Hc-7jl" id="A6p-gj-vpj"/>
+                <outlet property="swSimpleView" destination="e7c-tF-zn5" id="h4b-38-fdR"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -679,8 +680,11 @@
                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u1E-Hc-7jl" customClass="BNRSimpleView">
                         <rect key="frame" x="20" y="174" width="180" height="166"/>
                     </customView>
+                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e7c-tF-zn5" customClass="SimpleView" customModule="GrafDemo" customModuleProvider="target">
+                        <rect key="frame" x="268" y="174" width="180" height="166"/>
+                    </customView>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pdF-5s-L0U">
-                        <rect key="frame" x="78" y="150" width="64" height="18"/>
+                        <rect key="frame" x="208" y="150" width="64" height="18"/>
                         <buttonCell key="cell" type="check" title="Sloppy" bezelStyle="regularSquare" imagePosition="left" inset="2" id="b0D-HN-u5C">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
