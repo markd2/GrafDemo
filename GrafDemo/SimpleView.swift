@@ -10,9 +10,9 @@ import Cocoa
 
 class SimpleView: NSView {
 
-    func saveGState(snarnge: () -> ()) -> () {
+    func saveGState(drawStuff: () -> ()) -> () {
         NSGraphicsContext.saveGraphicsState()
-        snarnge()
+        drawStuff()
         NSGraphicsContext.restoreGraphicsState()
     }
 
