@@ -10,6 +10,12 @@ import Cocoa
 
 class SimpleView: NSView {
 
+    func saveGState(snarnge: () -> ()) -> () {
+        NSGraphicsContext.saveGraphicsState()
+        snarnge()
+        NSGraphicsContext.restoreGraphicsState()
+    }
+
     var beSloppy : Bool = false {
         willSet {
             needsDisplay = true
@@ -57,35 +63,35 @@ class SimpleView: NSView {
     }
     
     func drawNiceBackground() {
-        NSGraphicsContext.saveGraphicsState()
-        NSColor.whiteColor().setFill()
-        NSRectFill(bounds)
-        NSGraphicsContext.restoreGraphicsState()
+        saveGState {
+            NSColor.whiteColor().setFill()
+            NSRectFill(self.bounds)
+        }
     }
 
     func drawNiceContents() {
-        NSGraphicsContext.saveGraphicsState()
-        
-        NSBezierPath.setDefaultLineWidth(1.0)
-        
-        let innerRect = CGRectInset(bounds, 20.0, 20.0)
-        let ovalPath = NSBezierPath(ovalInRect: innerRect)
-
-        NSColor.greenColor().set()
-        ovalPath.fill()
-        
-        NSColor.blueColor().set()
-        ovalPath.stroke()
-
-        NSGraphicsContext.restoreGraphicsState()
+        saveGState {
+            NSBezierPath.setDefaultLineWidth(1.0)
+            
+            let innerRect = CGRectInset(self.bounds, 20.0, 20.0)
+            let ovalPath = NSBezierPath(ovalInRect: innerRect)
+            
+            NSColor.greenColor().set()
+            ovalPath.fill()
+            
+            NSColor.blueColor().set()
+            ovalPath.stroke()
+            
+            NSGraphicsContext.restoreGraphicsState()
+        }
     }
 
     func drawNiceBorder() {
-        NSGraphicsContext.saveGraphicsState()
-        NSColor.blackColor().setStroke()
-        NSBezierPath.setDefaultLineWidth(5.0)
-        NSBezierPath(rect: bounds).stroke()
-        NSGraphicsContext.restoreGraphicsState()
+        saveGState {
+            NSColor.blackColor().setStroke()
+            NSBezierPath.setDefaultLineWidth(5.0)
+            NSBezierPath(rect: self.bounds).stroke()
+        }
     }
 
 
