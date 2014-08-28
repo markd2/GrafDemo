@@ -22,6 +22,12 @@
 } // initWithCoder
 
 
+- (void) setBeSloppy: (BOOL) beSloppy {
+    _beSloppy = beSloppy;
+    [self setNeedsDisplay: YES];
+} // setBeSloppy
+
+
 // --------------------------------------------------
 
 

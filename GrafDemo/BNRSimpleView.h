@@ -3,6 +3,6 @@
 @interface BNRSimpleView : NSView
 
 // Should drawing be sloppy with graphic saves and restores?
-@property (assign) BOOL beSloppy;
+@property (assign, nonatomic) BOOL beSloppy;
 
 @end // BNRSimpleView
