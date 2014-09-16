@@ -26,38 +26,43 @@
 } // setBeSloppy
 
 
+- (CGContextRef) currentContext {
+    return [NSGraphicsContext.currentContext graphicsPort];
+} // currentContext
+
+
 // --------------------------------------------------
 
 
 - (void) drawSloppyBackground {
-    NSRectFill (self.bounds);
+    CGContextFillRect (self.currentContext, self.bounds);
 } // drawSloppyBackground
-
-
-- (void) drawSloppyBorder {
-    [[NSBezierPath bezierPathWithRect: self.bounds] stroke];
-} // drawSloppyBorder
 
 
 - (void) drawSloppyContents {
     CGRect innerRect = CGRectInset (self.bounds, 20, 20);
-    NSBezierPath *ovalPath = [NSBezierPath bezierPathWithOvalInRect: innerRect];
 
-    [NSBezierPath setDefaultLineWidth: 1.0];
+    CGContextSetLineWidth (self.currentContext, 6.0);
 
     [[NSColor greenColor] set];
-    [ovalPath fill];
+    CGContextFillEllipseInRect (self.currentContext, innerRect);
 
     [[NSColor blueColor] set];
-    [ovalPath stroke];
+    CGContextStrokeEllipseInRect (self.currentContext, innerRect);
     
 } // drawSloppyContents
 
 
+- (void) drawSloppyBorder {
+    CGContextStrokeRect (self.currentContext, self.bounds);
+} // drawSloppyBorder
+
+
 - (void) drawSloppily {
+    // Set the background and border size attributes.
     [[NSColor whiteColor] setFill];
     [[NSColor blackColor] setStroke];
-    [NSBezierPath setDefaultLineWidth: 5.0];
+    CGContextSetLineWidth (self.currentContext, 3.0);
     
     [self drawSloppyBackground];
     [self drawSloppyContents];
@@ -69,43 +74,46 @@
 // --------------------------------------------------
 
 - (void) drawNiceBackground {
-    [NSGraphicsContext saveGraphicsState]; {
-        [[NSColor whiteColor] setFill];
-        NSRectFill (self.bounds);
-    } [NSGraphicsContext restoreGraphicsState];
+    CGContextSaveGState (self.currentContext); {
+        CGContextFillRect (self.currentContext, self.bounds);
+    } CGContextRestoreGState (self.currentContext);
 } // drawNiceBackground
 
 
 - (void) drawNiceContents {
-    [NSGraphicsContext saveGraphicsState]; {
-        [NSBezierPath setDefaultLineWidth: 1.0];
-
+    CGContextSaveGState (self.currentContext); {
         CGRect innerRect = CGRectInset (self.bounds, 20, 20);
-        NSBezierPath *ovalPath = [NSBezierPath bezierPathWithOvalInRect: innerRect];
-
+        
+        CGContextSetLineWidth (self.currentContext, 6.0);
+        
         [[NSColor greenColor] set];
-        [ovalPath fill];
-
+        CGContextFillEllipseInRect (self.currentContext, innerRect);
+        
         [[NSColor blueColor] set];
-        [ovalPath stroke];
+        CGContextStrokeEllipseInRect (self.currentContext, innerRect);
 
-    } [NSGraphicsContext restoreGraphicsState];
+    } CGContextRestoreGState (self.currentContext);
+    
 } // drawNiceContents
 
 
 - (void) drawNiceBorder {
-    [NSGraphicsContext saveGraphicsState]; {
-        [[NSColor blackColor] setStroke];
-        [NSBezierPath setDefaultLineWidth: 5.0];
-        [[NSBezierPath bezierPathWithRect: self.bounds] stroke];
-    } [NSGraphicsContext restoreGraphicsState];
+    CGContextSaveGState (self.currentContext); {
+        CGContextStrokeRect (self.currentContext, self.bounds);
+    } CGContextRestoreGState (self.currentContext);
 } // drawNiceBorder
 
 
 - (void) drawNicely {
+    // Set the background and border size attributes.
+    [[NSColor whiteColor] setFill];
+    [[NSColor blackColor] setStroke];
+    CGContextSetLineWidth (self.currentContext, 3.0);
+    
     [self drawNiceBackground];
     [self drawNiceContents];
     [self drawNiceBorder];
+
 } // drawNicely
 
 
