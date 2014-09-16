@@ -4,7 +4,6 @@
 
 - (instancetype) initWithFrame: (CGRect) frame {
     if ((self = [super initWithFrame: frame])) {
-        _beSloppy = NO;
     }
 
     return self;
@@ -14,7 +13,6 @@
 
 - (instancetype) initWithCoder: (NSCoder *) coder {
     if ((self = [super initWithCoder: coder])) {
-        _beSloppy = NO;
     }
 
     return self;
