@@ -40,15 +40,16 @@
 
 
 - (void) drawSloppyContents {
+    CGContextRef context = self.currentContext;
+
     CGRect innerRect = CGRectInset (self.bounds, 20, 20);
 
-    CGContextSetLineWidth (self.currentContext, 6.0);
+    CGContextSetRGBFillColor (context, 0.0, 1.0, 0.0, 1.0); // Green
+    CGContextFillEllipseInRect (context, innerRect);
 
-    [[NSColor greenColor] set];
-    CGContextFillEllipseInRect (self.currentContext, innerRect);
-
-    [[NSColor blueColor] set];
-    CGContextStrokeEllipseInRect (self.currentContext, innerRect);
+    CGContextSetRGBStrokeColor (context, 0.0, 0.0, 1.0, 1.0); // Blue
+    CGContextSetLineWidth (context, 6.0);
+    CGContextStrokeEllipseInRect (context, innerRect);
     
 } // drawSloppyContents
 
@@ -59,55 +60,63 @@
 
 
 - (void) drawSloppily {
-    // Set the background and border size attributes.
-    [[NSColor whiteColor] setFill];
-    [[NSColor blackColor] setStroke];
-    CGContextSetLineWidth (self.currentContext, 3.0);
+    CGContextRef context = self.currentContext;
+    
+    CGContextSetRGBStrokeColor (context, 0.0, 0.0, 0.0, 1.0); // Black
+    CGContextSetRGBFillColor (context, 1.0, 1.0, 1.0, 1.0); // White
     
     [self drawSloppyBackground];
     [self drawSloppyContents];
     [self drawSloppyBorder];
-
+    
 } // drawSloppily
 
 
 // --------------------------------------------------
 
 - (void) drawNiceBackground {
-    CGContextSaveGState (self.currentContext); {
-        CGContextFillRect (self.currentContext, self.bounds);
-    } CGContextRestoreGState (self.currentContext);
+    CGContextRef context = self.currentContext;
+
+    CGContextSaveGState (context); {
+        CGContextFillRect (context, self.bounds);
+    } CGContextRestoreGState (context);
 } // drawNiceBackground
 
 
 - (void) drawNiceContents {
-    CGContextSaveGState (self.currentContext); {
+    CGContextRef context = self.currentContext;
+
+    CGContextSaveGState (context); {
         CGRect innerRect = CGRectInset (self.bounds, 20, 20);
         
-        CGContextSetLineWidth (self.currentContext, 6.0);
+        CGContextSetLineWidth (context, 6.0);
         
-        [[NSColor greenColor] set];
-        CGContextFillEllipseInRect (self.currentContext, innerRect);
+        CGContextSetRGBFillColor (context, 0.0, 1.0, 0.0, 1.0); // Green
+        CGContextFillEllipseInRect (context, innerRect);
         
-        [[NSColor blueColor] set];
-        CGContextStrokeEllipseInRect (self.currentContext, innerRect);
+        CGContextSetRGBStrokeColor (context, 0.0, 0.0, 1.0, 1.0); // Blue
+        CGContextStrokeEllipseInRect (context, innerRect);
 
-    } CGContextRestoreGState (self.currentContext);
+    } CGContextRestoreGState (context);
     
 } // drawNiceContents
 
 
 - (void) drawNiceBorder {
-    CGContextSaveGState (self.currentContext); {
-        CGContextStrokeRect (self.currentContext, self.bounds);
-    } CGContextRestoreGState (self.currentContext);
+    CGContextRef context = self.currentContext;
+
+    CGContextSaveGState (context); {
+        CGContextStrokeRect (context, self.bounds);
+    } CGContextRestoreGState (context);
 } // drawNiceBorder
 
 
 - (void) drawNicely {
+    CGContextRef context = self.currentContext;
+
     // Set the background and border size attributes.
-    [[NSColor whiteColor] setFill];
-    [[NSColor blackColor] setStroke];
+    CGContextSetRGBStrokeColor (context, 0.0, 0.0, 0.0, 1.0); // Black
+    CGContextSetRGBFillColor (context, 1.0, 1.0, 1.0, 1.0); // White
     CGContextSetLineWidth (self.currentContext, 3.0);
     
     [self drawNiceBackground];
