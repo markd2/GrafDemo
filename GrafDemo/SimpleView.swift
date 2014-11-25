@@ -1,7 +1,7 @@
 import Cocoa
 
 class SimpleView: NSView {
-
+    
     // Should drawing be sloppy with graphic saves and restores?
     var beSloppy : Bool = false {
         willSet {
@@ -15,7 +15,7 @@ class SimpleView: NSView {
             // that's not available to folks running 10.9, so perform this
             // violence to get a context via a void*.
             // iOS can use UIGraphicsGetCurrentContext.
-
+            
             let unsafeContextPointer = NSGraphicsContext.currentContext()?.graphicsPort
             
             if let contextPointer = unsafeContextPointer {
@@ -33,12 +33,14 @@ class SimpleView: NSView {
         drawStuff()
         CGContextRestoreGState (currentContext)
     }
-
+    
     // --------------------------------------------------
-
+    
     func drawSloppily () {
-        NSColor.whiteColor().setFill()
-        NSColor.blackColor().setStroke()
+        
+        CGContextSetRGBStrokeColor (currentContext, 0.0, 0.0, 0.0, 1.0); // Black
+        CGContextSetRGBFillColor (currentContext, 1.0, 1.0, 1.0, 1.0); // White
+        
         CGContextSetLineWidth (currentContext, 3.0);
         
         drawSloppyBackground()
@@ -53,24 +55,23 @@ class SimpleView: NSView {
     func drawSloppyContents() {
         let innerRect = CGRectInset(bounds, 20.0, 20.0)
         
-        CGContextSetLineWidth (currentContext, 6.0);
-
-        NSColor.greenColor().set()
+        CGContextSetRGBFillColor (currentContext, 0.0, 1.0, 0.0, 1.0); // Green
         CGContextFillEllipseInRect (currentContext, innerRect);
-
-        NSColor.blueColor().set()
+        
+        CGContextSetRGBStrokeColor (currentContext, 0.0, 0.0, 1.0, 1.0); // Blue
+        CGContextSetLineWidth (currentContext, 6.0);
         CGContextStrokeEllipseInRect (currentContext, innerRect);
     }
     
     func drawSloppyBorder() {
         CGContextStrokeRect (currentContext, self.bounds);
     }
-
+    
     // --------------------------------------------------
-
+    
     func drawNicely () {
-        NSColor.whiteColor().setFill()
-        NSColor.blackColor().setStroke()
+        CGContextSetRGBStrokeColor (currentContext, 0.0, 0.0, 0.0, 1.0); // Black
+        CGContextSetRGBFillColor (currentContext, 1.0, 1.0, 1.0, 1.0); // White
         CGContextSetLineWidth (currentContext, 3.0);
         
         drawNiceBackground()
@@ -88,12 +89,11 @@ class SimpleView: NSView {
         saveGState {
             let innerRect = CGRectInset(self.bounds, 20.0, 20.0)
             
-            CGContextSetLineWidth (self.currentContext, 6.0);
-            
-            NSColor.greenColor().set()
+            CGContextSetRGBFillColor (self.currentContext, 0.0, 1.0, 0.0, 1.0); // Green
             CGContextFillEllipseInRect (self.currentContext, innerRect);
             
-            NSColor.blueColor().set()
+            CGContextSetRGBStrokeColor (self.currentContext, 0.0, 0.0, 1.0, 1.0); // Blue
+            CGContextSetLineWidth (self.currentContext, 6.0);
             CGContextStrokeEllipseInRect (self.currentContext, innerRect);
         }
     }
@@ -103,13 +103,13 @@ class SimpleView: NSView {
             CGContextStrokeRect (self.currentContext, self.bounds);
         }
     }
-
-
+    
+    
     // --------------------------------------------------
-
+    
     override func drawRect(dirtyRect: NSRect) {
         super.drawRect(dirtyRect)
-
+        
         if beSloppy {
             drawSloppily()
         } else {
