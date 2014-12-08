@@ -1,13 +1,9 @@
 #import "AppDelegate.h"
 
-#import "BNRSimpleView.h"
-#import "GrafDemo-Swift.h"
+#import "BNRSimpleWindowController.h"
 
 @interface AppDelegate ()
-
-@property (weak) IBOutlet BNRSimpleView *simpleView;
-@property (weak) IBOutlet SimpleView *swSimpleView;
-@property (weak) IBOutlet NSWindow *window;
+@property (strong) NSMutableArray *windowControllers;
 
 @end
 
@@ -15,15 +11,23 @@
 @implementation AppDelegate
             
 - (void) applicationDidFinishLaunching: (NSNotification *) aNotification {
+    self.windowControllers = NSMutableArray.new;
 }
 
 - (void) applicationWillTerminate: (NSNotification *) aNotification {
 }
 
-- (IBAction) toggleSloppy: (NSButton *) toggle {
-    self.simpleView.beSloppy = (toggle.state == NSOnState);
-    self.swSimpleView.beSloppy = (toggle.state == NSOnState);
-} // toggleSloppy
+
+- (IBAction)showSimpleView: (NSButton *) sender {
+
+    BNRSimpleWindowController *swc = [[BNRSimpleWindowController alloc] initWithWindowNibName: @"BNRSimpleWindowController"];
+    [swc loadWindow];
+    [swc showWindow: self];
+
+    [self.windowControllers addObject: swc];
+
+} // showSimpleView
+
 
 @end // AppDelegate
 

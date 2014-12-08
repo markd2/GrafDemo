@@ -54,6 +54,9 @@ class SimpleView: NSView {
     
     func drawSloppyContents() {
         let innerRect = CGRectInset(bounds, 20.0, 20.0)
+        if CGRectIsEmpty(innerRect) {
+            return
+        }
         
         CGContextSetRGBFillColor (currentContext, 0.0, 1.0, 0.0, 1.0) // Green
         CGContextFillEllipseInRect (currentContext, innerRect)
@@ -86,9 +89,13 @@ class SimpleView: NSView {
     }
     
     func drawNiceContents() {
+        let innerRect = CGRectInset(self.bounds, 20.0, 20.0)
+        
+        if CGRectIsEmpty(innerRect) {
+            return
+        }
+        
         saveGState {
-            let innerRect = CGRectInset(self.bounds, 20.0, 20.0)
-            
             CGContextSetRGBFillColor (self.currentContext, 0.0, 1.0, 0.0, 1.0) // Green
             CGContextFillEllipseInRect (self.currentContext, innerRect)
             

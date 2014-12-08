@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6206.8"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -13,8 +14,6 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
-                <outlet property="simpleView" destination="u1E-Hc-7jl" id="A6p-gj-vpj"/>
-                <outlet property="swSimpleView" destination="e7c-tF-zn5" id="h4b-38-fdR"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -677,24 +676,23 @@
                 <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u1E-Hc-7jl" customClass="BNRSimpleView">
-                        <rect key="frame" x="20" y="174" width="180" height="166"/>
-                    </customView>
-                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e7c-tF-zn5" customClass="SimpleView" customModule="GrafDemo" customModuleProvider="target">
-                        <rect key="frame" x="268" y="174" width="180" height="166"/>
-                    </customView>
-                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pdF-5s-L0U">
-                        <rect key="frame" x="208" y="150" width="64" height="18"/>
-                        <buttonCell key="cell" type="check" title="Sloppy" bezelStyle="regularSquare" imagePosition="left" inset="2" id="b0D-HN-u5C">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3gF-dL-a19">
+                        <rect key="frame" x="14" y="312" width="83" height="32"/>
+                        <buttonCell key="cell" type="push" title="Simple" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sVS-DX-oQj">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="toggleSloppy:" target="Voe-Tx-rLC" id="83y-iE-TCf"/>
+                            <action selector="showSimpleView:" target="Voe-Tx-rLC" id="M13-S8-OOG"/>
                         </connections>
                     </button>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="3gF-dL-a19" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="SgH-AP-dTi"/>
+                    <constraint firstItem="3gF-dL-a19" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="wPl-8q-rIq"/>
+                </constraints>
             </view>
+            <point key="canvasLocation" x="-23" y="166"/>
         </window>
     </objects>
 </document>
