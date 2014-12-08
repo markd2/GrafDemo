@@ -686,9 +686,22 @@
                             <action selector="showSimpleView:" target="Voe-Tx-rLC" id="M13-S8-OOG"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aPA-J2-I4L">
+                        <rect key="frame" x="14" y="279" width="83" height="32"/>
+                        <buttonCell key="cell" type="push" title="Lines" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WZQ-Q2-1xp">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="showLinesController:" target="Voe-Tx-rLC" id="CQp-cy-XNQ"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="3gF-dL-a19" firstAttribute="width" secondItem="aPA-J2-I4L" secondAttribute="width" id="FVY-Xd-CI7"/>
+                    <constraint firstItem="aPA-J2-I4L" firstAttribute="top" secondItem="3gF-dL-a19" secondAttribute="bottom" constant="12" id="NMc-bA-rVQ"/>
                     <constraint firstItem="3gF-dL-a19" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="SgH-AP-dTi"/>
+                    <constraint firstItem="aPA-J2-I4L" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="WeI-F7-lOs"/>
                     <constraint firstItem="3gF-dL-a19" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="wPl-8q-rIq"/>
                 </constraints>
             </view>

@@ -1,6 +1,7 @@
 #import "AppDelegate.h"
 
 #import "BNRSimpleWindowController.h"
+#import "GrafDemo-Swift.h"
 
 @interface AppDelegate ()
 @property (strong) NSMutableArray *windowControllers;
@@ -18,15 +19,36 @@
 }
 
 
+- (void) showViewControllerNamed: (NSString *) vcClassName {
+    Class clas = NSClassFromString(vcClassName);
+    if (clas == Nil) {
+        NSString *swiftClassName = [@"GrafDemo." stringByAppendingString: vcClassName];
+        clas = NSClassFromString(swiftClassName);
+    }
+    assert(clas);
+    
+    id wc = [[clas alloc] initWithWindowNibName: vcClassName];
+    [wc showWindow: self];
+
+    [self.windowControllers addObject: wc];
+
+} // showViewControllerNamed
+
+
+- (void) hackToGetXcodeToLinkTheClassesIn {
+    (void)BNRSimpleWindowController.new;
+    (void)BNRLinesWindowController.new;
+} // #ilyxc
+
+
 - (IBAction)showSimpleView: (NSButton *) sender {
-
-    BNRSimpleWindowController *swc = [[BNRSimpleWindowController alloc] initWithWindowNibName: @"BNRSimpleWindowController"];
-    [swc loadWindow];
-    [swc showWindow: self];
-
-    [self.windowControllers addObject: swc];
-
+    [self showViewControllerNamed: @"BNRSimpleWindowController"];
 } // showSimpleView
+
+
+- (IBAction) showLinesController: (NSButton *) sender {
+    [self showViewControllerNamed: @"BNRLinesWindowController"];
+} // showLinesController
 
 
 @end // AppDelegate
