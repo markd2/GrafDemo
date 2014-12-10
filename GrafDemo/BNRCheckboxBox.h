@@ -12,6 +12,8 @@
 
 @interface BNRCheckboxBox : NSBox
 
+@property (assign, getter=isEnabled) BOOL enabled;
+
 @end // BNRCheckboxBox
 
 

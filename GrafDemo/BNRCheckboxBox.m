@@ -9,16 +9,15 @@
 #import "BNRCheckboxBox.h"
 
 @interface BNRCheckboxBox ()
-@property (assign) BOOL contentEnabled;
 @end // extension
 
 
 @implementation BNRCheckboxBox
+@synthesize enabled = _enabled;
 
 - (void) awakeFromNib {
     [super awakeFromNib];
-
-    self.contentEnabled = YES;
+    self.enabled = YES;
     
     NSButtonCell *buttonCell = [[NSButtonCell alloc] initTextCell: @"Bork"];
     [buttonCell setButtonType: NSSwitchButton];
@@ -35,7 +34,7 @@
 
 
 - (void) walkView: (NSView *) view  settingEnabled: (BOOL) enabled {
-    if ([view respondsToSelector: @selector(setEnabled:)]) {
+    if (view != self && [view respondsToSelector: @selector(setEnabled:)]) {
         [(id)view setEnabled: enabled];
     }
     
@@ -51,12 +50,21 @@
 } // setContentEnabledState
 
 
-
 - (void) toggleEnabledState: (id) sender {
-    self.contentEnabled = !self.contentEnabled;
-    [self setContentEnabledState: self.contentEnabled];
+    self.enabled = !self.enabled;
+    [self setContentEnabledState: self.enabled];
 } // toggleEnabledState
 
+
+- (void) setEnabled: (BOOL) enabled {
+    _enabled = enabled;
+    [self setContentEnabledState: enabled];
+} // setEnabled
+
+
+- (BOOL) isEnabled {
+    return _enabled;
+} // isEnabled
 
 
 - (void) mouseDown:(NSEvent *)theEvent {
