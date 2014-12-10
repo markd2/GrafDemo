@@ -18,9 +18,9 @@
 
 
 - (void) commonInit {
-    _pointStorage[0] = (CGPoint){ 10.0, 10.0 };
-    _pointStorage[1] = (CGPoint){ 90.0, 100.0 };
-    _pointStorage[2] = (CGPoint){  7.0,  30.0 };
+    _pointStorage[0] = (CGPoint){  20.0, 190.0 };
+    _pointStorage[1] = (CGPoint){ 100.0,  40.0 };
+    _pointStorage[2] = (CGPoint){ 180.0, 190.0 };
 } // commonInit
 
 
@@ -91,4 +91,17 @@
     return YES;
 } // isFlipped
 
+
+// --------------------------------------------------
+
+- (void) mouseDown: (NSEvent *) event {
+    CGPoint localPoint = [self convertPoint: event.locationInWindow
+                                   fromView: nil];
+    NSLog (@"clicked %@", NSStringFromPoint(localPoint));
+} // mouseDown
+
 @end // BNRLinesView
+
+
+
+
