@@ -667,17 +667,17 @@
                 </menuItem>
             </items>
         </menu>
-        <window title="GrafDemo" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
+        <window title="GrafDemo" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" frameAutosaveName="main window" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="480" height="360"/>
+            <rect key="contentRect" x="335" y="390" width="111" height="108"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
+                <rect key="frame" x="0.0" y="0.0" width="111" height="108"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3gF-dL-a19">
-                        <rect key="frame" x="14" y="312" width="83" height="32"/>
+                        <rect key="frame" x="14" y="60" width="83" height="32"/>
                         <buttonCell key="cell" type="push" title="Simple" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sVS-DX-oQj">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -687,7 +687,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aPA-J2-I4L">
-                        <rect key="frame" x="14" y="279" width="83" height="32"/>
+                        <rect key="frame" x="14" y="27" width="83" height="32"/>
                         <buttonCell key="cell" type="push" title="Lines" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WZQ-Q2-1xp">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -705,7 +705,7 @@
                     <constraint firstItem="3gF-dL-a19" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="wPl-8q-rIq"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="-23" y="166"/>
+            <point key="canvasLocation" x="-207.5" y="40"/>
         </window>
     </objects>
 </document>
