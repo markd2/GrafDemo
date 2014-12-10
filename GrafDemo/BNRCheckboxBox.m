@@ -19,7 +19,7 @@
     [super awakeFromNib];
     self.enabled = YES;
     
-    NSButtonCell *buttonCell = [[NSButtonCell alloc] initTextCell: @"Bork"];
+    NSButtonCell *buttonCell = [[NSButtonCell alloc] initTextCell: self.title];
     [buttonCell setButtonType: NSSwitchButton];
     buttonCell.state = NSOnState;
 
