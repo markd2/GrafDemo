@@ -18,9 +18,9 @@
 
 
 - (void) commonInit {
-    _pointStorage[0] = (CGPoint){  20.0, 190.0 };
-    _pointStorage[1] = (CGPoint){ 100.0,  40.0 };
-    _pointStorage[2] = (CGPoint){ 180.0, 190.0 };
+    _pointStorage[0] = (CGPoint){  20.0, 400.0 };
+    _pointStorage[1] = (CGPoint){ 150.0, 100.0 };
+    _pointStorage[2] = (CGPoint){ 280.0, 400.0 };
 } // commonInit
 
 
