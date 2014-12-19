@@ -9,6 +9,7 @@
 import Cocoa
 
 public class BNRLinesWindowController: NSWindowController {
+    @IBOutlet weak var linesView: BNRLinesView!
 
     @IBOutlet weak var lineWidthlider: NSSlider!
     @IBOutlet weak var miterLimitSlider: NSSlider!
@@ -23,6 +24,19 @@ public class BNRLinesWindowController: NSWindowController {
     @IBOutlet weak var space1Slider: NSSlider!
     @IBOutlet weak var dash2Slider: NSSlider!
     @IBOutlet weak var space2Slider: NSSlider!
+    
+    
+    
+    public override func awakeFromNib() {
+        linesView.preRenderHook = {
+            linesView, cgContext in
+            self.setupContext(cgContext)
+        }
+    }
+    
+    public func setupContext (context: CGContext) {
+        NSColor.redColor().set()
+    }
 
     public override func windowDidLoad() {
         super.windowDidLoad()

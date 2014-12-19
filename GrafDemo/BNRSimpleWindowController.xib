@@ -23,10 +23,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="437" height="225"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                 <subviews>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Her-SE-Pdr" customClass="BNRSimpleView">
+                    <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Her-SE-Pdr" customClass="BNRSimpleView">
                         <rect key="frame" x="20" y="42" width="165" height="163"/>
                     </customView>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="ycI-1i-Ub2" customClass="SimpleView" customModule="GrafDemo" customModuleProvider="target">
+                    <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ycI-1i-Ub2" customClass="SimpleView" customModule="GrafDemo" customModuleProvider="target">
                         <rect key="frame" x="253" y="42" width="164" height="163"/>
                     </customView>
                     <button translatesAutoresizingMaskIntoConstraints="NO" id="IIg-w7-JaP">

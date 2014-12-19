@@ -15,6 +15,7 @@
                 <outlet property="linePhaseBox" destination="cKF-tP-LiL" id="DyA-ef-v1v"/>
                 <outlet property="linePhaseSlider" destination="6bG-Se-XvW" id="hZq-3M-McW"/>
                 <outlet property="lineWidthlider" destination="dyZ-py-PDR" id="MNw-GZ-11x"/>
+                <outlet property="linesView" destination="Ztv-v9-t0c" id="o7e-XJ-2GV"/>
                 <outlet property="miterLimitPopUp" destination="c10-h8-akQ" id="zUw-iV-kMB"/>
                 <outlet property="miterLimitSlider" destination="g6l-IV-25c" id="Xe3-Je-xPh"/>
                 <outlet property="space0Slider" destination="XOb-tU-b7r" id="cun-N4-AFU"/>
