@@ -38,6 +38,10 @@
         [(id)view setEnabled: enabled];
     }
     
+    if ([view isKindOfClass: NSTextField.class]) {
+        [(id)view setTextColor: (enabled) ? NSColor.controlTextColor : NSColor.disabledControlTextColor];
+    }
+    
     for (NSView *subview in view.subviews) {
         [self walkView: subview  settingEnabled: enabled];
     }
