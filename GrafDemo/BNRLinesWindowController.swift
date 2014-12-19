@@ -11,7 +11,7 @@ import Cocoa
 public class BNRLinesWindowController: NSWindowController {
     @IBOutlet weak var linesView: BNRLinesView!
 
-    @IBOutlet weak var lineWidthlider: NSSlider!
+    @IBOutlet weak var lineWidthSlider: NSSlider!
     @IBOutlet weak var miterLimitSlider: NSSlider!
     @IBOutlet weak var endCapPopUp: NSPopUpButton!
     @IBOutlet weak var miterLimitPopUp: NSPopUpButton!
@@ -34,7 +34,8 @@ public class BNRLinesWindowController: NSWindowController {
         }
     }
     
-    public func setupContext (context: CGContext) {
+    public func setupContext (context: CGContext!) {
+        CGContextSetLineWidth (context, CGFloat(lineWidthSlider.doubleValue))
         NSColor.redColor().set()
     }
 
@@ -44,6 +45,7 @@ public class BNRLinesWindowController: NSWindowController {
     
     @IBAction func changeLineWidth (sender: NSSlider) {
         println(sender.integerValue)
+        linesView.needsDisplay = true
     }
 
     @IBAction func changeMiterLimit (sender: NSSlider) {
