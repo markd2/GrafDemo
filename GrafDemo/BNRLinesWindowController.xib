@@ -12,17 +12,15 @@
                 <outlet property="dash1Slider" destination="xGE-Gp-zDa" id="PsM-xr-YGA"/>
                 <outlet property="dash2Slider" destination="b0L-jr-Ajg" id="asu-j6-R5y"/>
                 <outlet property="endCapPopUp" destination="ibz-Vg-z2S" id="ywC-Ju-qYq"/>
+                <outlet property="lineJoinPopUp" destination="c10-h8-akQ" id="d1e-xO-8Ok"/>
                 <outlet property="linePhaseBox" destination="cKF-tP-LiL" id="DyA-ef-v1v"/>
                 <outlet property="linePhaseSlider" destination="6bG-Se-XvW" id="hZq-3M-McW"/>
                 <outlet property="lineWidthSlider" destination="dyZ-py-PDR" id="GSR-dB-McU"/>
                 <outlet property="linesView" destination="Ztv-v9-t0c" id="o7e-XJ-2GV"/>
-                <outlet property="miterLimitPopUp" destination="c10-h8-akQ" id="zUw-iV-kMB"/>
                 <outlet property="miterLimitSlider" destination="g6l-IV-25c" id="Xe3-Je-xPh"/>
                 <outlet property="space0Slider" destination="XOb-tU-b7r" id="cun-N4-AFU"/>
-                <outlet property="space0slider" destination="cKF-tP-LiL" id="rBo-8M-mzU"/>
                 <outlet property="space1Slider" destination="iVq-Yi-2X7" id="QPF-rM-3rl"/>
                 <outlet property="space2Slider" destination="1gQ-d5-7cg" id="zl1-Yj-k2j"/>
-                <outlet property="testBox" destination="UgO-1s-F7z" id="EzG-F8-N6s"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -60,7 +58,7 @@
                                 </textField>
                                 <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g6l-IV-25c">
                                     <rect key="frame" x="16" y="87" width="163" height="20"/>
-                                    <sliderCell key="cell" continuous="YES" alignment="left" minValue="0.5" maxValue="30" doubleValue="10" tickMarkPosition="above" sliderType="linear" id="lHa-Jl-39k"/>
+                                    <sliderCell key="cell" continuous="YES" alignment="left" minValue="0.5" maxValue="10" doubleValue="5" tickMarkPosition="above" sliderType="linear" id="lHa-Jl-39k"/>
                                     <connections>
                                         <action selector="changeMiterLimit:" target="-2" id="Jvs-zE-kxA"/>
                                     </connections>
@@ -98,8 +96,8 @@
                                         <menu key="menu" id="6ld-yM-Zgk">
                                             <items>
                                                 <menuItem title="Miter Join" state="on" id="CpW-7S-Jxc"/>
-                                                <menuItem title="Miter Round" id="G1V-1M-3XK"/>
-                                                <menuItem title="Miter Bevel" id="92T-nC-ZhQ"/>
+                                                <menuItem title="Round Join" id="G1V-1M-3XK"/>
+                                                <menuItem title="Bevel Join" id="92T-nC-ZhQ"/>
                                             </items>
                                         </menu>
                                     </popUpButtonCell>

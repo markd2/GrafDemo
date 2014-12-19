@@ -14,7 +14,7 @@ public class BNRLinesWindowController: NSWindowController {
     @IBOutlet weak var lineWidthSlider: NSSlider!
     @IBOutlet weak var miterLimitSlider: NSSlider!
     @IBOutlet weak var endCapPopUp: NSPopUpButton!
-    @IBOutlet weak var miterLimitPopUp: NSPopUpButton!
+    @IBOutlet weak var lineJoinPopUp: NSPopUpButton!
 
     @IBOutlet weak var linePhaseBox: BNRCheckboxBox!
     @IBOutlet weak var linePhaseSlider: NSSlider!
@@ -36,6 +36,9 @@ public class BNRLinesWindowController: NSWindowController {
     
     public func setupContext (context: CGContext!) {
         CGContextSetLineWidth (context, CGFloat(lineWidthSlider.doubleValue))
+        CGContextSetMiterLimit (context, CGFloat(miterLimitSlider.doubleValue))
+        CGContextSetLineCap (context, CGLineCap(UInt32(endCapPopUp.indexOfSelectedItem)))
+        CGContextSetLineJoin (context, CGLineJoin(UInt32(lineJoinPopUp.indexOfSelectedItem)))
         NSColor.redColor().set()
     }
 
@@ -50,16 +53,19 @@ public class BNRLinesWindowController: NSWindowController {
 
     @IBAction func changeMiterLimit (sender: NSSlider) {
         println(sender.integerValue)
+        linesView.needsDisplay = true
     }
 
  
     @IBAction func changeEndCap (sender: NSPopUpButton) {
         println(sender.indexOfSelectedItem)
+        linesView.needsDisplay = true
     }
     
  
     @IBAction func changeMiterJoin (sender: NSPopUpButton) {
         println(sender.indexOfSelectedItem)
+        linesView.needsDisplay = true
     }
     
 
