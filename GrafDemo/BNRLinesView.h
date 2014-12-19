@@ -8,6 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class BNRLinesView;
+typedef void (^BNRLinesViewPreRenderHook)(BNRLinesView *linesView, CGContextRef cgContext);
+
+
 @interface BNRLinesView : NSView
+
+@property (copy) BNRLinesViewPreRenderHook preRenderHook;
 
 @end

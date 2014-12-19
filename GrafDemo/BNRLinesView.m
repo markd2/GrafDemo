@@ -67,6 +67,10 @@
     [super drawRect: dirtyRect];
     
     [self drawNiceBackground];
+    
+    if (self.preRenderHook) {
+        self.preRenderHook (self, CurrentContext());
+    }
 
     NSBezierPath *path = NSBezierPath.new;
 
