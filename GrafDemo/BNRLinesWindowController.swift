@@ -8,6 +8,12 @@
 
 import Cocoa
 
+extension NSSlider {
+    func cgfloatValue() -> CGFloat {
+        return CGFloat(self.doubleValue)
+    }
+}
+
 public class BNRLinesWindowController: NSWindowController {
     @IBOutlet weak var linesView: BNRLinesView!
 
@@ -25,8 +31,6 @@ public class BNRLinesWindowController: NSWindowController {
     @IBOutlet weak var dash2Slider: NSSlider!
     @IBOutlet weak var space2Slider: NSSlider!
     
-    
-    
     public override func awakeFromNib() {
         linesView.preRenderHook = {
             linesView, cgContext in
@@ -39,6 +43,16 @@ public class BNRLinesWindowController: NSWindowController {
         CGContextSetMiterLimit (context, CGFloat(miterLimitSlider.doubleValue))
         CGContextSetLineCap (context, CGLineCap(UInt32(endCapPopUp.indexOfSelectedItem)))
         CGContextSetLineJoin (context, CGLineJoin(UInt32(lineJoinPopUp.indexOfSelectedItem)))
+        
+        if linePhaseBox.enabled {
+            let phase = CGFloat(linePhaseSlider.doubleValue)
+            let lengths: Array<CGFloat> = [ dash0Slider.cgfloatValue(), space0Slider.cgfloatValue(),
+                dash1Slider.cgfloatValue(), space1Slider.cgfloatValue(),
+                dash2Slider.cgfloatValue(), space2Slider.cgfloatValue() ]
+            
+            CGContextSetLineDash (context, phase, lengths, UInt(lengths.count))
+        }
+        
         NSColor.redColor().set()
     }
 
@@ -71,14 +85,17 @@ public class BNRLinesWindowController: NSWindowController {
 
     @IBAction func changePhase (sender: NSSlider) {
         println(sender.integerValue)
+        linesView.needsDisplay = true
     }
     
     @IBAction func changeDash (sender: NSSlider) {
         println(sender.integerValue)
+        linesView.needsDisplay = true
     }
     
     @IBAction func changeSpace (sender: NSSlider) {
         println(sender.integerValue)
+        linesView.needsDisplay = true
     }
     
 }

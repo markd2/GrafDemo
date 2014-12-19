@@ -90,12 +90,12 @@
                                 </popUpButton>
                                 <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c10-h8-akQ">
                                     <rect key="frame" x="15" y="27" width="165" height="22"/>
-                                    <popUpButtonCell key="cell" type="push" title="Miter Join" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="CpW-7S-Jxc" id="TwX-cT-aV8">
+                                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="TwX-cT-aV8">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="smallSystem"/>
                                         <menu key="menu" id="6ld-yM-Zgk">
                                             <items>
-                                                <menuItem title="Miter Join" state="on" id="CpW-7S-Jxc"/>
+                                                <menuItem title="Miter Join" id="CpW-7S-Jxc"/>
                                                 <menuItem title="Round Join" id="G1V-1M-3XK"/>
                                                 <menuItem title="Bevel Join" id="92T-nC-ZhQ"/>
                                             </items>
@@ -130,21 +130,21 @@
                                 </textField>
                                 <slider verticalHuggingPriority="750" fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="1gQ-d5-7cg">
                                     <rect key="frame" x="96" y="12" width="96" height="20"/>
-                                    <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="wUh-Pn-n7P"/>
+                                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="10" doubleValue="2.4796874999999998" tickMarkPosition="above" sliderType="linear" id="wUh-Pn-n7P"/>
                                     <connections>
                                         <action selector="changeSpace:" target="-2" id="2FY-x6-84d"/>
                                     </connections>
                                 </slider>
                                 <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6bG-Se-XvW">
                                     <rect key="frame" x="96" y="155" width="96" height="20"/>
-                                    <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="SCi-xA-KLd"/>
+                                    <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="10" doubleValue="5" tickMarkPosition="above" sliderType="linear" id="SCi-xA-KLd"/>
                                     <connections>
                                         <action selector="changePhase:" target="-2" id="o7D-uR-c4U"/>
                                     </connections>
                                 </slider>
                                 <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8xr-hS-ygE">
                                     <rect key="frame" x="96" y="124" width="96" height="20"/>
-                                    <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="Ukl-hU-yfk"/>
+                                    <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="10" doubleValue="10" tickMarkPosition="above" sliderType="linear" id="Ukl-hU-yfk"/>
                                     <connections>
                                         <action selector="changeDash:" target="-2" id="HvD-wb-6bj"/>
                                     </connections>
@@ -159,7 +159,7 @@
                                 </textField>
                                 <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XOb-tU-b7r">
                                     <rect key="frame" x="96" y="102" width="96" height="20"/>
-                                    <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="PD2-WR-L8S"/>
+                                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="10" doubleValue="1.8781249999999998" tickMarkPosition="above" sliderType="linear" id="PD2-WR-L8S"/>
                                     <connections>
                                         <action selector="changeSpace:" target="-2" id="r9K-Ro-gTA"/>
                                     </connections>
@@ -182,14 +182,14 @@
                                 </textField>
                                 <slider verticalHuggingPriority="750" fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="b0L-jr-Ajg">
                                     <rect key="frame" x="96" y="34" width="96" height="20"/>
-                                    <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="IpS-2A-bZ0"/>
+                                    <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="10" doubleValue="5" tickMarkPosition="above" sliderType="linear" id="IpS-2A-bZ0"/>
                                     <connections>
                                         <action selector="changeDash:" target="-2" id="WzF-FG-G4U"/>
                                     </connections>
                                 </slider>
                                 <slider verticalHuggingPriority="750" fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="iVq-Yi-2X7">
                                     <rect key="frame" x="96" y="58" width="96" height="20"/>
-                                    <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="f9R-Ds-ggJ"/>
+                                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="10" doubleValue="2.3999999999999999" tickMarkPosition="above" sliderType="linear" id="f9R-Ds-ggJ"/>
                                     <connections>
                                         <action selector="changeSpace:" target="-2" id="Xaj-35-tpH"/>
                                     </connections>
@@ -212,7 +212,7 @@
                                 </textField>
                                 <slider verticalHuggingPriority="750" fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="xGE-Gp-zDa">
                                     <rect key="frame" x="96" y="80" width="96" height="20"/>
-                                    <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="pmF-QK-Nlh"/>
+                                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="10" doubleValue="7.2395833333333339" tickMarkPosition="above" sliderType="linear" id="pmF-QK-Nlh"/>
                                     <connections>
                                         <action selector="changeDash:" target="-2" id="1D5-Df-iTo"/>
                                     </connections>
