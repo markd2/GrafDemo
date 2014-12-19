@@ -64,27 +64,34 @@
 
 
 - (void) drawRect: (NSRect) dirtyRect {
+    CGContextRef context = CurrentContext();
+    
     [super drawRect: dirtyRect];
     
     [self drawNiceBackground];
     
-    if (self.preRenderHook) {
-        self.preRenderHook (self, CurrentContext());
-    }
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathMoveToPoint (path, NULL, self.points[0].x, self.points[0].y);
+    CGPathAddLineToPoint (path, NULL, self.points[1].x, self.points[1].y);
+    CGPathAddLineToPoint (path, NULL, self.points[2].x, self.points[2].y);
+    
+    CGContextSaveGState (context); {
+        [NSColor.blueColor set];
 
-    NSBezierPath *path = NSBezierPath.new;
-
-    [path moveToPoint: self.points[0]];
-    [path lineToPoint: self.points[1]];
-    [path lineToPoint: self.points[2]];
-
-    [NSColor.blueColor set];
-    path.lineWidth = 10.0;
-    [path stroke];
+        CGContextAddPath (context, path);
+        if (self.preRenderHook) {
+            self.preRenderHook (self, CurrentContext());
+        }
+        
+        CGContextStrokePath (context);
+        
+    } CGContextRestoreGState (context);
+    
+    CGContextAddPath (context, path);
 
     [NSColor.whiteColor set];
-    path.lineWidth = 1.0;
-    [path stroke];
+    CGContextStrokePath (context);
+
     
     [self drawNiceBorder];
 
