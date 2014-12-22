@@ -9,6 +9,7 @@
 #import "BNRCheckboxBox.h"
 
 @interface BNRCheckboxBox ()
+@property (strong) NSButtonCell *buttonCell; // for the checkbox
 @end // extension
 
 
@@ -19,16 +20,16 @@
     [super awakeFromNib];
     self.enabled = YES;
     
-    NSButtonCell *buttonCell = [[NSButtonCell alloc] initTextCell: self.title];
-    [buttonCell setButtonType: NSSwitchButton];
-    buttonCell.state = NSOnState;
+    self.buttonCell = [[NSButtonCell alloc] initTextCell: self.title];
+    [self.buttonCell setButtonType: NSSwitchButton];
+    self.buttonCell.state = NSOnState;
 
-    buttonCell.target = self;
-    buttonCell.action = @selector(toggleEnabledState:);
+    self.buttonCell.target = self;
+    self.buttonCell.action = @selector(toggleEnabledState:);
 
-    [buttonCell setControlView:self];
+    [self.buttonCell setControlView:self];
 
-    _titleCell = buttonCell;
+    _titleCell = self.buttonCell;
 
 } // awakeFromNib
 
@@ -57,12 +58,15 @@
 - (void) toggleEnabledState: (id) sender {
     self.enabled = !self.enabled;
     [self setContentEnabledState: self.enabled];
+    
+    [NSApp sendAction: self.action  to: self.target  from: self];
 } // toggleEnabledState
 
 
 - (void) setEnabled: (BOOL) enabled {
     _enabled = enabled;
     [self setContentEnabledState: enabled];
+    self.buttonCell.state = enabled ? NSOnState : NSOffState;
 } // setEnabled
 
 

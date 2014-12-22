@@ -14,6 +14,9 @@
 
 @property (assign, getter=isEnabled) BOOL enabled;
 
+@property (weak) id target;
+@property SEL action;
+
 @end // BNRCheckboxBox
 
 
