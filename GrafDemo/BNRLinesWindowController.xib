@@ -12,12 +12,14 @@
                 <outlet property="dash1Slider" destination="xGE-Gp-zDa" id="PsM-xr-YGA"/>
                 <outlet property="dash2Slider" destination="b0L-jr-Ajg" id="asu-j6-R5y"/>
                 <outlet property="endCapPopUp" destination="ibz-Vg-z2S" id="ywC-Ju-qYq"/>
+                <outlet property="lineAlphaCheckbox" destination="VMr-R1-Tgp" id="mcu-pk-QEA"/>
                 <outlet property="lineJoinPopUp" destination="c10-h8-akQ" id="d1e-xO-8Ok"/>
                 <outlet property="linePhaseBox" destination="cKF-tP-LiL" id="DyA-ef-v1v"/>
                 <outlet property="linePhaseSlider" destination="6bG-Se-XvW" id="hZq-3M-McW"/>
                 <outlet property="lineWidthSlider" destination="dyZ-py-PDR" id="GSR-dB-McU"/>
                 <outlet property="linesView" destination="Ztv-v9-t0c" id="o7e-XJ-2GV"/>
                 <outlet property="miterLimitSlider" destination="g6l-IV-25c" id="Xe3-Je-xPh"/>
+                <outlet property="singlePathCheckbox" destination="oLx-cM-uwX" id="T2s-vP-EHR"/>
                 <outlet property="space0Slider" destination="XOb-tU-b7r" id="cun-N4-AFU"/>
                 <outlet property="space1Slider" destination="iVq-Yi-2X7" id="QPF-rM-3rl"/>
                 <outlet property="space2Slider" destination="1gQ-d5-7cg" id="zl1-Yj-k2j"/>
@@ -29,27 +31,27 @@
         <window title="Lines" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" frameAutosaveName="lines window" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="627" height="473"/>
+            <rect key="contentRect" x="196" y="240" width="627" height="516"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="-5" width="627" height="473"/>
+                <rect key="frame" x="0.0" y="0.0" width="627" height="516"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <box autoresizesSubviews="NO" title="Line Attributes" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="UgO-1s-F7z">
-                        <rect key="frame" x="395" y="247" width="210" height="206"/>
+                        <rect key="frame" x="395" y="253" width="210" height="243"/>
                         <view key="contentView">
-                            <rect key="frame" x="1" y="1" width="208" height="190"/>
+                            <rect key="frame" x="1" y="1" width="208" height="227"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dyZ-py-PDR">
-                                    <rect key="frame" x="16" y="140" width="163" height="20"/>
+                                    <rect key="frame" x="16" y="177" width="163" height="20"/>
                                     <sliderCell key="cell" continuous="YES" alignment="left" minValue="0.5" maxValue="30" doubleValue="10" tickMarkPosition="above" sliderType="linear" id="nkY-DC-1LS"/>
                                     <connections>
                                         <action selector="changeLineWidth:" target="-2" id="kAg-mF-MGq"/>
                                     </connections>
                                 </slider>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D8t-m0-6Oo">
-                                    <rect key="frame" x="16" y="166" width="71" height="14"/>
+                                    <rect key="frame" x="16" y="203" width="71" height="14"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Line Width" id="TFg-Nj-JuX">
                                         <font key="font" metaFont="smallSystem"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -57,14 +59,14 @@
                                     </textFieldCell>
                                 </textField>
                                 <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g6l-IV-25c">
-                                    <rect key="frame" x="16" y="87" width="163" height="20"/>
-                                    <sliderCell key="cell" continuous="YES" alignment="left" minValue="0.5" maxValue="10" doubleValue="5" tickMarkPosition="above" sliderType="linear" id="lHa-Jl-39k"/>
+                                    <rect key="frame" x="16" y="124" width="163" height="20"/>
+                                    <sliderCell key="cell" continuous="YES" alignment="left" minValue="0.5" maxValue="20" doubleValue="5" tickMarkPosition="above" sliderType="linear" id="lHa-Jl-39k"/>
                                     <connections>
                                         <action selector="changeMiterLimit:" target="-2" id="Jvs-zE-kxA"/>
                                     </connections>
                                 </slider>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Oh-vb-w3S">
-                                    <rect key="frame" x="16" y="113" width="71" height="14"/>
+                                    <rect key="frame" x="16" y="150" width="71" height="14"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Miter Limit" id="a8u-Rd-zWo">
                                         <font key="font" metaFont="smallSystem"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -72,7 +74,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ibz-Vg-z2S">
-                                    <rect key="frame" x="15" y="56" width="165" height="22"/>
+                                    <rect key="frame" x="15" y="93" width="165" height="22"/>
                                     <popUpButtonCell key="cell" type="push" title="Butt Cap" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="WmS-7n-koi" id="oXK-jA-0F7">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="smallSystem"/>
@@ -89,7 +91,7 @@
                                     </connections>
                                 </popUpButton>
                                 <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c10-h8-akQ">
-                                    <rect key="frame" x="15" y="27" width="165" height="22"/>
+                                    <rect key="frame" x="15" y="64" width="165" height="22"/>
                                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="TwX-cT-aV8">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="smallSystem"/>
@@ -105,17 +107,40 @@
                                         <action selector="changeMiterJoin:" target="-2" id="lta-ID-KqG"/>
                                     </connections>
                                 </popUpButton>
+                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VMr-R1-Tgp">
+                                    <rect key="frame" x="15" y="42" width="85" height="20"/>
+                                    <buttonCell key="cell" type="check" title="Alpha Color" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="B6G-PZ-KzD">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="smallSystem"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="toggleLineAlpha:" target="-2" id="gtS-UU-Qqe"/>
+                                    </connections>
+                                </button>
+                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oLx-cM-uwX">
+                                    <rect key="frame" x="15" y="17" width="81" height="20"/>
+                                    <buttonCell key="cell" type="check" title="Single Path" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="jNH-dg-Iaz">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="smallSystem"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="toggleSinglePath:" target="-2" id="U3J-Fi-h3X"/>
+                                    </connections>
+                                </button>
                             </subviews>
                         </view>
                         <constraints>
-                            <constraint firstAttribute="height" constant="202" id="1eG-Cw-rZU"/>
+                            <constraint firstAttribute="height" constant="239" id="1eG-Cw-rZU"/>
                             <constraint firstAttribute="width" constant="204" id="xeP-nB-7RJ"/>
                         </constraints>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Ztv-v9-t0c" customClass="BNRLinesView">
+                        <rect key="frame" x="20" y="20" width="341" height="476"/>
+                    </customView>
                     <box autoresizesSubviews="NO" title="Line Phase" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="cKF-tP-LiL" customClass="BNRCheckboxBox">
-                        <rect key="frame" x="395" y="21" width="210" height="199"/>
+                        <rect key="frame" x="395" y="38" width="210" height="199"/>
                         <view key="contentView">
                             <rect key="frame" x="1" y="1" width="208" height="183"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -234,9 +259,6 @@
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Ztv-v9-t0c" customClass="BNRLinesView">
-                        <rect key="frame" x="20" y="20" width="341" height="433"/>
-                    </customView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Ztv-v9-t0c" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="BSB-bP-UQK"/>
@@ -246,13 +268,13 @@
                     <constraint firstAttribute="bottom" secondItem="Ztv-v9-t0c" secondAttribute="bottom" constant="20" id="Z4h-1m-6c1"/>
                     <constraint firstAttribute="trailing" secondItem="UgO-1s-F7z" secondAttribute="trailing" constant="25" id="oYy-PU-PfW"/>
                     <constraint firstItem="cKF-tP-LiL" firstAttribute="leading" secondItem="Ztv-v9-t0c" secondAttribute="trailing" constant="37" id="sSZ-Y8-xE6"/>
-                    <constraint firstItem="cKF-tP-LiL" firstAttribute="top" secondItem="UgO-1s-F7z" secondAttribute="bottom" constant="31" id="x4d-c6-UtR"/>
+                    <constraint firstItem="cKF-tP-LiL" firstAttribute="top" secondItem="UgO-1s-F7z" secondAttribute="bottom" constant="20" id="x4d-c6-UtR"/>
                 </constraints>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="161.5" y="229.5"/>
+            <point key="canvasLocation" x="161.5" y="251"/>
         </window>
     </objects>
 </document>

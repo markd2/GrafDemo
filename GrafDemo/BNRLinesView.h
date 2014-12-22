@@ -15,5 +15,6 @@ typedef void (^BNRLinesViewPreRenderHook)(BNRLinesView *linesView, CGContextRef 
 @interface BNRLinesView : NSView
 
 @property (copy) BNRLinesViewPreRenderHook preRenderHook;
+@property (assign) BOOL renderAsSinglePath;
 
 @end

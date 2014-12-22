@@ -21,6 +21,8 @@ public class BNRLinesWindowController: NSWindowController {
     @IBOutlet weak var miterLimitSlider: NSSlider!
     @IBOutlet weak var endCapPopUp: NSPopUpButton!
     @IBOutlet weak var lineJoinPopUp: NSPopUpButton!
+    @IBOutlet weak var lineAlphaCheckbox : NSButton!
+    @IBOutlet weak var singlePathCheckbox : NSButton!
 
     @IBOutlet weak var linePhaseBox: BNRCheckboxBox!
     @IBOutlet weak var linePhaseSlider: NSSlider!
@@ -47,6 +49,12 @@ public class BNRLinesWindowController: NSWindowController {
         CGContextSetLineCap (context, CGLineCap(UInt32(endCapPopUp.indexOfSelectedItem)))
         CGContextSetLineJoin (context, CGLineJoin(UInt32(lineJoinPopUp.indexOfSelectedItem)))
         
+        if self.lineAlphaCheckbox.state == NSOnState {
+            NSColor.blueColor().colorWithAlphaComponent(0.50).set()
+        } else {
+            NSColor.blueColor().set()
+        }
+        
         if linePhaseBox.enabled {
             let phase = CGFloat(linePhaseSlider.doubleValue)
             let lengths: Array<CGFloat> = [ dash0Slider.cgfloatValue(), space0Slider.cgfloatValue(),
@@ -56,7 +64,7 @@ public class BNRLinesWindowController: NSWindowController {
             CGContextSetLineDash (context, phase, lengths, UInt(lengths.count))
         }
         
-        NSColor.redColor().set()
+
     }
 
     public override func windowDidLoad() {
@@ -105,4 +113,12 @@ public class BNRLinesWindowController: NSWindowController {
         linesView.needsDisplay = true
     }
     
+    @IBAction func toggleLineAlpha (sender: NSButton) {
+        linesView.needsDisplay = true
+    }
+    
+    @IBAction func toggleSinglePath (sender: NSButton) {
+        linesView.renderAsSinglePath = sender.state == NSOnState
+        linesView.needsDisplay = true
+    }
 }

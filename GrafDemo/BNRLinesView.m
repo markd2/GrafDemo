@@ -4,12 +4,15 @@
 @interface BNRLinesView ()
 
 @property (readonly) CGPoint *points;
+@property (assign) NSInteger draggedPoint;
 
 @end // extension
 
+static const NSInteger kPointCount = 4;
+static const NSInteger kNoDraggedPoint = -1;
 
 @implementation BNRLinesView {
-    CGPoint _pointStorage[3];
+    CGPoint _pointStorage[kPointCount];
 }
 
 - (CGPoint *) points {
@@ -18,9 +21,12 @@
 
 
 - (void) commonInit {
-    _pointStorage[0] = (CGPoint){  20.0, 400.0 };
-    _pointStorage[1] = (CGPoint){ 150.0, 100.0 };
-    _pointStorage[2] = (CGPoint){ 280.0, 400.0 };
+    _pointStorage[0] = (CGPoint){  17.0, 400.0 };
+    _pointStorage[1] = (CGPoint){ 175.0, 20.0 };
+    _pointStorage[2] = (CGPoint){ 330.0, 275.0 };
+    _pointStorage[3] = (CGPoint){ 150.0, 371.0 };
+    
+    _renderAsSinglePath = YES;
 } // commonInit
 
 
@@ -63,6 +69,49 @@
 } // drawNiceBorder
 
 
+
+- (void) renderSinglePath {
+    CGContextRef context = CurrentContext();
+
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathMoveToPoint (path, NULL, self.points[0].x, self.points[0].y);
+    
+    for (NSInteger i = 1; i < kPointCount; i++) {
+        CGPathAddLineToPoint (path, NULL, self.points[i].x, self.points[i].y);
+    }
+    
+    CGContextAddPath (context, path);
+    
+    CGContextStrokePath (context);
+    
+} // renderSinglePath
+
+
+- (void) renderAsSegments {
+    CGContextRef context = CurrentContext();
+
+    for (NSInteger i = 0; i < kPointCount - 1; i++) {
+        CGMutablePathRef path = CGPathCreateMutable();
+        CGPathMoveToPoint (path, NULL, self.points[i].x, self.points[i].y);
+        CGPathAddLineToPoint (path, NULL, self.points[i + 1].x, self.points[i + 1].y);
+        
+        CGContextAddPath (context, path);
+        CGContextStrokePath (context);
+    }
+
+} // renderAsSegments
+
+
+- (void) renderPath {
+    if (self.renderAsSinglePath) {
+        [self renderSinglePath];
+    } else {
+        [self renderAsSegments];
+    }
+    
+} // renderPath
+
+
 - (void) drawRect: (NSRect) dirtyRect {
     CGContextRef context = CurrentContext();
     
@@ -70,28 +119,19 @@
     
     [self drawNiceBackground];
     
-    CGMutablePathRef path = CGPathCreateMutable();
-    CGPathMoveToPoint (path, NULL, self.points[0].x, self.points[0].y);
-    CGPathAddLineToPoint (path, NULL, self.points[1].x, self.points[1].y);
-    CGPathAddLineToPoint (path, NULL, self.points[2].x, self.points[2].y);
-    
     CGContextSaveGState (context); {
         [NSColor.blueColor set];
 
-        CGContextAddPath (context, path);
         if (self.preRenderHook) {
             self.preRenderHook (self, CurrentContext());
         }
-        
-        CGContextStrokePath (context);
+        [self renderPath];
         
     } CGContextRestoreGState (context);
     
-    CGContextAddPath (context, path);
 
     [NSColor.whiteColor set];
-    CGContextStrokePath (context);
-
+    [self renderPath];
     
     [self drawNiceBorder];
 
@@ -105,11 +145,49 @@
 
 // --------------------------------------------------
 
+- (NSInteger) pointIndexForMouse: (CGPoint) mousePoint {
+    NSInteger index = kNoDraggedPoint;
+    
+    static const CGFloat kClickTolerance = 8.0;
+    
+    for (NSInteger i = 0; i < kPointCount; i++) {
+        CGFloat distance = hypotf(mousePoint.x - self.points[i].x,
+                                  mousePoint.y - self.points[i].y);
+        if (distance < kClickTolerance) {
+            index = i;
+            break;
+        }
+    }
+
+    return index;
+} // mousePoint
+
+
 - (void) mouseDown: (NSEvent *) event {
     CGPoint localPoint = [self convertPoint: event.locationInWindow
                                    fromView: nil];
     NSLog (@"clicked %@", NSStringFromPoint(localPoint));
+    
+    self.draggedPoint = [self pointIndexForMouse: localPoint];
+    [self setNeedsDisplay: YES];
 } // mouseDown
+
+
+- (void) mouseDragged: (NSEvent *) event {
+    if (self.draggedPoint != kNoDraggedPoint) {
+        CGPoint localPoint = [self convertPoint: event.locationInWindow
+                                       fromView: nil];
+        self.points[self.draggedPoint] = localPoint;
+        [self setNeedsDisplay: YES];
+    }
+    
+} // mouseDragged
+
+
+- (void) mouseUp: (NSEvent *) event {
+    self.draggedPoint = kNoDraggedPoint;
+} // mouseUp
+
 
 @end // BNRLinesView
 
