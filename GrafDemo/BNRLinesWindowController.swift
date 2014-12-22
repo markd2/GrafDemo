@@ -36,6 +36,9 @@ public class BNRLinesWindowController: NSWindowController {
             linesView, cgContext in
             self.setupContext(cgContext)
         }
+        linePhaseBox.target = self
+        linePhaseBox.action = "phaseToggled:"
+        linePhaseBox.enabled = false
     }
     
     public func setupContext (context: CGContext!) {
@@ -95,6 +98,10 @@ public class BNRLinesWindowController: NSWindowController {
     
     @IBAction func changeSpace (sender: NSSlider) {
         println(sender.integerValue)
+        linesView.needsDisplay = true
+    }
+    
+    @IBAction func phaseToggled (sender: BNRCheckboxBox) {
         linesView.needsDisplay = true
     }
     
