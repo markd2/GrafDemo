@@ -26,7 +26,6 @@ static const NSInteger kNoDraggedPoint = -1;
     _pointStorage[2] = (CGPoint){ 330.0, 275.0 };
     _pointStorage[3] = (CGPoint){ 150.0, 371.0 };
     
-    _renderAsSinglePath = YES;
 } // commonInit
 
 
@@ -70,7 +69,7 @@ static const NSInteger kNoDraggedPoint = -1;
 
 
 
-- (void) renderSinglePath {
+- (void) renderAsSinglePath {
     CGContextRef context = CurrentContext();
 
     CGMutablePathRef path = CGPathCreateMutable();
@@ -84,10 +83,10 @@ static const NSInteger kNoDraggedPoint = -1;
     
     CGContextStrokePath (context);
     
-} // renderSinglePath
+} // renderAsSinglePath
 
 
-- (void) renderAsSegments {
+- (void) renderAsMultiplePaths {
     CGContextRef context = CurrentContext();
 
     for (NSInteger i = 0; i < kPointCount - 1; i++) {
@@ -99,14 +98,39 @@ static const NSInteger kNoDraggedPoint = -1;
         CGContextStrokePath (context);
     }
 
+} // renderAsMultiplePaths
+
+
+- (void) renderAsSegments {
+    CGContextRef context = CurrentContext();
+
+    CGPoint segments[kPointCount * 2];
+    CGPoint *scan = segments;
+    
+    for (NSInteger i = 0; i < kPointCount - 1; i++) {
+        *scan++ = self.points[i];
+        *scan++ = self.points[i + 1];
+    }
+    
+    // Strokes points 0->1 2->3 4->5
+    CGContextStrokeLineSegments (context, segments, kPointCount * 2);
+
 } // renderAsSegments
 
 
+
 - (void) renderPath {
-    if (self.renderAsSinglePath) {
-        [self renderSinglePath];
-    } else {
-        [self renderAsSegments];
+
+    switch (self.renderMode) {
+        case kRenderModeSinglePath:
+            [self renderAsSinglePath];
+            break;
+        case kRenderModeMultiplePaths:
+            [self renderAsMultiplePaths];
+            break;
+        case kRenderModeSegments:
+            [self renderAsSegments];
+            break;
     }
     
 } // renderPath
@@ -148,7 +172,7 @@ static const NSInteger kNoDraggedPoint = -1;
 - (NSInteger) pointIndexForMouse: (CGPoint) mousePoint {
     NSInteger index = kNoDraggedPoint;
     
-    static const CGFloat kClickTolerance = 8.0;
+    static const CGFloat kClickTolerance = 10.0;
     
     for (NSInteger i = 0; i < kPointCount; i++) {
         CGFloat distance = hypotf(mousePoint.x - self.points[i].x,
