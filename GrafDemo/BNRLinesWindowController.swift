@@ -21,8 +21,9 @@ public class BNRLinesWindowController: NSWindowController {
     @IBOutlet weak var miterLimitSlider: NSSlider!
     @IBOutlet weak var endCapPopUp: NSPopUpButton!
     @IBOutlet weak var lineJoinPopUp: NSPopUpButton!
+    @IBOutlet weak var renderModePopUp: NSPopUpButton!
     @IBOutlet weak var lineAlphaCheckbox : NSButton!
-    @IBOutlet weak var singlePathCheckbox : NSButton!
+
 
     @IBOutlet weak var linePhaseBox: BNRCheckboxBox!
     @IBOutlet weak var linePhaseSlider: NSSlider!
@@ -117,8 +118,9 @@ public class BNRLinesWindowController: NSWindowController {
         linesView.needsDisplay = true
     }
     
-    @IBAction func toggleSinglePath (sender: NSButton) {
-        linesView.renderAsSinglePath = sender.state == NSOnState
+    @IBAction func changeRenderMode (sender: NSPopUpButton) {
+
+        linesView.renderMode = BNRLinesViewRenderMode(rawValue: sender.indexOfSelectedItem)!
         linesView.needsDisplay = true
     }
 }

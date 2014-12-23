@@ -19,7 +19,7 @@
                 <outlet property="lineWidthSlider" destination="dyZ-py-PDR" id="GSR-dB-McU"/>
                 <outlet property="linesView" destination="Ztv-v9-t0c" id="o7e-XJ-2GV"/>
                 <outlet property="miterLimitSlider" destination="g6l-IV-25c" id="Xe3-Je-xPh"/>
-                <outlet property="singlePathCheckbox" destination="oLx-cM-uwX" id="T2s-vP-EHR"/>
+                <outlet property="renderModePopUp" destination="cbS-35-1ki" id="vMn-WQ-xuk"/>
                 <outlet property="space0Slider" destination="XOb-tU-b7r" id="cun-N4-AFU"/>
                 <outlet property="space1Slider" destination="iVq-Yi-2X7" id="QPF-rM-3rl"/>
                 <outlet property="space2Slider" destination="1gQ-d5-7cg" id="zl1-Yj-k2j"/>
@@ -108,7 +108,7 @@
                                     </connections>
                                 </popUpButton>
                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VMr-R1-Tgp">
-                                    <rect key="frame" x="15" y="42" width="85" height="20"/>
+                                    <rect key="frame" x="15" y="11" width="85" height="20"/>
                                     <buttonCell key="cell" type="check" title="Alpha Color" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="B6G-PZ-KzD">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                         <font key="font" metaFont="smallSystem"/>
@@ -117,16 +117,23 @@
                                         <action selector="toggleLineAlpha:" target="-2" id="gtS-UU-Qqe"/>
                                     </connections>
                                 </button>
-                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oLx-cM-uwX">
-                                    <rect key="frame" x="15" y="17" width="81" height="20"/>
-                                    <buttonCell key="cell" type="check" title="Single Path" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="jNH-dg-Iaz">
-                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cbS-35-1ki">
+                                    <rect key="frame" x="15" y="36" width="165" height="22"/>
+                                    <popUpButtonCell key="cell" type="push" title="Single Path" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="RQ0-vc-xqd" id="PfA-KV-FdU">
+                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="smallSystem"/>
-                                    </buttonCell>
+                                        <menu key="menu" id="ogK-LL-I5F">
+                                            <items>
+                                                <menuItem title="Single Path" state="on" id="RQ0-vc-xqd"/>
+                                                <menuItem title="Multiple Paths" id="uKj-ON-XU6"/>
+                                                <menuItem title="Segments" id="shR-ev-lC6"/>
+                                            </items>
+                                        </menu>
+                                    </popUpButtonCell>
                                     <connections>
-                                        <action selector="toggleSinglePath:" target="-2" id="U3J-Fi-h3X"/>
+                                        <action selector="changeRenderMode:" target="-2" id="4gK-Zk-b0b"/>
                                     </connections>
-                                </button>
+                                </popUpButton>
                             </subviews>
                         </view>
                         <constraints>
