@@ -119,12 +119,13 @@
                                 </button>
                                 <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cbS-35-1ki">
                                     <rect key="frame" x="15" y="36" width="165" height="22"/>
-                                    <popUpButtonCell key="cell" type="push" title="Single Path" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="RQ0-vc-xqd" id="PfA-KV-FdU">
+                                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="PfA-KV-FdU">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="smallSystem"/>
                                         <menu key="menu" id="ogK-LL-I5F">
                                             <items>
-                                                <menuItem title="Single Path" state="on" id="RQ0-vc-xqd"/>
+                                                <menuItem title="Single Path (constructed)" id="RQ0-vc-xqd"/>
+                                                <menuItem title="Single Path (AddLines)" id="A42-5S-o4D"/>
                                                 <menuItem title="Multiple Paths" id="uKj-ON-XU6"/>
                                                 <menuItem title="Segments" id="shR-ev-lC6"/>
                                             </items>

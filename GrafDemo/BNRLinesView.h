@@ -13,7 +13,8 @@ typedef void (^BNRLinesViewPreRenderHook)(BNRLinesView *linesView, CGContextRef 
 
 
 typedef NS_ENUM(NSInteger, BNRLinesViewRenderMode) {
-    kRenderModeSinglePath,     // make one path and stroke it
+    kRenderModeSinglePath,     // make one path manually and stroke it
+    kRenderModeAddLines,       // make one path via CGPathAddLines
     kRenderModeMultiplePaths,  // one stroke per line segment
     kRenderModeSegments        // use CGContextStrokeLineSegments
 };

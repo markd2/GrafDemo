@@ -71,19 +71,31 @@ static const NSInteger kNoDraggedPoint = -1;
 
 - (void) renderAsSinglePath {
     CGContextRef context = CurrentContext();
-
+    
     CGMutablePathRef path = CGPathCreateMutable();
+ 
     CGPathMoveToPoint (path, NULL, self.points[0].x, self.points[0].y);
     
     for (NSInteger i = 1; i < kPointCount; i++) {
         CGPathAddLineToPoint (path, NULL, self.points[i].x, self.points[i].y);
     }
-    
+
     CGContextAddPath (context, path);
-    
     CGContextStrokePath (context);
     
 } // renderAsSinglePath
+
+
+- (void) renderAsSinglePathByAddingLines {
+    CGContextRef context = CurrentContext();
+    
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathAddLines (path, NULL, self.points, kPointCount);
+
+    CGContextAddPath (context, path);
+    CGContextStrokePath (context);
+    
+} // renderAsSinglePathByAddingLines
 
 
 - (void) renderAsMultiplePaths {
@@ -124,6 +136,9 @@ static const NSInteger kNoDraggedPoint = -1;
     switch (self.renderMode) {
         case kRenderModeSinglePath:
             [self renderAsSinglePath];
+            break;
+        case kRenderModeAddLines:
+            [self renderAsSinglePathByAddingLines];
             break;
         case kRenderModeMultiplePaths:
             [self renderAsMultiplePaths];
