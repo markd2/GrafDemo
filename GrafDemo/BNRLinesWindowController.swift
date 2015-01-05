@@ -84,52 +84,65 @@ public class BNRLinesWindowController: NSWindowController {
     @IBAction func changeLineWidth (sender: NSSlider) {
         println(sender.integerValue)
         linesView.needsDisplay = true
+        swiftLinesView.needsDisplay = true
     }
 
     @IBAction func changeMiterLimit (sender: NSSlider) {
         println(sender.integerValue)
         linesView.needsDisplay = true
+        swiftLinesView.needsDisplay = true
     }
 
  
     @IBAction func changeEndCap (sender: NSPopUpButton) {
         println(sender.indexOfSelectedItem)
         linesView.needsDisplay = true
+        swiftLinesView.needsDisplay = true
     }
     
  
     @IBAction func changeMiterJoin (sender: NSPopUpButton) {
         println(sender.indexOfSelectedItem)
         linesView.needsDisplay = true
+        swiftLinesView.needsDisplay = true
     }
     
 
     @IBAction func changePhase (sender: NSSlider) {
         println(sender.integerValue)
         linesView.needsDisplay = true
+        swiftLinesView.needsDisplay = true
     }
     
     @IBAction func changeDash (sender: NSSlider) {
         println(sender.integerValue)
         linesView.needsDisplay = true
+        swiftLinesView.needsDisplay = true
     }
     
     @IBAction func changeSpace (sender: NSSlider) {
         println(sender.integerValue)
         linesView.needsDisplay = true
+        swiftLinesView.needsDisplay = true
     }
     
     @IBAction func phaseToggled (sender: BNRCheckboxBox) {
         linesView.needsDisplay = true
+        swiftLinesView.needsDisplay = true
     }
     
     @IBAction func toggleLineAlpha (sender: NSButton) {
         linesView.needsDisplay = true
+        swiftLinesView.needsDisplay = true
     }
     
     @IBAction func changeRenderMode (sender: NSPopUpButton) {
 
         linesView.renderMode = BNRLinesViewRenderMode(rawValue: sender.indexOfSelectedItem)!
+        
+        swiftLinesView.renderMode = LinesView.RenderMode(rawValue: sender.indexOfSelectedItem)!
+        
         linesView.needsDisplay = true
+        swiftLinesView.needsDisplay = true
     }
 }

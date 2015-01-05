@@ -4,13 +4,20 @@ class LinesView : NSView {
 
     var preRenderHook: ((LinesView, CGContext) -> ())?
     
-    enum RenderMode {
+    enum RenderMode: Int {
         case SinglePath
         case AddLines
         case MultiplePaths
         case Segments
     }
-
+    
+    var points: [CGPoint] = [
+        CGPoint(x: 17, y: 400),
+        CGPoint(x: 175, y: 20),
+        CGPoint(x: 330, y: 275),
+        CGPoint(x: 150, y: 371),
+    ]
+    
     var renderMode: RenderMode = .SinglePath
     
     // TODO(markd 12/24/2014) - extract somewhere sane
@@ -61,13 +68,7 @@ class LinesView : NSView {
     private func renderAsSinglePath() {
         let context = currentContext
         
-        let points: Array<CGPoint> = [
-            CGPoint(x: 17, y: 400),
-            CGPoint(x: 175, y: 20),
-            CGPoint(x: 330, y: 275),
-            CGPoint(x: 150, y: 371),
-          ]
-    
+  
         let path = CGPathCreateMutable()
  
         CGPathMoveToPoint (path, nil, points[0].x, points[0].y);
@@ -78,19 +79,53 @@ class LinesView : NSView {
         
         CGContextAddPath (context, path)
         CGContextStrokePath (context)
-
+    }
+    
+    private func renderAsSinglePathByAddingLines() {
+        let context = currentContext
+        let path = CGPathCreateMutable()
+        CGPathAddLines (path, nil, self.points, UInt(self.points.count))
+        CGContextAddPath (context, path)
+        CGContextStrokePath (context)
     }
 
-    private func renderPath() {
+     private func renderAsMultiplePaths() {
+        let context = currentContext
+        
+        for i in 0 ..< points.count - 1 {
+            let path = CGPathCreateMutable()
+            CGPathMoveToPoint (path, nil, points[i].x, points[i].y)
+            CGPathAddLineToPoint (path, nil, points[i + 1].x, points[i + 1].y)
+            
+            CGContextAddPath (context, path)
+            CGContextStrokePath (context)
+        }
+    }
+
+    private func renderAsSegments() {
+        let context = currentContext
+        
+        var segments: [CGPoint] = []
+        
+        for i in 0 ..< points.count - 1 {
+            segments += [points[i]]
+            segments += [points[i + 1]]
+        }
+        
+        // Strokes points 0->1 2->3 4->5
+        CGContextStrokeLineSegments (context, segments, UInt(segments.count))
+    }
+
+   private func renderPath() {
         switch renderMode {
         case .SinglePath:
             renderAsSinglePath()
         case .AddLines:
-            println("ook")
+            renderAsSinglePathByAddingLines()
         case .MultiplePaths:
-            println("ook")
+            renderAsMultiplePaths()
         case .Segments:
-            println("ook")
+            renderAsSegments()
         }
     }
 
