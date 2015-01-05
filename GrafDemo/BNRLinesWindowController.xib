@@ -23,6 +23,7 @@
                 <outlet property="space0Slider" destination="XOb-tU-b7r" id="cun-N4-AFU"/>
                 <outlet property="space1Slider" destination="iVq-Yi-2X7" id="QPF-rM-3rl"/>
                 <outlet property="space2Slider" destination="1gQ-d5-7cg" id="zl1-Yj-k2j"/>
+                <outlet property="swiftLinesView" destination="ScA-R0-Gl9" id="U0k-99-YCd"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -31,14 +32,14 @@
         <window title="Lines" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" frameAutosaveName="seniL" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="627" height="516"/>
+            <rect key="contentRect" x="196" y="240" width="1010" height="531"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="627" height="516"/>
+                <rect key="frame" x="0.0" y="0.0" width="1010" height="531"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <box autoresizesSubviews="NO" title="Line Attributes" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="UgO-1s-F7z">
-                        <rect key="frame" x="395" y="253" width="210" height="243"/>
+                        <rect key="frame" x="393" y="268" width="210" height="243"/>
                         <view key="contentView">
                             <rect key="frame" x="1" y="1" width="208" height="227"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -138,17 +139,17 @@
                             </subviews>
                         </view>
                         <constraints>
-                            <constraint firstAttribute="height" constant="239" id="1eG-Cw-rZU"/>
-                            <constraint firstAttribute="width" constant="204" id="xeP-nB-7RJ"/>
+                            <constraint firstAttribute="height" constant="239" id="Jee-OX-eNp"/>
+                            <constraint firstAttribute="width" constant="204" id="ozU-SG-AOh"/>
                         </constraints>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Ztv-v9-t0c" customClass="BNRLinesView">
-                        <rect key="frame" x="20" y="20" width="341" height="476"/>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Ztv-v9-t0c" userLabel="Lines View (objc)" customClass="BNRLinesView">
+                        <rect key="frame" x="20" y="20" width="357" height="491"/>
                     </customView>
                     <box autoresizesSubviews="NO" title="Line Phase" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="cKF-tP-LiL" customClass="BNRCheckboxBox">
-                        <rect key="frame" x="395" y="38" width="210" height="199"/>
+                        <rect key="frame" x="393" y="53" width="210" height="199"/>
                         <view key="contentView">
                             <rect key="frame" x="1" y="1" width="208" height="183"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -261,28 +262,37 @@
                             </subviews>
                         </view>
                         <constraints>
-                            <constraint firstAttribute="width" constant="204" id="8N4-ay-ifU"/>
-                            <constraint firstAttribute="height" constant="195" id="oQk-ip-5h2"/>
+                            <constraint firstAttribute="width" constant="204" id="hM1-vk-6uz"/>
+                            <constraint firstAttribute="height" constant="195" id="j7J-cW-emb"/>
                         </constraints>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="ScA-R0-Gl9" userLabel="Lines View (swift)" customClass="LinesView" customModule="GrafDemo" customModuleProvider="target">
+                        <rect key="frame" x="632" y="20" width="358" height="489"/>
+                    </customView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Ztv-v9-t0c" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="BSB-bP-UQK"/>
-                    <constraint firstItem="UgO-1s-F7z" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="FRJ-WH-b8X"/>
-                    <constraint firstItem="Ztv-v9-t0c" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="L9z-0x-IP1"/>
-                    <constraint firstAttribute="trailing" secondItem="cKF-tP-LiL" secondAttribute="trailing" constant="25" id="Rue-MM-FgJ"/>
-                    <constraint firstAttribute="bottom" secondItem="Ztv-v9-t0c" secondAttribute="bottom" constant="20" id="Z4h-1m-6c1"/>
-                    <constraint firstAttribute="trailing" secondItem="UgO-1s-F7z" secondAttribute="trailing" constant="25" id="oYy-PU-PfW"/>
-                    <constraint firstItem="cKF-tP-LiL" firstAttribute="leading" secondItem="Ztv-v9-t0c" secondAttribute="trailing" constant="37" id="sSZ-Y8-xE6"/>
-                    <constraint firstItem="cKF-tP-LiL" firstAttribute="top" secondItem="UgO-1s-F7z" secondAttribute="bottom" constant="20" id="x4d-c6-UtR"/>
+                    <constraint firstAttribute="trailing" secondItem="ScA-R0-Gl9" secondAttribute="trailing" constant="20" id="1jU-L5-Zeg"/>
+                    <constraint firstItem="cKF-tP-LiL" firstAttribute="leading" secondItem="Ztv-v9-t0c" secondAttribute="trailing" constant="19" id="5xx-B8-3kT"/>
+                    <constraint firstItem="Ztv-v9-t0c" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="8Hl-EG-TeG"/>
+                    <constraint firstItem="ScA-R0-Gl9" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="22" id="ERc-h6-b5V"/>
+                    <constraint firstItem="Ztv-v9-t0c" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="Joc-gJ-08K"/>
+                    <constraint firstItem="ScA-R0-Gl9" firstAttribute="leading" secondItem="cKF-tP-LiL" secondAttribute="trailing" constant="32" id="MMo-lG-SYg"/>
+                    <constraint firstItem="ScA-R0-Gl9" firstAttribute="width" secondItem="Ztv-v9-t0c" secondAttribute="width" constant="1" id="PUV-zh-tgb"/>
+                    <constraint firstItem="UgO-1s-F7z" firstAttribute="leading" secondItem="Ztv-v9-t0c" secondAttribute="trailing" constant="19" id="QAF-v1-vM1"/>
+                    <constraint firstAttribute="bottom" secondItem="ScA-R0-Gl9" secondAttribute="bottom" constant="20" id="YPn-oL-vih"/>
+                    <constraint firstItem="ScA-R0-Gl9" firstAttribute="height" secondItem="Ztv-v9-t0c" secondAttribute="height" constant="-2" id="qTZ-nU-1OK"/>
+                    <constraint firstItem="ScA-R0-Gl9" firstAttribute="leading" secondItem="UgO-1s-F7z" secondAttribute="trailing" constant="32" id="u3z-Ju-2IY"/>
+                    <constraint firstItem="UgO-1s-F7z" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="uNI-ae-k57"/>
+                    <constraint firstItem="cKF-tP-LiL" firstAttribute="top" secondItem="UgO-1s-F7z" secondAttribute="bottom" constant="20" id="wXS-D9-WvO"/>
+                    <constraint firstAttribute="bottom" secondItem="Ztv-v9-t0c" secondAttribute="bottom" constant="20" id="xvf-gZ-KJg"/>
                 </constraints>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="161.5" y="251"/>
+            <point key="canvasLocation" x="184" y="200.5"/>
         </window>
     </objects>
 </document>

@@ -16,6 +16,7 @@ extension NSSlider {
 
 public class BNRLinesWindowController: NSWindowController {
     @IBOutlet weak var linesView: BNRLinesView!
+    @IBOutlet weak var swiftLinesView: LinesView!
 
     @IBOutlet weak var lineWidthSlider: NSSlider!
     @IBOutlet weak var miterLimitSlider: NSSlider!
@@ -39,9 +40,17 @@ public class BNRLinesWindowController: NSWindowController {
             linesView, cgContext in
             self.setupContext(cgContext)
         }
-        linePhaseBox.target = self
+
+         swiftLinesView.preRenderHook = {
+            linesView, cgContext in
+            self.setupContext(cgContext)
+        }
+
+       linePhaseBox.target = self
         linePhaseBox.action = "phaseToggled:"
         linePhaseBox.enabled = false
+        
+        
     }
     
     public func setupContext (context: CGContext!) {
