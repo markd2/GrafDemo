@@ -169,7 +169,7 @@ static const NSInteger kNoDraggedPoint = -1;
     } CGContextRestoreGState (context);
     
 
-    [NSColor.whiteColor set];
+    CGContextSetRGBStrokeColor (context, 1.0, 1.0, 1.0, 1.0); // White
     [self renderPath];
     
     [self drawNiceBorder];
