@@ -20,6 +20,8 @@ class LinesView : NSView {
     
     var renderMode: RenderMode = .SinglePath
     
+    private var draggedPointIndex: Int?
+    
     // TODO(markd 12/24/2014) - extract somewhere sane
     private var currentContext : CGContext? {
         get {
@@ -157,4 +159,43 @@ class LinesView : NSView {
     /* override */ func isFlipped() -> Bool {
         return true
     }
+    
+    private func pointIndexForMouse (mousePoint: CGPoint) -> Int? {
+        let kClickTolerance: Float = 10.0
+        var pointIndex: Int? = nil
+        
+        for (index, point) in enumerate(points) {
+            let distance = hypotf(Float(mousePoint.x - point.x),
+                Float(mousePoint.y - point.y))
+            if distance < kClickTolerance {
+                pointIndex = index
+                break
+            }
+        }
+        
+        return pointIndex
+    }
+    
+    override func mouseDown (event: NSEvent) {
+        let localPoint = self.convertPoint(event.locationInWindow, fromView: nil)
+        println("clicked \(localPoint)")
+        
+        draggedPointIndex = self.pointIndexForMouse(localPoint)
+        needsDisplay = true
+    }
+    
+    override func mouseDragged (event: NSEvent) {
+        if let pointIndex = draggedPointIndex {
+            let localPoint = self.convertPoint(event.locationInWindow, fromView: nil)
+            points[pointIndex] = localPoint
+            needsDisplay = true
+        }
+    }
+    
+    override func mouseUp (event: NSEvent) {
+        draggedPointIndex = nil
+    }
+
+    
 }
+
