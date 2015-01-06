@@ -2,24 +2,38 @@ import Cocoa
 
 class LinesView : NSView {
 
-    var preRenderHook: ((LinesView, CGContext) -> ())?
-    var showLogicalPath: Bool = true
-    
-    enum RenderMode: Int {
+     enum RenderMode: Int {
         case SinglePath
         case AddLines
         case MultiplePaths
         case Segments
     }
     
-    var points: [CGPoint] = [
+   var preRenderHook: ((LinesView, CGContext) -> ())? {
+        didSet {
+            needsDisplay = true
+        }
+    }
+
+    var showLogicalPath: Bool = true {
+        didSet {
+            needsDisplay = true
+        }
+    }
+    
+    var renderMode: RenderMode = .SinglePath {
+        didSet {
+            needsDisplay = true
+        }
+    }
+
+    
+    private var points: [CGPoint] = [
         CGPoint(x: 17, y: 400),
         CGPoint(x: 175, y: 20),
         CGPoint(x: 330, y: 275),
         CGPoint(x: 150, y: 371),
     ]
-    
-    var renderMode: RenderMode = .SinglePath
     
     private var draggedPointIndex: Int?
     
