@@ -40,17 +40,15 @@ public class BNRLinesWindowController: NSWindowController {
             linesView, cgContext in
             self.setupContext(cgContext)
         }
-
-         swiftLinesView.preRenderHook = {
+        
+        swiftLinesView.preRenderHook = {
             linesView, cgContext in
             self.setupContext(cgContext)
         }
-
-       linePhaseBox.target = self
+        
+        linePhaseBox.target = self
         linePhaseBox.action = "phaseToggled:"
         linePhaseBox.enabled = false
-        
-        
     }
     
     public func setupContext (context: CGContext!) {
@@ -132,6 +130,13 @@ public class BNRLinesWindowController: NSWindowController {
     }
     
     @IBAction func toggleLineAlpha (sender: NSButton) {
+        linesView.needsDisplay = true
+        swiftLinesView.needsDisplay = true
+    }
+    
+    @IBAction func toggleShowLogicalPath (sender: NSButton) {
+        linesView.showLogicalPath = (sender.state == NSOnState)
+        swiftLinesView.showLogicalPath = (sender.state == NSOnState)
         linesView.needsDisplay = true
         swiftLinesView.needsDisplay = true
     }

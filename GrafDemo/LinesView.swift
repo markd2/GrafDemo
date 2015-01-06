@@ -3,6 +3,7 @@ import Cocoa
 class LinesView : NSView {
 
     var preRenderHook: ((LinesView, CGContext) -> ())?
+    var showLogicalPath: Bool = true
     
     enum RenderMode: Int {
         case SinglePath
@@ -150,8 +151,10 @@ class LinesView : NSView {
             self.renderPath()
         }
         
-        CGContextSetRGBStrokeColor (context, 1.0, 1.0, 1.0, 1.0) // White
-        renderPath()
+        if (showLogicalPath) {
+            CGContextSetRGBStrokeColor (context, 1.0, 1.0, 1.0, 1.0) // White
+            renderPath()
+        }
         
         drawNiceBorder()
     }

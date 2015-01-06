@@ -25,7 +25,8 @@ static const NSInteger kNoDraggedPoint = -1;
     _pointStorage[1] = (CGPoint){ 175.0, 20.0 };
     _pointStorage[2] = (CGPoint){ 330.0, 275.0 };
     _pointStorage[3] = (CGPoint){ 150.0, 371.0 };
-    
+
+    _showLogicalPath = YES;
 } // commonInit
 
 
@@ -168,9 +169,10 @@ static const NSInteger kNoDraggedPoint = -1;
         
     } CGContextRestoreGState (context);
     
-
-    CGContextSetRGBStrokeColor (context, 1.0, 1.0, 1.0, 1.0); // White
-    [self renderPath];
+    if (self.showLogicalPath) {
+        CGContextSetRGBStrokeColor (context, 1.0, 1.0, 1.0, 1.0); // White
+        [self renderPath];
+    }
     
     [self drawNiceBorder];
 

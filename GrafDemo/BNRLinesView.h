@@ -23,5 +23,6 @@ typedef NS_ENUM(NSInteger, BNRLinesViewRenderMode) {
 
 @property (copy) BNRLinesViewPreRenderHook preRenderHook;
 @property (assign) BNRLinesViewRenderMode renderMode;
+@property (assign) BOOL showLogicalPath;
 
 @end
