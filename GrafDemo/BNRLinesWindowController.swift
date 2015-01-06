@@ -47,7 +47,7 @@ public class BNRLinesWindowController: NSWindowController {
         }
         
         linePhaseBox.target = self
-        linePhaseBox.action = "phaseToggled:"
+        linePhaseBox.action = "refreshViews:"
         linePhaseBox.enabled = false
     }
     
@@ -71,65 +71,15 @@ public class BNRLinesWindowController: NSWindowController {
             
             CGContextSetLineDash (context, phase, lengths, UInt(lengths.count))
         }
-        
-
     }
 
     public override func windowDidLoad() {
         super.windowDidLoad()
     }
-    
-    @IBAction func changeLineWidth (sender: NSSlider) {
-        println(sender.integerValue)
-        linesView.needsDisplay = true
-        swiftLinesView.needsDisplay = true
-    }
 
-    @IBAction func changeMiterLimit (sender: NSSlider) {
-        println(sender.integerValue)
-        linesView.needsDisplay = true
-        swiftLinesView.needsDisplay = true
-    }
-
- 
-    @IBAction func changeEndCap (sender: NSPopUpButton) {
-        println(sender.indexOfSelectedItem)
-        linesView.needsDisplay = true
-        swiftLinesView.needsDisplay = true
-    }
-    
- 
-    @IBAction func changeMiterJoin (sender: NSPopUpButton) {
-        println(sender.indexOfSelectedItem)
-        linesView.needsDisplay = true
-        swiftLinesView.needsDisplay = true
-    }
-    
-
-    @IBAction func changePhase (sender: NSSlider) {
-        println(sender.integerValue)
-        linesView.needsDisplay = true
-        swiftLinesView.needsDisplay = true
-    }
-    
-    @IBAction func changeDash (sender: NSSlider) {
-        println(sender.integerValue)
-        linesView.needsDisplay = true
-        swiftLinesView.needsDisplay = true
-    }
-    
-    @IBAction func changeSpace (sender: NSSlider) {
-        println(sender.integerValue)
-        linesView.needsDisplay = true
-        swiftLinesView.needsDisplay = true
-    }
-    
-    @IBAction func phaseToggled (sender: BNRCheckboxBox) {
-        linesView.needsDisplay = true
-        swiftLinesView.needsDisplay = true
-    }
-    
-    @IBAction func toggleLineAlpha (sender: NSButton) {
+    // A change was made to a control that affects what the render hook uses.
+    // Don't care what the control was, just cause a redraw to happen.
+    @IBAction func refreshViews(smarf: NSControl) {
         linesView.needsDisplay = true
         swiftLinesView.needsDisplay = true
     }
@@ -137,17 +87,10 @@ public class BNRLinesWindowController: NSWindowController {
     @IBAction func toggleShowLogicalPath (sender: NSButton) {
         linesView.showLogicalPath = (sender.state == NSOnState)
         swiftLinesView.showLogicalPath = (sender.state == NSOnState)
-        linesView.needsDisplay = true
-        swiftLinesView.needsDisplay = true
     }
     
     @IBAction func changeRenderMode (sender: NSPopUpButton) {
-
         linesView.renderMode = BNRLinesViewRenderMode(rawValue: sender.indexOfSelectedItem)!
-        
         swiftLinesView.renderMode = LinesView.RenderMode(rawValue: sender.indexOfSelectedItem)!
-        
-        linesView.needsDisplay = true
-        swiftLinesView.needsDisplay = true
     }
 }
