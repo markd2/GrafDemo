@@ -21,8 +21,12 @@ typedef NS_ENUM(NSInteger, BNRLinesViewRenderMode) {
 
 @interface BNRLinesView : NSView
 
-@property (copy) BNRLinesViewPreRenderHook preRenderHook;
-@property (assign) BNRLinesViewRenderMode renderMode;
-@property (assign) BOOL showLogicalPath;
+
+// OBTW, these are non-atomic because I want to setNeedsDisplay when they change,
+// and don't want to jump through KVO hoops, or implement my own atomicity in the setter
+// and getter.
+@property (copy, nonatomic) BNRLinesViewPreRenderHook preRenderHook;
+@property (assign, nonatomic) BNRLinesViewRenderMode renderMode;
+@property (assign, nonatomic) BOOL showLogicalPath;
 
 @end

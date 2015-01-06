@@ -48,6 +48,25 @@ static const NSInteger kNoDraggedPoint = -1;
 } // initWithCoder
 
 
+- (void) setPreRenderHook: (BNRLinesViewPreRenderHook) hook {
+    _preRenderHook = [hook copy];
+    [self setNeedsDisplay: YES];
+} // setPreRenderHook
+
+
+- (void) setRenderMode: (BNRLinesViewRenderMode) renderMode {
+    _renderMode = renderMode;
+    [self setNeedsDisplay: YES];
+} // setRenderMode
+
+
+- (void) setShowLogicalPath: (BOOL) showLogicalPath {
+    _showLogicalPath = showLogicalPath;
+    [self setNeedsDisplay: YES];
+} // showLogicalPath
+
+
+
 - (void) drawNiceBackground {
     CGContextRef context = CurrentContext();
     
