@@ -48,7 +48,7 @@
                                     <rect key="frame" x="16" y="192" width="163" height="20"/>
                                     <sliderCell key="cell" continuous="YES" alignment="left" minValue="0.5" maxValue="30" doubleValue="10" tickMarkPosition="above" sliderType="linear" id="nkY-DC-1LS"/>
                                     <connections>
-                                        <action selector="changeLineWidth:" target="-2" id="kAg-mF-MGq"/>
+                                        <action selector="refreshViews" target="-2" id="cgn-nk-cXb"/>
                                     </connections>
                                 </slider>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D8t-m0-6Oo">
@@ -63,7 +63,7 @@
                                     <rect key="frame" x="16" y="139" width="163" height="20"/>
                                     <sliderCell key="cell" continuous="YES" alignment="left" minValue="0.5" maxValue="20" doubleValue="5" tickMarkPosition="above" sliderType="linear" id="lHa-Jl-39k"/>
                                     <connections>
-                                        <action selector="changeMiterLimit:" target="-2" id="Jvs-zE-kxA"/>
+                                        <action selector="refreshViews:" target="-2" id="lfT-s6-eso"/>
                                     </connections>
                                 </slider>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Oh-vb-w3S">
@@ -88,10 +88,10 @@
                                         </menu>
                                     </popUpButtonCell>
                                     <connections>
-                                        <action selector="changeEndCap:" target="-2" id="PpP-zh-Ngy"/>
+                                        <action selector="refreshViews:" target="-2" id="Rce-PZ-njl"/>
                                     </connections>
                                 </popUpButton>
-                                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c10-h8-akQ">
+                                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c10-h8-akQ" userLabel="Join Popup Button">
                                     <rect key="frame" x="15" y="79" width="165" height="22"/>
                                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="TwX-cT-aV8">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -105,20 +105,20 @@
                                         </menu>
                                     </popUpButtonCell>
                                     <connections>
-                                        <action selector="changeMiterJoin:" target="-2" id="lta-ID-KqG"/>
+                                        <action selector="refreshViews:" target="-2" id="OLf-BV-gEF"/>
                                     </connections>
                                 </popUpButton>
                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VMr-R1-Tgp">
-                                    <rect key="frame" x="15" y="26" width="85" height="20"/>
+                                    <rect key="frame" x="15" y="27" width="85" height="20"/>
                                     <buttonCell key="cell" type="check" title="Alpha Color" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="B6G-PZ-KzD">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                         <font key="font" metaFont="smallSystem"/>
                                     </buttonCell>
                                     <connections>
-                                        <action selector="toggleLineAlpha:" target="-2" id="gtS-UU-Qqe"/>
+                                        <action selector="refreshViews:" target="-2" id="ue0-iv-N84"/>
                                     </connections>
                                 </button>
-                                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cbS-35-1ki">
+                                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cbS-35-1ki" userLabel="PathType popup">
                                     <rect key="frame" x="15" y="51" width="165" height="22"/>
                                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="PfA-KV-FdU">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -133,7 +133,7 @@
                                         </menu>
                                     </popUpButtonCell>
                                     <connections>
-                                        <action selector="changeRenderMode:" target="-2" id="4gK-Zk-b0b"/>
+                                        <action selector="changeRenderMode:" target="-2" id="KrD-ac-2QK"/>
                                     </connections>
                                 </popUpButton>
                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DaH-ED-tQM">
@@ -143,7 +143,7 @@
                                         <font key="font" metaFont="smallSystem"/>
                                     </buttonCell>
                                     <connections>
-                                        <action selector="toggleShowLogicalPath:" target="-2" id="Ndx-Le-YeI"/>
+                                        <action selector="toggleShowLogicalPath:" target="-2" id="WeU-SZ-9LI"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -179,21 +179,21 @@
                                     <rect key="frame" x="96" y="12" width="96" height="20"/>
                                     <sliderCell key="cell" continuous="YES" alignment="left" maxValue="20" doubleValue="2.4796874999999998" tickMarkPosition="above" sliderType="linear" id="wUh-Pn-n7P"/>
                                     <connections>
-                                        <action selector="changeSpace:" target="-2" id="2FY-x6-84d"/>
+                                        <action selector="refreshViews:" target="-2" id="Rku-7Y-Wyg"/>
                                     </connections>
                                 </slider>
                                 <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6bG-Se-XvW">
                                     <rect key="frame" x="96" y="155" width="96" height="20"/>
                                     <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="30" doubleValue="5" tickMarkPosition="above" sliderType="linear" id="SCi-xA-KLd"/>
                                     <connections>
-                                        <action selector="changePhase:" target="-2" id="o7D-uR-c4U"/>
+                                        <action selector="refreshViews:" target="-2" id="uwh-3t-nsj"/>
                                     </connections>
                                 </slider>
                                 <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8xr-hS-ygE">
                                     <rect key="frame" x="96" y="124" width="96" height="20"/>
                                     <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="20" doubleValue="10" tickMarkPosition="above" sliderType="linear" id="Ukl-hU-yfk"/>
                                     <connections>
-                                        <action selector="changeDash:" target="-2" id="HvD-wb-6bj"/>
+                                        <action selector="refreshViews:" target="-2" id="Kfh-BJ-SW4"/>
                                     </connections>
                                 </slider>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fz9-pf-XJL">
@@ -208,7 +208,7 @@
                                     <rect key="frame" x="96" y="102" width="96" height="20"/>
                                     <sliderCell key="cell" continuous="YES" alignment="left" maxValue="20" doubleValue="1.8781249999999998" tickMarkPosition="above" sliderType="linear" id="PD2-WR-L8S"/>
                                     <connections>
-                                        <action selector="changeSpace:" target="-2" id="r9K-Ro-gTA"/>
+                                        <action selector="refreshViews:" target="-2" id="lHn-d8-UQA"/>
                                     </connections>
                                 </slider>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XkP-m6-jTx">
@@ -231,14 +231,14 @@
                                     <rect key="frame" x="96" y="34" width="96" height="20"/>
                                     <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="20" doubleValue="5" tickMarkPosition="above" sliderType="linear" id="IpS-2A-bZ0"/>
                                     <connections>
-                                        <action selector="changeDash:" target="-2" id="WzF-FG-G4U"/>
+                                        <action selector="refreshViews:" target="-2" id="ZGO-f6-mxl"/>
                                     </connections>
                                 </slider>
                                 <slider verticalHuggingPriority="750" fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="iVq-Yi-2X7">
                                     <rect key="frame" x="96" y="58" width="96" height="20"/>
                                     <sliderCell key="cell" continuous="YES" alignment="left" maxValue="20" doubleValue="2.3999999999999999" tickMarkPosition="above" sliderType="linear" id="f9R-Ds-ggJ"/>
                                     <connections>
-                                        <action selector="changeSpace:" target="-2" id="Xaj-35-tpH"/>
+                                        <action selector="refreshViews:" target="-2" id="ObP-mw-GEU"/>
                                     </connections>
                                 </slider>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lyy-Uc-2Eb">
@@ -261,7 +261,7 @@
                                     <rect key="frame" x="96" y="80" width="96" height="20"/>
                                     <sliderCell key="cell" continuous="YES" alignment="left" maxValue="20" doubleValue="7.2395833333333339" tickMarkPosition="above" sliderType="linear" id="pmF-QK-Nlh"/>
                                     <connections>
-                                        <action selector="changeDash:" target="-2" id="1D5-Df-iTo"/>
+                                        <action selector="refreshViews:" target="-2" id="EDD-bV-3G1"/>
                                     </connections>
                                 </slider>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zef-xq-g6u">
