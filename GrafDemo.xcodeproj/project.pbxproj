@@ -22,6 +22,7 @@
 		7D3908961A3655D50005FA24 /* BNRLinesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3908951A3655D50005FA24 /* BNRLinesView.m */; };
 		7D3908991A365CD20005FA24 /* BNRUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3908981A365CD20005FA24 /* BNRUtilities.m */; };
 		7D39089D1A3666F60005FA24 /* BNRCheckboxBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D39089C1A3666F60005FA24 /* BNRCheckboxBox.m */; };
+		7DC6D54B1A5DA4D8007AF35B /* NSView+CGStuff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC6D54A1A5DA4D8007AF35B /* NSView+CGStuff.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		7D3908981A365CD20005FA24 /* BNRUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRUtilities.m; sourceTree = "<group>"; };
 		7D39089B1A3666F60005FA24 /* BNRCheckboxBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRCheckboxBox.h; sourceTree = "<group>"; };
 		7D39089C1A3666F60005FA24 /* BNRCheckboxBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRCheckboxBox.m; sourceTree = "<group>"; };
+		7DC6D54A1A5DA4D8007AF35B /* NSView+CGStuff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSView+CGStuff.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 				7D3908981A365CD20005FA24 /* BNRUtilities.m */,
 				7D39089B1A3666F60005FA24 /* BNRCheckboxBox.h */,
 				7D39089C1A3666F60005FA24 /* BNRCheckboxBox.m */,
+				7DC6D54A1A5DA4D8007AF35B /* NSView+CGStuff.swift */,
 			);
 			name = "Useful Stuff";
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				7D07800119AEE08100E431A5 /* BNRSimpleView.m in Sources */,
 				7D3908581A3648AE0005FA24 /* BNRSimpleWindowController.m in Sources */,
 				7D39089D1A3666F60005FA24 /* BNRCheckboxBox.m in Sources */,
+				7DC6D54B1A5DA4D8007AF35B /* NSView+CGStuff.swift in Sources */,
 				7D0BA72C1A4B367B0052A633 /* LinesView.swift in Sources */,
 				7D077FE019AEE01300E431A5 /* main.m in Sources */,
 				7D3908961A3655D50005FA24 /* BNRLinesView.m in Sources */,
