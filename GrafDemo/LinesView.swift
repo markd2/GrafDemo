@@ -3,10 +3,10 @@ import Cocoa
 class LinesView : NSView {
 
      enum RenderMode: Int {
-        case SinglePath
-        case AddLines
-        case MultiplePaths
-        case Segments
+        case SinglePath     // make one path manually and stroke it
+        case AddLines       // make one path via CGPathAddLines
+        case MultiplePaths  // one stroke per line segment
+        case Segments       // use CGContextStrokeLineSegments
     }
     
    var preRenderHook: ((LinesView, CGContext) -> ())? {
@@ -26,7 +26,6 @@ class LinesView : NSView {
             needsDisplay = true
         }
     }
-
     
     private var points: [CGPoint] = [
         CGPoint(x: 17, y: 400),
@@ -37,12 +36,12 @@ class LinesView : NSView {
     
     private var draggedPointIndex: Int?
     
+
     private func drawNiceBackground() {
         let context = currentContext
 
         saveGState {
             CGContextSetRGBFillColor (context, 1.0, 1.0, 1.0, 1.0) // White
-            
             CGContextFillRect (context, self.bounds)
         }
     }
@@ -59,8 +58,6 @@ class LinesView : NSView {
 
     private func renderAsSinglePath() {
         let context = currentContext
-        
-  
         let path = CGPathCreateMutable()
  
         CGPathMoveToPoint (path, nil, points[0].x, points[0].y);
@@ -76,6 +73,7 @@ class LinesView : NSView {
     private func renderAsSinglePathByAddingLines() {
         let context = currentContext
         let path = CGPathCreateMutable()
+        
         CGPathAddLines (path, nil, self.points, UInt(self.points.count))
         CGContextAddPath (context, path)
         CGContextStrokePath (context)
@@ -132,7 +130,7 @@ class LinesView : NSView {
         drawNiceBackground()
         
         saveGState() {
-            NSColor.blueColor().set()
+            NSColor.greenColor().set()
             
             if let hook = self.preRenderHook {
                 hook(self, context!)
@@ -148,10 +146,12 @@ class LinesView : NSView {
         drawNiceBorder()
     }
     
+    // Behave more like iOS, or most sane toolkits.
     /* override */ func isFlipped() -> Bool {
         return true
     }
     
+    // Which point of the multi-segment line is close to the mouse point?
     private func pointIndexForMouse (mousePoint: CGPoint) -> Int? {
         let kClickTolerance: Float = 10.0
         var pointIndex: Int? = nil
@@ -170,7 +170,6 @@ class LinesView : NSView {
     
     override func mouseDown (event: NSEvent) {
         let localPoint = self.convertPoint(event.locationInWindow, fromView: nil)
-        println("clicked \(localPoint)")
         
         draggedPointIndex = self.pointIndexForMouse(localPoint)
         needsDisplay = true
@@ -187,7 +186,5 @@ class LinesView : NSView {
     override func mouseUp (event: NSEvent) {
         draggedPointIndex = nil
     }
-
-    
 }
 

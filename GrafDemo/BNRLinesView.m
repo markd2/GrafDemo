@@ -8,7 +8,11 @@
 
 @end // extension
 
+// The points for the line are stored in a C array for conveience, to avoid a bunch of
+// boxing and unboxing from NSArray.
+
 static const NSInteger kPointCount = 4;
+
 static const NSInteger kNoDraggedPoint = -1;
 
 @implementation BNRLinesView {
@@ -75,6 +79,7 @@ static const NSInteger kNoDraggedPoint = -1;
         
         CGContextFillRect (context, self.bounds);
     } CGContextRestoreGState (context);
+    
 } // drawNiceBackground
 
 
@@ -85,6 +90,7 @@ static const NSInteger kNoDraggedPoint = -1;
         CGContextSetRGBStrokeColor (context, 0.0, 0.0, 0.0, 1.0); // Black
         CGContextStrokeRect (context, self.bounds);
     } CGContextRestoreGState (context);
+    
 } // drawNiceBorder
 
 
@@ -179,7 +185,7 @@ static const NSInteger kNoDraggedPoint = -1;
     [self drawNiceBackground];
     
     CGContextSaveGState (context); {
-        [NSColor.blueColor set];
+        [NSColor.greenColor set];
 
         if (self.preRenderHook) {
             self.preRenderHook (self, CurrentContext());
@@ -198,6 +204,7 @@ static const NSInteger kNoDraggedPoint = -1;
 } // drawRect
 
 
+// Behave more like iOS, or most sane toolkits.
 - (BOOL) isFlipped {
     return YES;
 } // isFlipped
@@ -205,6 +212,8 @@ static const NSInteger kNoDraggedPoint = -1;
 
 // --------------------------------------------------
 
+
+// Which point of the multi-segment line is close to the mouse point?
 - (NSInteger) pointIndexForMouse: (CGPoint) mousePoint {
     NSInteger index = kNoDraggedPoint;
     
@@ -226,8 +235,6 @@ static const NSInteger kNoDraggedPoint = -1;
 - (void) mouseDown: (NSEvent *) event {
     CGPoint localPoint = [self convertPoint: event.locationInWindow
                                    fromView: nil];
-    NSLog (@"clicked %@", NSStringFromPoint(localPoint));
-    
     self.draggedPoint = [self pointIndexForMouse: localPoint];
     [self setNeedsDisplay: YES];
 } // mouseDown
@@ -250,7 +257,4 @@ static const NSInteger kNoDraggedPoint = -1;
 
 
 @end // BNRLinesView
-
-
-
 

@@ -17,7 +17,8 @@ extension NSSlider {
 public class BNRLinesWindowController: NSWindowController {
     @IBOutlet weak var linesView: BNRLinesView!
     @IBOutlet weak var swiftLinesView: LinesView!
-
+    
+    // Line Attributes box
     @IBOutlet weak var lineWidthSlider: NSSlider!
     @IBOutlet weak var miterLimitSlider: NSSlider!
     @IBOutlet weak var endCapPopUp: NSPopUpButton!
@@ -25,7 +26,7 @@ public class BNRLinesWindowController: NSWindowController {
     @IBOutlet weak var renderModePopUp: NSPopUpButton!
     @IBOutlet weak var lineAlphaCheckbox : NSButton!
 
-
+    // Line phase box
     @IBOutlet weak var linePhaseBox: BNRCheckboxBox!
     @IBOutlet weak var linePhaseSlider: NSSlider!
     @IBOutlet weak var dash0Slider: NSSlider!
@@ -51,6 +52,7 @@ public class BNRLinesWindowController: NSWindowController {
         linePhaseBox.enabled = false
     }
     
+    // Called by the line view prior to constructing and stroking the example path
     public func setupContext (context: CGContext!) {
         CGContextSetLineWidth (context, lineWidthSlider.cgfloatValue())
         CGContextSetMiterLimit (context, miterLimitSlider.cgfloatValue())
@@ -64,17 +66,15 @@ public class BNRLinesWindowController: NSWindowController {
         }
         
         if linePhaseBox.enabled {
-            let phase = linePhaseSlider.doubleValue.cgfloatValue()
-            let lengths: Array<CGFloat> = [ dash0Slider.cgfloatValue(), space0Slider.cgfloatValue(),
+            let phase = linePhaseSlider.cgfloatValue()
+            let lengths: Array<CGFloat> = [
+                dash0Slider.cgfloatValue(), space0Slider.cgfloatValue(),
                 dash1Slider.cgfloatValue(), space1Slider.cgfloatValue(),
-                dash2Slider.cgfloatValue(), space2Slider.cgfloatValue() ]
+                dash2Slider.cgfloatValue(), space2Slider.cgfloatValue()
+            ]
             
             CGContextSetLineDash (context, phase, lengths, UInt(lengths.count))
         }
-    }
-
-    public override func windowDidLoad() {
-        super.windowDidLoad()
     }
 
     // A change was made to a control that affects what the render hook uses.
@@ -84,6 +84,7 @@ public class BNRLinesWindowController: NSWindowController {
         swiftLinesView.needsDisplay = true
     }
     
+    // Two of the checkboxes actually change the lines view configuration.
     @IBAction func toggleShowLogicalPath (sender: NSButton) {
         linesView.showLogicalPath = (sender.state == NSOnState)
         swiftLinesView.showLogicalPath = (sender.state == NSOnState)
