@@ -52,8 +52,8 @@ public class BNRLinesWindowController: NSWindowController {
     }
     
     public func setupContext (context: CGContext!) {
-        CGContextSetLineWidth (context, CGFloat(lineWidthSlider.doubleValue))
-        CGContextSetMiterLimit (context, CGFloat(miterLimitSlider.doubleValue))
+        CGContextSetLineWidth (context, lineWidthSlider.cgfloatValue())
+        CGContextSetMiterLimit (context, miterLimitSlider.cgfloatValue())
         CGContextSetLineCap (context, CGLineCap(UInt32(endCapPopUp.indexOfSelectedItem)))
         CGContextSetLineJoin (context, CGLineJoin(UInt32(lineJoinPopUp.indexOfSelectedItem)))
         
@@ -64,7 +64,7 @@ public class BNRLinesWindowController: NSWindowController {
         }
         
         if linePhaseBox.enabled {
-            let phase = CGFloat(linePhaseSlider.doubleValue)
+            let phase = linePhaseSlider.doubleValue.cgfloatValue()
             let lengths: Array<CGFloat> = [ dash0Slider.cgfloatValue(), space0Slider.cgfloatValue(),
                 dash1Slider.cgfloatValue(), space1Slider.cgfloatValue(),
                 dash2Slider.cgfloatValue(), space2Slider.cgfloatValue() ]
