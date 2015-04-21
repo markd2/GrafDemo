@@ -59,9 +59,9 @@ class LinesView : NSView {
     private func renderAsSinglePath() {
         let context = currentContext
         let path = CGPathCreateMutable()
- 
-        CGPathMoveToPoint (path, nil, points[0].x, points[0].y);
-    
+        
+        CGPathMoveToPoint (path, nil, points[0].x, points[0].y)
+        
         for var i = 1; i < points.count; i++ {
             CGPathAddLineToPoint (path, nil, points[i].x, points[i].y)
         }
@@ -74,7 +74,7 @@ class LinesView : NSView {
         let context = currentContext
         let path = CGPathCreateMutable()
         
-        CGPathAddLines (path, nil, self.points, UInt(self.points.count))
+        CGPathAddLines (path, nil, self.points, self.points.count)
         CGContextAddPath (context, path)
         CGContextStrokePath (context)
     }
@@ -96,14 +96,14 @@ class LinesView : NSView {
         let context = currentContext
         
         var segments: [CGPoint] = []
-        
+
         for i in 0 ..< points.count - 1 {
             segments += [points[i]]
             segments += [points[i + 1]]
         }
-        
+
         // Strokes points 0->1 2->3 4->5
-        CGContextStrokeLineSegments (context, segments, UInt(segments.count))
+        CGContextStrokeLineSegments (context, segments, segments.count)
     }
 
    private func renderPath() {
@@ -147,7 +147,7 @@ class LinesView : NSView {
     }
     
     // Behave more like iOS, or most sane toolkits.
-    /* override */ func isFlipped() -> Bool {
+    override var flipped: Bool {
         return true
     }
     
