@@ -67,13 +67,13 @@ public class BNRLinesWindowController: NSWindowController {
         
         if linePhaseBox.enabled {
             let phase = linePhaseSlider.cgfloatValue()
-            let lengths: Array<CGFloat> = [
+            let lengths: [CGFloat] = [
                 dash0Slider.cgfloatValue(), space0Slider.cgfloatValue(),
                 dash1Slider.cgfloatValue(), space1Slider.cgfloatValue(),
                 dash2Slider.cgfloatValue(), space2Slider.cgfloatValue()
             ]
             
-            CGContextSetLineDash (context, phase, lengths, UInt(lengths.count))
+            CGContextSetLineDash (context, phase, lengths, lengths.count)
         }
     }
 
