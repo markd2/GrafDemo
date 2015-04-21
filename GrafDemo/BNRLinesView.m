@@ -109,6 +109,8 @@ static const NSInteger kNoDraggedPoint = -1;
     CGContextAddPath (context, path);
     CGContextStrokePath (context);
     
+    CGPathRelease (path);
+    
 } // renderAsSinglePath
 
 
@@ -120,6 +122,8 @@ static const NSInteger kNoDraggedPoint = -1;
 
     CGContextAddPath (context, path);
     CGContextStrokePath (context);
+    
+    CGPathRelease (path);
     
 } // renderAsSinglePathByAddingLines
 
@@ -134,6 +138,8 @@ static const NSInteger kNoDraggedPoint = -1;
         
         CGContextAddPath (context, path);
         CGContextStrokePath (context);
+        
+        CGPathRelease(path);
     }
 
 } // renderAsMultiplePaths
