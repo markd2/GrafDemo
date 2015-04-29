@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="BNRLinesWindowController" customModule="GrafDemo" customModuleProvider="target">
+            <connections>
+                <outlet property="dash0Slider" destination="8xr-hS-ygE" id="VfA-9t-ipA"/>
+                <outlet property="dash0slider" destination="cKF-tP-LiL" id="pL7-Lw-uaf"/>
+                <outlet property="dash1Slider" destination="xGE-Gp-zDa" id="PsM-xr-YGA"/>
+                <outlet property="dash2Slider" destination="b0L-jr-Ajg" id="asu-j6-R5y"/>
+                <outlet property="endCapPopUp" destination="ibz-Vg-z2S" id="ywC-Ju-qYq"/>
+                <outlet property="lineAlphaCheckbox" destination="VMr-R1-Tgp" id="mcu-pk-QEA"/>
+                <outlet property="lineJoinPopUp" destination="c10-h8-akQ" id="d1e-xO-8Ok"/>
+                <outlet property="linePhaseBox" destination="cKF-tP-LiL" id="DyA-ef-v1v"/>
+                <outlet property="linePhaseSlider" destination="6bG-Se-XvW" id="hZq-3M-McW"/>
+                <outlet property="lineWidthSlider" destination="dyZ-py-PDR" id="GSR-dB-McU"/>
+                <outlet property="linesView" destination="Ztv-v9-t0c" id="o7e-XJ-2GV"/>
+                <outlet property="miterLimitSlider" destination="g6l-IV-25c" id="Xe3-Je-xPh"/>
+                <outlet property="renderModePopUp" destination="cbS-35-1ki" id="vMn-WQ-xuk"/>
+                <outlet property="space0Slider" destination="XOb-tU-b7r" id="cun-N4-AFU"/>
+                <outlet property="space1Slider" destination="iVq-Yi-2X7" id="QPF-rM-3rl"/>
+                <outlet property="space2Slider" destination="1gQ-d5-7cg" id="zl1-Yj-k2j"/>
+                <outlet property="swiftLinesView" destination="ScA-R0-Gl9" id="U0k-99-YCd"/>
+                <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Lines" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" frameAutosaveName="seniL" animationBehavior="default" id="F0z-JX-Cv5">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="997" height="531"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
+            <view key="contentView" id="se5-gp-TjO">
+                <rect key="frame" x="0.0" y="0.0" width="997" height="531"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <box autoresizesSubviews="NO" title="Line Attributes" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="UgO-1s-F7z">
+                        <rect key="frame" x="393" y="253" width="210" height="258"/>
+                        <view key="contentView">
+                            <rect key="frame" x="1" y="1" width="208" height="242"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dyZ-py-PDR">
+                                    <rect key="frame" x="16" y="192" width="163" height="20"/>
+                                    <sliderCell key="cell" continuous="YES" alignment="left" minValue="0.5" maxValue="30" doubleValue="10" tickMarkPosition="above" sliderType="linear" id="nkY-DC-1LS"/>
+                                    <connections>
+                                        <action selector="refreshViews" target="-2" id="cgn-nk-cXb"/>
+                                    </connections>
+                                </slider>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D8t-m0-6Oo">
+                                    <rect key="frame" x="16" y="218" width="71" height="14"/>
+                                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Line Width" id="TFg-Nj-JuX">
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g6l-IV-25c">
+                                    <rect key="frame" x="16" y="139" width="163" height="20"/>
+                                    <sliderCell key="cell" continuous="YES" alignment="left" minValue="0.5" maxValue="20" doubleValue="5" tickMarkPosition="above" sliderType="linear" id="lHa-Jl-39k"/>
+                                    <connections>
+                                        <action selector="refreshViews:" target="-2" id="lfT-s6-eso"/>
+                                    </connections>
+                                </slider>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Oh-vb-w3S">
+                                    <rect key="frame" x="16" y="165" width="71" height="14"/>
+                                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Miter Limit" id="a8u-Rd-zWo">
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ibz-Vg-z2S">
+                                    <rect key="frame" x="15" y="108" width="165" height="22"/>
+                                    <popUpButtonCell key="cell" type="push" title="Butt Cap" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="WmS-7n-koi" id="oXK-jA-0F7">
+                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <menu key="menu" id="C4r-u6-r2s">
+                                            <items>
+                                                <menuItem title="Butt Cap" state="on" id="WmS-7n-koi"/>
+                                                <menuItem title="Round Cap" id="hKH-8a-35Z"/>
+                                                <menuItem title="Square Cap" id="AOc-H8-iVl"/>
+                                            </items>
+                                        </menu>
+                                    </popUpButtonCell>
+                                    <connections>
+                                        <action selector="refreshViews:" target="-2" id="Rce-PZ-njl"/>
+                                    </connections>
+                                </popUpButton>
+                                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c10-h8-akQ" userLabel="Join Popup Button">
+                                    <rect key="frame" x="15" y="79" width="165" height="22"/>
+                                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="TwX-cT-aV8">
+                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <menu key="menu" id="6ld-yM-Zgk">
+                                            <items>
+                                                <menuItem title="Miter Join" id="CpW-7S-Jxc"/>
+                                                <menuItem title="Round Join" id="G1V-1M-3XK"/>
+                                                <menuItem title="Bevel Join" id="92T-nC-ZhQ"/>
+                                            </items>
+                                        </menu>
+                                    </popUpButtonCell>
+                                    <connections>
+                                        <action selector="refreshViews:" target="-2" id="OLf-BV-gEF"/>
+                                    </connections>
+                                </popUpButton>
+                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VMr-R1-Tgp">
+                                    <rect key="frame" x="15" y="27" width="85" height="20"/>
+                                    <buttonCell key="cell" type="check" title="Alpha Color" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="B6G-PZ-KzD">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="smallSystem"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="refreshViews:" target="-2" id="ue0-iv-N84"/>
+                                    </connections>
+                                </button>
+                                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cbS-35-1ki" userLabel="PathType popup">
+                                    <rect key="frame" x="15" y="51" width="165" height="22"/>
+                                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="PfA-KV-FdU">
+                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <menu key="menu" id="ogK-LL-I5F">
+                                            <items>
+                                                <menuItem title="Single Path (constructed)" id="RQ0-vc-xqd"/>
+                                                <menuItem title="Single Path (AddLines)" id="A42-5S-o4D"/>
+                                                <menuItem title="Multiple Paths" id="uKj-ON-XU6"/>
+                                                <menuItem title="Segments" id="shR-ev-lC6"/>
+                                            </items>
+                                        </menu>
+                                    </popUpButtonCell>
+                                    <connections>
+                                        <action selector="changeRenderMode:" target="-2" id="KrD-ac-2QK"/>
+                                    </connections>
+                                </popUpButton>
+                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DaH-ED-tQM">
+                                    <rect key="frame" x="15" y="4" width="118" height="20"/>
+                                    <buttonCell key="cell" type="check" title="Show Logical Path" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="93Y-7K-y9D">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="smallSystem"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="toggleShowLogicalPath:" target="-2" id="WeU-SZ-9LI"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </view>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="254" id="Jee-OX-eNp"/>
+                            <constraint firstAttribute="width" constant="204" id="ozU-SG-AOh"/>
+                        </constraints>
+                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </box>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Ztv-v9-t0c" userLabel="Lines View (objc)" customClass="BNRLinesView">
+                        <rect key="frame" x="20" y="20" width="357" height="491"/>
+                    </customView>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="ScA-R0-Gl9" userLabel="Lines View (swift)" customClass="LinesView" customModule="GrafDemo" customModuleProvider="target">
+                        <rect key="frame" x="619" y="21" width="358" height="489"/>
+                    </customView>
+                    <box autoresizesSubviews="NO" title="Line Phase" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="cKF-tP-LiL" customClass="BNRCheckboxBox">
+                        <rect key="frame" x="393" y="41" width="210" height="199"/>
+                        <view key="contentView">
+                            <rect key="frame" x="1" y="1" width="208" height="183"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="01F-gt-bNo">
+                                    <rect key="frame" x="16" y="128" width="41" height="14"/>
+                                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Dash 0" id="cJW-FG-MvD">
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <slider verticalHuggingPriority="750" fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="1gQ-d5-7cg">
+                                    <rect key="frame" x="96" y="12" width="96" height="20"/>
+                                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="20" doubleValue="2.4796874999999998" tickMarkPosition="above" sliderType="linear" id="wUh-Pn-n7P"/>
+                                    <connections>
+                                        <action selector="refreshViews:" target="-2" id="Rku-7Y-Wyg"/>
+                                    </connections>
+                                </slider>
+                                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6bG-Se-XvW">
+                                    <rect key="frame" x="96" y="155" width="96" height="20"/>
+                                    <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="30" doubleValue="5" tickMarkPosition="above" sliderType="linear" id="SCi-xA-KLd"/>
+                                    <connections>
+                                        <action selector="refreshViews:" target="-2" id="uwh-3t-nsj"/>
+                                    </connections>
+                                </slider>
+                                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8xr-hS-ygE">
+                                    <rect key="frame" x="96" y="124" width="96" height="20"/>
+                                    <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="20" doubleValue="10" tickMarkPosition="above" sliderType="linear" id="Ukl-hU-yfk"/>
+                                    <connections>
+                                        <action selector="refreshViews:" target="-2" id="Kfh-BJ-SW4"/>
+                                    </connections>
+                                </slider>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fz9-pf-XJL">
+                                    <rect key="frame" x="16" y="38" width="41" height="14"/>
+                                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Dash 2" id="b3k-hk-EkW">
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XOb-tU-b7r">
+                                    <rect key="frame" x="96" y="102" width="96" height="20"/>
+                                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="20" doubleValue="1.8781249999999998" tickMarkPosition="above" sliderType="linear" id="PD2-WR-L8S"/>
+                                    <connections>
+                                        <action selector="refreshViews:" target="-2" id="lHn-d8-UQA"/>
+                                    </connections>
+                                </slider>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XkP-m6-jTx">
+                                    <rect key="frame" x="16" y="16" width="46" height="14"/>
+                                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Space 2" id="64b-lk-STe">
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZbI-WA-zWq">
+                                    <rect key="frame" x="16" y="84" width="41" height="14"/>
+                                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Dash 1" id="W0h-ME-aNa">
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <slider verticalHuggingPriority="750" fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="b0L-jr-Ajg">
+                                    <rect key="frame" x="96" y="34" width="96" height="20"/>
+                                    <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="20" doubleValue="5" tickMarkPosition="above" sliderType="linear" id="IpS-2A-bZ0"/>
+                                    <connections>
+                                        <action selector="refreshViews:" target="-2" id="ZGO-f6-mxl"/>
+                                    </connections>
+                                </slider>
+                                <slider verticalHuggingPriority="750" fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="iVq-Yi-2X7">
+                                    <rect key="frame" x="96" y="58" width="96" height="20"/>
+                                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="20" doubleValue="2.3999999999999999" tickMarkPosition="above" sliderType="linear" id="f9R-Ds-ggJ"/>
+                                    <connections>
+                                        <action selector="refreshViews:" target="-2" id="ObP-mw-GEU"/>
+                                    </connections>
+                                </slider>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lyy-Uc-2Eb">
+                                    <rect key="frame" x="16" y="157" width="35" height="14"/>
+                                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Phase" id="h3Q-EP-5EC">
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="twZ-bi-DF2">
+                                    <rect key="frame" x="16" y="62" width="46" height="14"/>
+                                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Space 1" id="9hO-Vh-rJ2">
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <slider verticalHuggingPriority="750" fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="xGE-Gp-zDa">
+                                    <rect key="frame" x="96" y="80" width="96" height="20"/>
+                                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="20" doubleValue="7.2395833333333339" tickMarkPosition="above" sliderType="linear" id="pmF-QK-Nlh"/>
+                                    <connections>
+                                        <action selector="refreshViews:" target="-2" id="EDD-bV-3G1"/>
+                                    </connections>
+                                </slider>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zef-xq-g6u">
+                                    <rect key="frame" x="16" y="106" width="46" height="14"/>
+                                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Space 0" id="xNq-eo-awu">
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                            </subviews>
+                        </view>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="204" id="hM1-vk-6uz"/>
+                            <constraint firstAttribute="height" constant="195" id="j7J-cW-emb"/>
+                        </constraints>
+                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </box>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="ScA-R0-Gl9" secondAttribute="trailing" constant="20" id="1jU-L5-Zeg"/>
+                    <constraint firstItem="cKF-tP-LiL" firstAttribute="leading" secondItem="Ztv-v9-t0c" secondAttribute="trailing" constant="19" id="5xx-B8-3kT"/>
+                    <constraint firstItem="Ztv-v9-t0c" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="8Hl-EG-TeG"/>
+                    <constraint firstItem="ScA-R0-Gl9" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="21" id="ERc-h6-b5V"/>
+                    <constraint firstItem="Ztv-v9-t0c" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="Joc-gJ-08K"/>
+                    <constraint firstItem="ScA-R0-Gl9" firstAttribute="leading" secondItem="cKF-tP-LiL" secondAttribute="trailing" constant="19" id="MMo-lG-SYg"/>
+                    <constraint firstItem="ScA-R0-Gl9" firstAttribute="width" secondItem="Ztv-v9-t0c" secondAttribute="width" constant="1" id="PUV-zh-tgb"/>
+                    <constraint firstItem="UgO-1s-F7z" firstAttribute="leading" secondItem="Ztv-v9-t0c" secondAttribute="trailing" constant="19" id="QAF-v1-vM1"/>
+                    <constraint firstAttribute="bottom" secondItem="ScA-R0-Gl9" secondAttribute="bottom" constant="21" id="YPn-oL-vih"/>
+                    <constraint firstItem="ScA-R0-Gl9" firstAttribute="height" secondItem="Ztv-v9-t0c" secondAttribute="height" constant="-2" id="qTZ-nU-1OK"/>
+                    <constraint firstItem="ScA-R0-Gl9" firstAttribute="leading" secondItem="UgO-1s-F7z" secondAttribute="trailing" constant="19" id="u3z-Ju-2IY"/>
+                    <constraint firstItem="UgO-1s-F7z" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="uNI-ae-k57"/>
+                    <constraint firstItem="cKF-tP-LiL" firstAttribute="top" secondItem="UgO-1s-F7z" secondAttribute="bottom" constant="17" id="wXS-D9-WvO"/>
+                    <constraint firstAttribute="bottom" secondItem="Ztv-v9-t0c" secondAttribute="bottom" constant="20" id="xvf-gZ-KJg"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
+            </connections>
+            <point key="canvasLocation" x="177.5" y="200.5"/>
+        </window>
+    </objects>
+</document>

@@ -43,6 +43,7 @@
     CGContextRef context = self.currentContext;
 
     CGRect innerRect = CGRectInset (self.bounds, 20, 20);
+    if (CGRectIsEmpty(innerRect)) return;
 
     CGContextSetRGBFillColor (context, 0.0, 1.0, 0.0, 1.0); // Green
     CGContextFillEllipseInRect (context, innerRect);
@@ -85,10 +86,12 @@
 
 - (void) drawNiceContents {
     CGContextRef context = self.currentContext;
-
+    CGRect innerRect = CGRectInset (self.bounds, 20, 20);
+    
+    if (CGRectIsEmpty(innerRect)) return;
+    
     CGContextSaveGState (context); {
-        CGRect innerRect = CGRectInset (self.bounds, 20, 20);
-        
+
         CGContextSetLineWidth (context, 6.0);
         
         CGContextSetRGBFillColor (context, 0.0, 1.0, 0.0, 1.0); // Green

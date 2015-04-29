@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="BNRSimpleWindowController">
+            <connections>
+                <outlet property="simpleView" destination="Her-SE-Pdr" id="dXV-V5-MyA"/>
+                <outlet property="swSimpleView" destination="ycI-1i-Ub2" id="CPm-SP-Kxl"/>
+                <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Simple" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" frameAutosaveName="elpmiS" animationBehavior="default" id="F0z-JX-Cv5">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="437" height="225"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
+            <view key="contentView" id="se5-gp-TjO">
+                <rect key="frame" x="0.0" y="0.0" width="437" height="225"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                <subviews>
+                    <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Her-SE-Pdr" customClass="BNRSimpleView">
+                        <rect key="frame" x="20" y="42" width="165" height="163"/>
+                    </customView>
+                    <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ycI-1i-Ub2" customClass="SimpleView" customModule="GrafDemo" customModuleProvider="target">
+                        <rect key="frame" x="253" y="42" width="164" height="163"/>
+                    </customView>
+                    <button translatesAutoresizingMaskIntoConstraints="NO" id="IIg-w7-JaP">
+                        <rect key="frame" x="187" y="18" width="64" height="18"/>
+                        <buttonCell key="cell" type="check" title="Sloppy" bezelStyle="regularSquare" imagePosition="left" inset="2" id="ApM-dJ-WWZ">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="toggleSloppy:" target="-2" id="czh-bW-0Z3"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ycI-1i-Ub2" firstAttribute="leading" secondItem="Her-SE-Pdr" secondAttribute="trailing" constant="68" id="09g-je-gqO"/>
+                    <constraint firstItem="ycI-1i-Ub2" firstAttribute="height" secondItem="Her-SE-Pdr" secondAttribute="height" id="1wc-e5-7R3"/>
+                    <constraint firstItem="Her-SE-Pdr" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="2sY-eE-MCX"/>
+                    <constraint firstItem="Her-SE-Pdr" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="Dv1-Fs-Tmz"/>
+                    <constraint firstItem="ycI-1i-Ub2" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="LMU-Xm-s5d"/>
+                    <constraint firstAttribute="bottom" secondItem="Her-SE-Pdr" secondAttribute="bottom" constant="42" id="NNK-w3-4UU"/>
+                    <constraint firstAttribute="bottom" secondItem="ycI-1i-Ub2" secondAttribute="bottom" constant="42" id="Sdk-NF-8un"/>
+                    <constraint firstItem="IIg-w7-JaP" firstAttribute="top" secondItem="Her-SE-Pdr" secondAttribute="bottom" constant="8" id="THc-fA-HSJ"/>
+                    <constraint firstAttribute="centerX" secondItem="IIg-w7-JaP" secondAttribute="centerX" id="YzO-2F-CaE"/>
+                    <constraint firstItem="ycI-1i-Ub2" firstAttribute="width" secondItem="Her-SE-Pdr" secondAttribute="width" id="hC1-MP-Qpn"/>
+                    <constraint firstAttribute="trailing" secondItem="ycI-1i-Ub2" secondAttribute="trailing" constant="20" id="om5-yO-IaG"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
+            </connections>
+            <point key="canvasLocation" x="146.5" y="131.5"/>
+        </window>
+    </objects>
+</document>

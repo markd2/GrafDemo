@@ -14,6 +14,15 @@
 		7D077FF419AEE01300E431A5 /* GrafDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D077FF319AEE01300E431A5 /* GrafDemoTests.m */; };
 		7D07800119AEE08100E431A5 /* BNRSimpleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D07800019AEE08100E431A5 /* BNRSimpleView.m */; };
 		7D07800419AEEA9B00E431A5 /* SimpleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D07800319AEEA9B00E431A5 /* SimpleView.swift */; };
+		7D0BA72C1A4B367B0052A633 /* LinesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0BA72B1A4B367B0052A633 /* LinesView.swift */; };
+		7D3908581A3648AE0005FA24 /* BNRSimpleWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3908561A3648AE0005FA24 /* BNRSimpleWindowController.m */; };
+		7D3908591A3648AE0005FA24 /* BNRSimpleWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D3908571A3648AE0005FA24 /* BNRSimpleWindowController.xib */; };
+		7D3908921A3655BB0005FA24 /* BNRLinesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3908901A3655BB0005FA24 /* BNRLinesWindowController.swift */; };
+		7D3908931A3655BB0005FA24 /* BNRLinesWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D3908911A3655BB0005FA24 /* BNRLinesWindowController.xib */; };
+		7D3908961A3655D50005FA24 /* BNRLinesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3908951A3655D50005FA24 /* BNRLinesView.m */; };
+		7D3908991A365CD20005FA24 /* BNRUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3908981A365CD20005FA24 /* BNRUtilities.m */; };
+		7D39089D1A3666F60005FA24 /* BNRCheckboxBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D39089C1A3666F60005FA24 /* BNRCheckboxBox.m */; };
+		7DC6D54B1A5DA4D8007AF35B /* NSView+CGStuff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC6D54A1A5DA4D8007AF35B /* NSView+CGStuff.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +50,19 @@
 		7D07800019AEE08100E431A5 /* BNRSimpleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRSimpleView.m; sourceTree = "<group>"; };
 		7D07800219AEEA9B00E431A5 /* GrafDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GrafDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		7D07800319AEEA9B00E431A5 /* SimpleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleView.swift; sourceTree = "<group>"; };
+		7D0BA72B1A4B367B0052A633 /* LinesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinesView.swift; sourceTree = "<group>"; };
+		7D3908551A3648AE0005FA24 /* BNRSimpleWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRSimpleWindowController.h; sourceTree = "<group>"; };
+		7D3908561A3648AE0005FA24 /* BNRSimpleWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRSimpleWindowController.m; sourceTree = "<group>"; };
+		7D3908571A3648AE0005FA24 /* BNRSimpleWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRSimpleWindowController.xib; sourceTree = "<group>"; };
+		7D3908901A3655BB0005FA24 /* BNRLinesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BNRLinesWindowController.swift; sourceTree = "<group>"; };
+		7D3908911A3655BB0005FA24 /* BNRLinesWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRLinesWindowController.xib; sourceTree = "<group>"; };
+		7D3908941A3655D50005FA24 /* BNRLinesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRLinesView.h; sourceTree = "<group>"; };
+		7D3908951A3655D50005FA24 /* BNRLinesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRLinesView.m; sourceTree = "<group>"; };
+		7D3908971A365CD20005FA24 /* BNRUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRUtilities.h; sourceTree = "<group>"; };
+		7D3908981A365CD20005FA24 /* BNRUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRUtilities.m; sourceTree = "<group>"; };
+		7D39089B1A3666F60005FA24 /* BNRCheckboxBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRCheckboxBox.h; sourceTree = "<group>"; };
+		7D39089C1A3666F60005FA24 /* BNRCheckboxBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRCheckboxBox.m; sourceTree = "<group>"; };
+		7DC6D54A1A5DA4D8007AF35B /* NSView+CGStuff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSView+CGStuff.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +104,8 @@
 		7D077FDC19AEE01200E431A5 /* GrafDemo */ = {
 			isa = PBXGroup;
 			children = (
+				7D39089A1A3666D20005FA24 /* Useful Stuff */,
+				7D3908541A3644770005FA24 /* View Controllers */,
 				7D077FFD19AEE04900E431A5 /* ObjC Styles */,
 				7D077FFE19AEE04F00E431A5 /* Swift Styles */,
 				7D077FE119AEE01300E431A5 /* AppDelegate.h */,
@@ -124,6 +148,8 @@
 			children = (
 				7D077FFF19AEE08100E431A5 /* BNRSimpleView.h */,
 				7D07800019AEE08100E431A5 /* BNRSimpleView.m */,
+				7D3908941A3655D50005FA24 /* BNRLinesView.h */,
+				7D3908951A3655D50005FA24 /* BNRLinesView.m */,
 			);
 			name = "ObjC Styles";
 			sourceTree = "<group>";
@@ -132,9 +158,34 @@
 			isa = PBXGroup;
 			children = (
 				7D07800319AEEA9B00E431A5 /* SimpleView.swift */,
+				7D0BA72B1A4B367B0052A633 /* LinesView.swift */,
 				7D07800219AEEA9B00E431A5 /* GrafDemo-Bridging-Header.h */,
 			);
 			name = "Swift Styles";
+			sourceTree = "<group>";
+		};
+		7D3908541A3644770005FA24 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7D3908551A3648AE0005FA24 /* BNRSimpleWindowController.h */,
+				7D3908561A3648AE0005FA24 /* BNRSimpleWindowController.m */,
+				7D3908571A3648AE0005FA24 /* BNRSimpleWindowController.xib */,
+				7D3908901A3655BB0005FA24 /* BNRLinesWindowController.swift */,
+				7D3908911A3655BB0005FA24 /* BNRLinesWindowController.xib */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		7D39089A1A3666D20005FA24 /* Useful Stuff */ = {
+			isa = PBXGroup;
+			children = (
+				7D3908971A365CD20005FA24 /* BNRUtilities.h */,
+				7D3908981A365CD20005FA24 /* BNRUtilities.m */,
+				7D39089B1A3666F60005FA24 /* BNRCheckboxBox.h */,
+				7D39089C1A3666F60005FA24 /* BNRCheckboxBox.m */,
+				7DC6D54A1A5DA4D8007AF35B /* NSView+CGStuff.swift */,
+			);
+			name = "Useful Stuff";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,6 +270,8 @@
 			files = (
 				7D077FE519AEE01300E431A5 /* Images.xcassets in Resources */,
 				7D077FE819AEE01300E431A5 /* MainMenu.xib in Resources */,
+				7D3908931A3655BB0005FA24 /* BNRLinesWindowController.xib in Resources */,
+				7D3908591A3648AE0005FA24 /* BNRSimpleWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,8 +291,15 @@
 			files = (
 				7D07800419AEEA9B00E431A5 /* SimpleView.swift in Sources */,
 				7D077FE319AEE01300E431A5 /* AppDelegate.m in Sources */,
+				7D3908921A3655BB0005FA24 /* BNRLinesWindowController.swift in Sources */,
 				7D07800119AEE08100E431A5 /* BNRSimpleView.m in Sources */,
+				7D3908581A3648AE0005FA24 /* BNRSimpleWindowController.m in Sources */,
+				7D39089D1A3666F60005FA24 /* BNRCheckboxBox.m in Sources */,
+				7DC6D54B1A5DA4D8007AF35B /* NSView+CGStuff.swift in Sources */,
+				7D0BA72C1A4B367B0052A633 /* LinesView.swift in Sources */,
 				7D077FE019AEE01300E431A5 /* main.m in Sources */,
+				7D3908961A3655D50005FA24 /* BNRLinesView.m in Sources */,
+				7D3908991A365CD20005FA24 /* BNRUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
