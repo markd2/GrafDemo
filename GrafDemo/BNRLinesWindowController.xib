@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7702"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="BNRLinesWindowController" customModule="GrafDemo" customModuleProvider="target">
@@ -33,7 +33,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="997" height="531"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
             <view key="contentView" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="997" height="531"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -61,7 +61,7 @@
                                 </textField>
                                 <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g6l-IV-25c">
                                     <rect key="frame" x="16" y="139" width="163" height="20"/>
-                                    <sliderCell key="cell" continuous="YES" alignment="left" minValue="0.5" maxValue="20" doubleValue="5" tickMarkPosition="above" sliderType="linear" id="lHa-Jl-39k"/>
+                                    <sliderCell key="cell" continuous="YES" alignment="left" minValue="0.10000000000000001" maxValue="20" doubleValue="5" tickMarkPosition="above" sliderType="linear" id="lHa-Jl-39k"/>
                                     <connections>
                                         <action selector="refreshViews:" target="-2" id="lfT-s6-eso"/>
                                     </connections>
