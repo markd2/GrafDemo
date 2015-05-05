@@ -62,7 +62,7 @@ class LinesView : NSView {
         
         CGPathMoveToPoint (path, nil, points[0].x, points[0].y)
         
-        for var i = 1; i < points.count; i++ {
+        for i in 1 ..< points.count {
             CGPathAddLineToPoint (path, nil, points[i].x, points[i].y)
         }
         
