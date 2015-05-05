@@ -8,12 +8,6 @@
 
 import Cocoa
 
-extension NSSlider {
-    func cgfloatValue() -> CGFloat {
-        return CGFloat(self.doubleValue)
-    }
-}
-
 public class BNRLinesWindowController: NSWindowController {
     @IBOutlet weak var linesView: BNRLinesView!
     @IBOutlet weak var swiftLinesView: LinesView!
@@ -54,8 +48,8 @@ public class BNRLinesWindowController: NSWindowController {
     
     // Called by the line view prior to constructing and stroking the example path
     public func setupContext (context: CGContext!) {
-        CGContextSetLineWidth (context, lineWidthSlider.cgfloatValue())
-        CGContextSetMiterLimit (context, miterLimitSlider.cgfloatValue())
+        CGContextSetLineWidth (context, CGFloat(lineWidthSlider.floatValue))
+        CGContextSetMiterLimit (context, CGFloat(miterLimitSlider.floatValue))
         CGContextSetLineCap (context, CGLineCap(UInt32(endCapPopUp.indexOfSelectedItem)))
         CGContextSetLineJoin (context, CGLineJoin(UInt32(lineJoinPopUp.indexOfSelectedItem)))
         
@@ -66,12 +60,12 @@ public class BNRLinesWindowController: NSWindowController {
         }
         
         if linePhaseBox.enabled {
-            let phase = linePhaseSlider.cgfloatValue()
-            let lengths: [CGFloat] = [
-                dash0Slider.cgfloatValue(), space0Slider.cgfloatValue(),
-                dash1Slider.cgfloatValue(), space1Slider.cgfloatValue(),
-                dash2Slider.cgfloatValue(), space2Slider.cgfloatValue()
-            ]
+            let phase = CGFloat(linePhaseSlider.floatValue)
+            let lengths = [
+                dash0Slider.floatValue, space0Slider.floatValue,
+                dash1Slider.floatValue, space1Slider.floatValue,
+                dash2Slider.floatValue, space2Slider.floatValue
+            ].map { CGFloat($0) }
             
             CGContextSetLineDash (context, phase, lengths, lengths.count)
         }
