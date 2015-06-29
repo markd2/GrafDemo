@@ -156,7 +156,7 @@ class LinesView : NSView {
         let kClickTolerance: Float = 10.0
         var pointIndex: Int? = nil
         
-        for (index, point) in enumerate(points) {
+        for (index, point) in points.enumerate() {
             let distance = hypotf(Float(mousePoint.x - point.x),
                 Float(mousePoint.y - point.y))
             if distance < kClickTolerance {
