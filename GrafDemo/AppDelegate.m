@@ -51,5 +51,12 @@
 } // showLinesController
 
 
+- (IBAction) showPathController: (NSButton *) sender {
+    [self showViewControllerNamed: @"BNRPathWindowController"];
+} // showPathController
+
+
+
+
 @end // AppDelegate
 
