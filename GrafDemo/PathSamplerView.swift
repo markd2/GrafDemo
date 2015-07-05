@@ -262,26 +262,26 @@ class PathSamplerView: NSView {
     func addSamplePath() {
         let π = CGFloat(Darwin.M_PI)
 
-        addChunk(.MoveTo(point: CGPoint(x: 134, y: 313)))
-        addChunk(.LineTo(point: CGPoint(x: 125, y: 261)))
+        addChunk(.MoveTo(point: CGPoint(x: 184, y: 363)))
+        addChunk(.LineTo(point: CGPoint(x: 175, y: 311)))
 
-        addChunk(.RelativeArc(center: CGPoint(x: 55, y: 230.0), radius: 25,
+        addChunk(.RelativeArc(center: CGPoint(x: 105, y: 280.0), radius: 25,
             startAngle: π / 2, deltaAngle: π))
 
-        addChunk(.CurveTo(point: CGPoint(x: 59, y: 50),
-            control1: CGPoint(x: 71, y: 157),
-            control2: CGPoint(x: 13, y: 107)))
-        addChunk(.QuadCurveTo(point: CGPoint(x: 169, y: 23),
-            control: CGPoint(x: 107, y: 91)))
+        addChunk(.CurveTo(point: CGPoint(x: 109, y: 100),
+            control1: CGPoint(x: 121, y: 207),
+            control2: CGPoint(x: 63, y: 157)))
+        addChunk(.QuadCurveTo(point: CGPoint(x: 219, y: 73),
+            control: CGPoint(x: 157, y: 141)))
 
-        addChunk(.LineTo(point: CGPoint(x: 223, y: 95)))
+        addChunk(.LineTo(point: CGPoint(x: 273, y: 145)))
         
-        addChunk(.ArcToPoint(control1: CGPoint(x: 268, y: 81),
-            control2: CGPoint(x:210, y: 140), radius: 40))
+        addChunk(.ArcToPoint(control1: CGPoint(x: 318, y: 131),
+            control2: CGPoint(x:260, y: 190), radius: 40))
 
-        addChunk(.LineTo(point: CGPoint(x: 232, y: 270)))
+        addChunk(.LineTo(point: CGPoint(x: 282, y: 320)))
         
-        addChunk(.Arc(center: CGPoint(x: 180, y: 301), radius: 30.0, startAngle: 0.0,
+        addChunk(.Arc(center: CGPoint(x: 230, y: 351), radius: 30.0, startAngle: 0.0,
             endAngle: π, clockwise: false))
         addChunk(.Close)
     }
