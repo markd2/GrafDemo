@@ -50,8 +50,8 @@ public class BNRLinesWindowController: NSWindowController {
     public func setupContext (context: CGContext!) {
         CGContextSetLineWidth (context, CGFloat(lineWidthSlider.floatValue))
         CGContextSetMiterLimit (context, CGFloat(miterLimitSlider.floatValue))
-        CGContextSetLineCap (context, CGLineCap(UInt32(endCapPopUp.indexOfSelectedItem)))
-        CGContextSetLineJoin (context, CGLineJoin(UInt32(lineJoinPopUp.indexOfSelectedItem)))
+        CGContextSetLineCap (context, CGLineCap(rawValue: Int32(endCapPopUp.indexOfSelectedItem))!)
+        CGContextSetLineJoin (context, CGLineJoin(rawValue: Int32(lineJoinPopUp.indexOfSelectedItem))!)
         
         if self.lineAlphaCheckbox.state == NSOnState {
             NSColor.blueColor().colorWithAlphaComponent(0.50).set()
