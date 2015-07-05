@@ -16,21 +16,40 @@
         <window title="Paths" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" frameAutosaveName="shtaP" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="480" height="412"/>
+            <rect key="contentRect" x="196" y="240" width="738" height="456"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
             <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="412"/>
+                <rect key="frame" x="0.0" y="0.0" width="738" height="456"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8iV-jK-lCP" customClass="PathSamplerView" customModule="GrafDemo" customModuleProvider="target">
-                        <rect key="frame" x="20" y="20" width="440" height="372"/>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zby-BA-ARF">
+                        <rect key="frame" x="20" y="307" width="131" height="129"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="129" id="45Q-Tm-mlQ"/>
+                            <constraint firstAttribute="width" constant="131" id="PRi-IM-K0I"/>
+                        </constraints>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="PathKey" id="gla-RU-qJR"/>
+                    </imageView>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="8iV-jK-lCP" customClass="PathSamplerView" customModule="GrafDemo" customModuleProvider="target">
+                        <rect key="frame" x="159" y="20" width="559" height="416"/>
                     </customView>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="8iV-jK-lCP" firstAttribute="leading" secondItem="Zby-BA-ARF" secondAttribute="trailing" constant="8" id="Nhe-tI-ZO3"/>
+                    <constraint firstAttribute="trailing" secondItem="8iV-jK-lCP" secondAttribute="trailing" constant="20" id="Q4m-KA-7eX"/>
+                    <constraint firstItem="Zby-BA-ARF" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="Y9D-hX-f84"/>
+                    <constraint firstAttribute="bottom" secondItem="8iV-jK-lCP" secondAttribute="bottom" constant="20" id="jFb-lx-sFY"/>
+                    <constraint firstItem="Zby-BA-ARF" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="mgJ-f0-kTM"/>
+                    <constraint firstItem="8iV-jK-lCP" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="ztL-x0-DS2"/>
+                </constraints>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="348" y="494"/>
+            <point key="canvasLocation" x="477" y="516"/>
         </window>
     </objects>
+    <resources>
+        <image name="PathKey" width="131" height="129"/>
+    </resources>
 </document>
