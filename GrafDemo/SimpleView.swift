@@ -58,7 +58,7 @@ class SimpleView: NSView {
     }
     
     func drawNiceBackground() {
-        saveGState {
+        protectGState {
             CGContextFillRect (self.currentContext, self.bounds)
         }
     }
@@ -70,7 +70,7 @@ class SimpleView: NSView {
             return
         }
         
-        saveGState {
+        protectGState {
             CGContextSetRGBFillColor (self.currentContext, 0.0, 1.0, 0.0, 1.0) // Green
             CGContextFillEllipseInRect (self.currentContext, innerRect)
             
@@ -81,7 +81,7 @@ class SimpleView: NSView {
     }
     
     func drawNiceBorder() {
-        saveGState {
+        protectGState {
             CGContextStrokeRect (self.currentContext, self.bounds)
         }
     }
