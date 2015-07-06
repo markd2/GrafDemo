@@ -21,7 +21,7 @@ extension NSView {
         }
     }
     
-    func saveGState(drawStuff: () -> ()) -> () {
+    func protectGState(drawStuff: () -> ()) -> () {
         CGContextSaveGState (currentContext)
         drawStuff()
         CGContextRestoreGState (currentContext)

@@ -40,7 +40,7 @@ class LinesView : NSView {
     private func drawNiceBackground() {
         let context = currentContext
 
-        saveGState {
+        protectGState {
             CGContextSetRGBFillColor (context, 1.0, 1.0, 1.0, 1.0) // White
             CGContextFillRect (context, self.bounds)
         }
@@ -49,7 +49,7 @@ class LinesView : NSView {
     private func drawNiceBorder() {
         let context = currentContext
         
-        saveGState {
+        protectGState {
             CGContextSetRGBStrokeColor (context, 0.0, 0.0, 0.0, 1.0) // Black
             CGContextStrokeRect (context, self.bounds)
         }
@@ -129,7 +129,7 @@ class LinesView : NSView {
         
         drawNiceBackground()
         
-        saveGState() {
+        protectGState() {
             NSColor.greenColor().set()
             
             if let hook = self.preRenderHook {

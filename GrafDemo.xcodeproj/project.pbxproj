@@ -22,6 +22,14 @@
 		7D3908961A3655D50005FA24 /* BNRLinesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3908951A3655D50005FA24 /* BNRLinesView.m */; };
 		7D3908991A365CD20005FA24 /* BNRUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3908981A365CD20005FA24 /* BNRUtilities.m */; };
 		7D39089D1A3666F60005FA24 /* BNRCheckboxBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D39089C1A3666F60005FA24 /* BNRCheckboxBox.m */; };
+		7D9C7CC71B499EDB000CF769 /* BNRPathWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D9C7CC51B499EDB000CF769 /* BNRPathWindowController.m */; };
+		7D9C7CC81B499EDB000CF769 /* BNRPathWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D9C7CC61B499EDB000CF769 /* BNRPathWindowController.xib */; };
+		7D9C7CCA1B49AD0C000CF769 /* PathSamplerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9C7CC91B49AD0C000CF769 /* PathSamplerView.swift */; };
+		7D9C7CCD1B49BA89000CF769 /* BNRArcTypesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9C7CCB1B49BA89000CF769 /* BNRArcTypesWindowController.swift */; };
+		7D9C7CCE1B49BA89000CF769 /* BNRArcTypesWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D9C7CCC1B49BA89000CF769 /* BNRArcTypesWindowController.xib */; };
+		7D9C7CD11B49BBAB000CF769 /* BNRArcEditingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D9C7CD01B49BBAB000CF769 /* BNRArcEditingView.m */; };
+		7D9C7CD41B4B03A9000CF769 /* BNRRelativeArcEditingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D9C7CD31B4B03A9000CF769 /* BNRRelativeArcEditingView.m */; };
+		7D9C7CD71B4B0844000CF769 /* BNRArcToPointEditingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D9C7CD61B4B0844000CF769 /* BNRArcToPointEditingView.m */; };
 		7DC6D54B1A5DA4D8007AF35B /* NSView+CGStuff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC6D54A1A5DA4D8007AF35B /* NSView+CGStuff.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +70,18 @@
 		7D3908981A365CD20005FA24 /* BNRUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRUtilities.m; sourceTree = "<group>"; };
 		7D39089B1A3666F60005FA24 /* BNRCheckboxBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRCheckboxBox.h; sourceTree = "<group>"; };
 		7D39089C1A3666F60005FA24 /* BNRCheckboxBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRCheckboxBox.m; sourceTree = "<group>"; };
+		7D9C7CC41B499EDB000CF769 /* BNRPathWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRPathWindowController.h; sourceTree = "<group>"; };
+		7D9C7CC51B499EDB000CF769 /* BNRPathWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRPathWindowController.m; sourceTree = "<group>"; };
+		7D9C7CC61B499EDB000CF769 /* BNRPathWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRPathWindowController.xib; sourceTree = "<group>"; };
+		7D9C7CC91B49AD0C000CF769 /* PathSamplerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathSamplerView.swift; sourceTree = "<group>"; };
+		7D9C7CCB1B49BA89000CF769 /* BNRArcTypesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BNRArcTypesWindowController.swift; sourceTree = "<group>"; };
+		7D9C7CCC1B49BA89000CF769 /* BNRArcTypesWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRArcTypesWindowController.xib; sourceTree = "<group>"; };
+		7D9C7CCF1B49BBAB000CF769 /* BNRArcEditingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRArcEditingView.h; sourceTree = "<group>"; };
+		7D9C7CD01B49BBAB000CF769 /* BNRArcEditingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRArcEditingView.m; sourceTree = "<group>"; };
+		7D9C7CD21B4B03A9000CF769 /* BNRRelativeArcEditingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRRelativeArcEditingView.h; sourceTree = "<group>"; };
+		7D9C7CD31B4B03A9000CF769 /* BNRRelativeArcEditingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRRelativeArcEditingView.m; sourceTree = "<group>"; };
+		7D9C7CD51B4B0844000CF769 /* BNRArcToPointEditingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRArcToPointEditingView.h; sourceTree = "<group>"; };
+		7D9C7CD61B4B0844000CF769 /* BNRArcToPointEditingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRArcToPointEditingView.m; sourceTree = "<group>"; };
 		7DC6D54A1A5DA4D8007AF35B /* NSView+CGStuff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSView+CGStuff.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -150,6 +170,12 @@
 				7D07800019AEE08100E431A5 /* BNRSimpleView.m */,
 				7D3908941A3655D50005FA24 /* BNRLinesView.h */,
 				7D3908951A3655D50005FA24 /* BNRLinesView.m */,
+				7D9C7CCF1B49BBAB000CF769 /* BNRArcEditingView.h */,
+				7D9C7CD01B49BBAB000CF769 /* BNRArcEditingView.m */,
+				7D9C7CD21B4B03A9000CF769 /* BNRRelativeArcEditingView.h */,
+				7D9C7CD31B4B03A9000CF769 /* BNRRelativeArcEditingView.m */,
+				7D9C7CD51B4B0844000CF769 /* BNRArcToPointEditingView.h */,
+				7D9C7CD61B4B0844000CF769 /* BNRArcToPointEditingView.m */,
 			);
 			name = "ObjC Styles";
 			sourceTree = "<group>";
@@ -160,6 +186,7 @@
 				7D07800319AEEA9B00E431A5 /* SimpleView.swift */,
 				7D0BA72B1A4B367B0052A633 /* LinesView.swift */,
 				7D07800219AEEA9B00E431A5 /* GrafDemo-Bridging-Header.h */,
+				7D9C7CC91B49AD0C000CF769 /* PathSamplerView.swift */,
 			);
 			name = "Swift Styles";
 			sourceTree = "<group>";
@@ -172,6 +199,11 @@
 				7D3908571A3648AE0005FA24 /* BNRSimpleWindowController.xib */,
 				7D3908901A3655BB0005FA24 /* BNRLinesWindowController.swift */,
 				7D3908911A3655BB0005FA24 /* BNRLinesWindowController.xib */,
+				7D9C7CC41B499EDB000CF769 /* BNRPathWindowController.h */,
+				7D9C7CC51B499EDB000CF769 /* BNRPathWindowController.m */,
+				7D9C7CC61B499EDB000CF769 /* BNRPathWindowController.xib */,
+				7D9C7CCB1B49BA89000CF769 /* BNRArcTypesWindowController.swift */,
+				7D9C7CCC1B49BA89000CF769 /* BNRArcTypesWindowController.xib */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -232,6 +264,7 @@
 		7D077FD219AEE01200E431A5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Big Nerd Ranch";
 				TargetAttributes = {
@@ -269,9 +302,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D077FE519AEE01300E431A5 /* Images.xcassets in Resources */,
+				7D9C7CCE1B49BA89000CF769 /* BNRArcTypesWindowController.xib in Resources */,
 				7D077FE819AEE01300E431A5 /* MainMenu.xib in Resources */,
 				7D3908931A3655BB0005FA24 /* BNRLinesWindowController.xib in Resources */,
 				7D3908591A3648AE0005FA24 /* BNRSimpleWindowController.xib in Resources */,
+				7D9C7CC81B499EDB000CF769 /* BNRPathWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,13 +326,19 @@
 			files = (
 				7D07800419AEEA9B00E431A5 /* SimpleView.swift in Sources */,
 				7D077FE319AEE01300E431A5 /* AppDelegate.m in Sources */,
+				7D9C7CCA1B49AD0C000CF769 /* PathSamplerView.swift in Sources */,
 				7D3908921A3655BB0005FA24 /* BNRLinesWindowController.swift in Sources */,
+				7D9C7CC71B499EDB000CF769 /* BNRPathWindowController.m in Sources */,
 				7D07800119AEE08100E431A5 /* BNRSimpleView.m in Sources */,
 				7D3908581A3648AE0005FA24 /* BNRSimpleWindowController.m in Sources */,
 				7D39089D1A3666F60005FA24 /* BNRCheckboxBox.m in Sources */,
 				7DC6D54B1A5DA4D8007AF35B /* NSView+CGStuff.swift in Sources */,
+				7D9C7CD71B4B0844000CF769 /* BNRArcToPointEditingView.m in Sources */,
+				7D9C7CD41B4B03A9000CF769 /* BNRRelativeArcEditingView.m in Sources */,
 				7D0BA72C1A4B367B0052A633 /* LinesView.swift in Sources */,
 				7D077FE019AEE01300E431A5 /* main.m in Sources */,
+				7D9C7CCD1B49BA89000CF769 /* BNRArcTypesWindowController.swift in Sources */,
+				7D9C7CD11B49BBAB000CF769 /* BNRArcEditingView.m in Sources */,
 				7D3908961A3655D50005FA24 /* BNRLinesView.m in Sources */,
 				7D3908991A365CD20005FA24 /* BNRUtilities.m in Sources */,
 			);

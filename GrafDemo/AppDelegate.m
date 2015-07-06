@@ -51,5 +51,16 @@
 } // showLinesController
 
 
+- (IBAction) showPathController: (NSButton *) sender {
+    [self showViewControllerNamed: @"BNRPathWindowController"];
+} // showPathController
+
+- (IBAction) showArcsController: (NSButton *) sender {
+    [self showViewControllerNamed: @"BNRArcTypesWindowController"];
+} // showArcsController
+
+
+
+
 @end // AppDelegate
 
