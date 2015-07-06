@@ -125,7 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				7D39089A1A3666D20005FA24 /* Useful Stuff */,
-				7D3908541A3644770005FA24 /* View Controllers */,
+				7D3908541A3644770005FA24 /* Window Controllers */,
 				7D077FFD19AEE04900E431A5 /* ObjC Styles */,
 				7D077FFE19AEE04F00E431A5 /* Swift Styles */,
 				7D077FE119AEE01300E431A5 /* AppDelegate.h */,
@@ -191,7 +191,7 @@
 			name = "Swift Styles";
 			sourceTree = "<group>";
 		};
-		7D3908541A3644770005FA24 /* View Controllers */ = {
+		7D3908541A3644770005FA24 /* Window Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				7D3908551A3648AE0005FA24 /* BNRSimpleWindowController.h */,
@@ -205,7 +205,7 @@
 				7D9C7CCB1B49BA89000CF769 /* BNRArcTypesWindowController.swift */,
 				7D9C7CCC1B49BA89000CF769 /* BNRArcTypesWindowController.xib */,
 			);
-			name = "View Controllers";
+			name = "Window Controllers";
 			sourceTree = "<group>";
 		};
 		7D39089A1A3666D20005FA24 /* Useful Stuff */ = {
