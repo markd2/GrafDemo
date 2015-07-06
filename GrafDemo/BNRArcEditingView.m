@@ -26,6 +26,8 @@ static const NSInteger kNotTrackingIndex = -1;
     CGPoint _controlPoints[kControlPointCount];
 }
 @synthesize clockwise = _clockwise;
+@synthesize startAngle = _startAngle;
+@synthesize endAngle = _endAngle;
 
 
 - (void) commonInitWithSize: (CGSize) size {
@@ -64,17 +66,6 @@ static const NSInteger kNotTrackingIndex = -1;
 } // initWithCoder
 
 
-- (void) setCenter: (CGPoint) center {
-    _controlPoints[kArcCenter] = center;
-    [self setNeedsDisplay: YES];
-} // setCenter
-
-
-- (CGPoint) center {
-    return _controlPoints[kArcCenter];
-} // center
-
-
 - (CGFloat) radius {
     CGFloat radius = hypotf(_controlPoints[kArcCenter].x - _controlPoints[kRadiusHandle].x,
                             _controlPoints[kArcCenter].y - _controlPoints[kRadiusHandle].y);
@@ -87,6 +78,19 @@ static const NSInteger kNotTrackingIndex = -1;
 } // radius
 
 
+// Turd methods just to get a setNeedsDisplay, and we can't 'send super' to the
+// compiler's generated version of proper setters :-(
+- (CGPoint) center {
+    return _controlPoints[kArcCenter];
+} // center
+
+
+- (void) setCenter: (CGPoint) center {
+    _controlPoints[kArcCenter] = center;
+    [self setNeedsDisplay: YES];
+} // setCenter
+
+
 - (BOOL) clockwise {
     return _clockwise;
 } // clockwise
@@ -97,6 +101,28 @@ static const NSInteger kNotTrackingIndex = -1;
     [self setNeedsDisplay: YES];
 } // setClockwise
 
+
+- (CGFloat) startAngle {
+    return _startAngle;
+} // startAngle
+
+
+- (void) setStartAngle: (CGFloat) startAngle {
+    _startAngle = startAngle;
+    [self setNeedsDisplay: YES];
+} // setStartAngle
+
+- (CGFloat) endAngle {
+    return _endAngle;
+} // endAngle
+
+
+- (void) setEndAngle: (CGFloat) endAngle {
+    _endAngle = endAngle;
+    [self setNeedsDisplay: YES];
+} // setEndAngle
+
+// Drawing
 
 - (void) drawPath {
     CGContextRef context = CurrentContext ();
