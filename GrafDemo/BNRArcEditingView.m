@@ -33,15 +33,15 @@ static const NSInteger kNotTrackingIndex = -1;
 - (void) commonInitWithSize: (CGSize) size {
     self.trackingIndex = kNotTrackingIndex;
 
-    static const CGFloat kDefaultRadius = 30.0;
+    static const CGFloat kDefaultRadius = 25.0;
     static const CGFloat kMargin = 5.0;
     CGFloat kLineLength = size.width / 3.0;
 
-    _startAngle = M_PI / 2.0;
-    _endAngle = 0.0;
-    _clockwise = NO;
+    _startAngle = 3 * (M_PI / 4.0);
+    _endAngle = M_PI / 4.0;
+    _clockwise = YES;
 
-    CGFloat midX = size.height / 2.0;
+    CGFloat midX = size.width / 2.0;
     CGFloat midY = size.height / 2.0;
 
     CGFloat leftX = kMargin;
@@ -201,8 +201,28 @@ static const NSInteger kNotTrackingIndex = -1;
 - (void) drawInfluenceLines {
     CGContextRef context = CurrentContext();
 
+    static const CGFloat kInfluenceOverspill = 10.0; // how many points beyond the circle
+
     CGContextSaveGState (context); {
-        [NSColor.grayColor set];
+        [NSColor.lightGrayColor set];
+        CGFloat pattern[] = { 2.0, 2.0 };
+        CGContextSetLineDash (context, 0.0, pattern, sizeof(pattern) / sizeof(*pattern));
+
+        CGFloat radius = self.radius + kInfluenceOverspill;
+        
+        CGPoint startAnglePoint =
+            (CGPoint) { self.center.x + radius * cos(self.startAngle),
+                        self.center.y + radius * sin(self.startAngle) };
+        CGPoint endAnglePoint =
+            (CGPoint) { self.center.x + radius * cos(self.endAngle),
+                        self.center.y + radius * sin(self.endAngle) };
+
+        CGPoint startAngleSegments[2] = { self.center, startAnglePoint };
+        CGPoint endAngleSegments[2] = { self.center, endAnglePoint };
+
+        CGContextStrokeLineSegments (context, startAngleSegments, 2);
+        CGContextStrokeLineSegments (context, endAngleSegments, 2);
+
     } CGContextRestoreGState (context);
 
 } // drawInfluenceLines
@@ -217,6 +237,7 @@ static const NSInteger kNotTrackingIndex = -1;
     [NSColor.blackColor set];
     NSFrameRect (bounds);
 
+    [self drawInfluenceLines];
     [self drawPath];
     [self drawControlPoints];
 
