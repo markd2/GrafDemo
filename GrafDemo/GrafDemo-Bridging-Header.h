@@ -5,3 +5,4 @@
 #import "BNRCheckboxBox.h"
 #import "BNRLinesView.h"
 #import "BNRArcEditingView.h"
+#import "BNRRelativeArcEditingView.h"

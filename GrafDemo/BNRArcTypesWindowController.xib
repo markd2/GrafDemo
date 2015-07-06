@@ -10,6 +10,11 @@
                 <outlet property="arcEditingView" destination="ayl-hG-Cps" id="LqJ-bp-qRu"/>
                 <outlet property="endAngleLabel" destination="K7H-iN-lEC" id="2E9-aN-0qq"/>
                 <outlet property="endAngleSlider" destination="6Uc-c8-4ja" id="AY7-fQ-vxw"/>
+                <outlet property="raRelativeAngleLabel" destination="qTM-lP-HHF" id="DLr-VO-t91"/>
+                <outlet property="raRelativeAngleSlider" destination="PkQ-wh-LBj" id="8nd-VS-djm"/>
+                <outlet property="raStartAngleLabel" destination="PEJ-p2-9Ab" id="mUM-hl-WWw"/>
+                <outlet property="raStartAngleSlider" destination="wJ5-25-G7c" id="hUs-ma-QWL"/>
+                <outlet property="relativeArcEditingView" destination="Hhw-6C-dlx" id="rlf-GQ-ap3"/>
                 <outlet property="startAngleLabel" destination="I1p-QP-ldj" id="gPH-8c-1AC"/>
                 <outlet property="startAngleSlider" destination="avQ-yB-6cv" id="7u2-ul-cVd"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
@@ -62,6 +67,14 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K7H-iN-lEC">
+                        <rect key="frame" x="199" y="3" width="31" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="0.00" id="FOf-5L-UjN">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                     <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Uc-c8-4ja">
                         <rect key="frame" x="103" y="1" width="92" height="20"/>
                         <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="6.2831799999999998" tickMarkPosition="above" sliderType="linear" id="s28-q5-gVr"/>
@@ -77,14 +90,55 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K7H-iN-lEC">
-                        <rect key="frame" x="199" y="3" width="31" height="17"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="0.00" id="FOf-5L-UjN">
+                    <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wJ5-25-G7c">
+                        <rect key="frame" x="333" y="26" width="92" height="20"/>
+                        <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="6.2831799999999998" tickMarkPosition="above" sliderType="linear" id="Ccr-4i-9hD"/>
+                        <connections>
+                            <action selector="setRelativeStartAngle:" target="-2" id="Lar-ny-DD2"/>
+                        </connections>
+                    </slider>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h4s-Lz-ec3">
+                        <rect key="frame" x="248" y="28" width="73" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Start Angle" id="85a-fz-Qab">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PEJ-p2-9Ab">
+                        <rect key="frame" x="429" y="28" width="31" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="0.00" id="qvM-fi-8ki">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qTM-lP-HHF">
+                        <rect key="frame" x="429" y="3" width="31" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="0.00" id="JjH-he-qiZ">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PkQ-wh-LBj">
+                        <rect key="frame" x="333" y="1" width="92" height="20"/>
+                        <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="-6.2831799999999998" maxValue="6.2831799999999998" tickMarkPosition="above" sliderType="linear" id="3ME-e6-PeR"/>
+                        <connections>
+                            <action selector="setRelativeDeltaAngle:" target="-2" id="25B-Ce-oEb"/>
+                        </connections>
+                    </slider>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ztr-Y9-hMb">
+                        <rect key="frame" x="248" y="3" width="36" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Delta" id="az1-iy-KmM">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hhw-6C-dlx" customClass="BNRRelativeArcEditingView">
+                        <rect key="frame" x="250" y="75" width="202" height="182"/>
+                    </customView>
                 </subviews>
             </view>
             <connections>

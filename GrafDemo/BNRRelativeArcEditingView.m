@@ -1,11 +1,11 @@
-#import "BNRArcEditingView.h"
+#import "BNRRelativeArcEditingView.h"
 #import "BNRUtilities.h"
 
 typedef enum {
     kPathStart = 0,
     kFirstSegment,
     kSecondSegment,
-    kPathEnd,
+    kPathDelta,
 
     kArcCenter,
     kRadiusHandle,
@@ -17,17 +17,17 @@ typedef enum {
 static const CGFloat kBoxSize = 10.0;
 static const NSInteger kNotTrackingIndex = -1;
 
-@interface BNRArcEditingView()
+@interface BNRRelativeArcEditingView()
 @property (assign) NSInteger trackingIndex;
 
 @end // extension
 
-@implementation BNRArcEditingView {
+@implementation BNRRelativeArcEditingView {
     CGPoint _controlPoints[kControlPointCount];
 }
-@synthesize clockwise = _clockwise;
+
 @synthesize startAngle = _startAngle;
-@synthesize endAngle = _endAngle;
+@synthesize deltaAngle = _deltaAngle;
 
 
 - (void) commonInitWithSize: (CGSize) size {
@@ -38,8 +38,7 @@ static const NSInteger kNotTrackingIndex = -1;
     CGFloat kLineLength = size.width / 3.0;
 
     _startAngle = 3 * (M_PI / 4.0);
-    _endAngle = M_PI / 4.0;
-    _clockwise = YES;
+    _deltaAngle = -M_PI / 2.0;
 
     CGFloat midX = size.width / 2.0;
     CGFloat midY = size.height / 2.0;
@@ -50,7 +49,7 @@ static const NSInteger kNotTrackingIndex = -1;
     _controlPoints[kPathStart] = (CGPoint) { leftX, midY};
     _controlPoints[kFirstSegment] = (CGPoint) { leftX + kLineLength, midY };
     _controlPoints[kSecondSegment] = (CGPoint) { rightX - kLineLength, midY };
-    _controlPoints[kPathEnd] = (CGPoint) { rightX, midY };
+    _controlPoints[kPathDelta] = (CGPoint) { rightX, midY };
 
     _controlPoints[kArcCenter] = (CGPoint) { midX, midY, };
     _controlPoints[kRadiusHandle] = (CGPoint) { midX, midY - kDefaultRadius };
@@ -78,7 +77,7 @@ static const NSInteger kNotTrackingIndex = -1;
 } // radius
 
 
-// Turd methods just to get a setNeedsDisplay, and we can't 'send super' to the
+// Turd methods just to get a setNeedsDisplay, and we can't 'sdelta super' to the
 // compiler's generated version of proper setters :-(
 - (CGPoint) center {
     return _controlPoints[kArcCenter];
@@ -91,17 +90,6 @@ static const NSInteger kNotTrackingIndex = -1;
 } // setCenter
 
 
-- (BOOL) clockwise {
-    return _clockwise;
-} // clockwise
-
-
-- (void) setClockwise: (BOOL) clockwise {
-    _clockwise = clockwise;
-    [self setNeedsDisplay: YES];
-} // setClockwise
-
-
 - (CGFloat) startAngle {
     return _startAngle;
 } // startAngle
@@ -112,15 +100,15 @@ static const NSInteger kNotTrackingIndex = -1;
     [self setNeedsDisplay: YES];
 } // setStartAngle
 
-- (CGFloat) endAngle {
-    return _endAngle;
-} // endAngle
+- (CGFloat) deltaAngle {
+    return _deltaAngle;
+} // deltaAngle
 
 
-- (void) setEndAngle: (CGFloat) endAngle {
-    _endAngle = endAngle;
+- (void) setDeltaAngle: (CGFloat) deltaAngle {
+    _deltaAngle = deltaAngle;
     [self setNeedsDisplay: YES];
-} // setEndAngle
+} // setDeltaAngle
 
 // Drawing
 
@@ -134,15 +122,15 @@ static const NSInteger kNotTrackingIndex = -1;
     CGPathAddLineToPoint (path, nil,
                           _controlPoints[kFirstSegment].x,
                           _controlPoints[kFirstSegment].y);
-    CGPathAddArc (path, nil, self.center.x, self.center.y, self.radius,
-                  self.startAngle, self.endAngle, self.clockwise);
+    CGPathAddRelativeArc (path, nil, self.center.x, self.center.y, self.radius,
+                          self.startAngle, self.deltaAngle);
 
     CGPathAddLineToPoint (path, nil,
                           _controlPoints[kSecondSegment].x,
                           _controlPoints[kSecondSegment].y);
     CGPathAddLineToPoint (path, nil,
-                          _controlPoints[kPathEnd].x,
-                          _controlPoints[kPathEnd].y);
+                          _controlPoints[kPathDelta].x,
+                          _controlPoints[kPathDelta].y);
 
     CGContextAddPath (context, path);
     CGContextStrokePath (context);
@@ -170,7 +158,7 @@ static const NSInteger kNotTrackingIndex = -1;
             case kPathStart:
             case kFirstSegment:
             case kSecondSegment:
-            case kPathEnd:
+            case kPathDelta:
                 color = NSColor.blueColor;
                 break;
                 
@@ -197,7 +185,7 @@ static const NSInteger kNotTrackingIndex = -1;
 
 
 // Need to dust off the trig book and figure out the proper places to draw
-// gray influence lines to beginning/ending angle
+// gray influence lines to beginning/deltaing angle
 - (void) drawInfluenceLines {
     CGContextRef context = CurrentContext();
 
@@ -209,19 +197,20 @@ static const NSInteger kNotTrackingIndex = -1;
         CGContextSetLineDash (context, 0.0, pattern, sizeof(pattern) / sizeof(*pattern));
 
         CGFloat radius = self.radius + kInfluenceOverspill;
+        CGFloat deltaAngle = self.startAngle + self.deltaAngle;
         
         CGPoint startAnglePoint =
             (CGPoint) { self.center.x + radius * cos(self.startAngle),
                         self.center.y + radius * sin(self.startAngle) };
-        CGPoint endAnglePoint =
-            (CGPoint) { self.center.x + radius * cos(self.endAngle),
-                        self.center.y + radius * sin(self.endAngle) };
+        CGPoint deltaAnglePoint =
+            (CGPoint) { self.center.x + radius * cos(deltaAngle),
+                        self.center.y + radius * sin(deltaAngle) };
 
         CGPoint startAngleSegments[2] = { self.center, startAnglePoint };
-        CGPoint endAngleSegments[2] = { self.center, endAnglePoint };
+        CGPoint deltaAngleSegments[2] = { self.center, deltaAnglePoint };
 
         CGContextStrokeLineSegments (context, startAngleSegments, 2);
-        CGContextStrokeLineSegments (context, endAngleSegments, 2);
+        CGContextStrokeLineSegments (context, deltaAngleSegments, 2);
 
     } CGContextRestoreGState (context);
 
@@ -308,4 +297,4 @@ static const NSInteger kNotTrackingIndex = -1;
 } // mouseUp
 
 
-@end // BNRArcEditingView
+@end // BNRRelativeArcEditingView
