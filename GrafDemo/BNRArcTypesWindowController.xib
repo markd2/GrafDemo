@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="BNRArcTypesWindowController" customModule="GrafDemo" customModuleProvider="target">
             <connections>
+                <outlet property="arcEditingView" destination="ayl-hG-Cps" id="LqJ-bp-qRu"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -24,6 +25,16 @@
                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ayl-hG-Cps" customClass="BNRArcEditingView">
                         <rect key="frame" x="20" y="68" width="202" height="182"/>
                     </customView>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iup-cw-Fmw">
+                        <rect key="frame" x="18" y="44" width="86" height="18"/>
+                        <buttonCell key="cell" type="check" title="Clockwise" bezelStyle="regularSquare" imagePosition="left" inset="2" id="2nW-EC-vVG">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="toggleArcClockwise:" target="-2" id="xo4-Xp-RkN"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <connections>

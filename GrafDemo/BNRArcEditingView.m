@@ -25,6 +25,7 @@ static const NSInteger kNotTrackingIndex = -1;
 @implementation BNRArcEditingView {
     CGPoint _controlPoints[kControlPointCount];
 }
+@synthesize clockwise = _clockwise;
 
 
 - (void) commonInitWithSize: (CGSize) size {
@@ -84,6 +85,17 @@ static const NSInteger kNotTrackingIndex = -1;
 - (void) setRadius: (CGFloat) radius {
     assert(!"too lazy to actually implement this");
 } // radius
+
+
+- (BOOL) clockwise {
+    return _clockwise;
+} // clockwise
+
+
+- (void) setClockwise: (BOOL) clockwise {
+    _clockwise = clockwise;
+    [self setNeedsDisplay: YES];
+} // setClockwise
 
 
 - (void) drawPath {
