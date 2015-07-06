@@ -27,6 +27,7 @@
 		7D9C7CCA1B49AD0C000CF769 /* PathSamplerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9C7CC91B49AD0C000CF769 /* PathSamplerView.swift */; };
 		7D9C7CCD1B49BA89000CF769 /* BNRArcTypesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9C7CCB1B49BA89000CF769 /* BNRArcTypesWindowController.swift */; };
 		7D9C7CCE1B49BA89000CF769 /* BNRArcTypesWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D9C7CCC1B49BA89000CF769 /* BNRArcTypesWindowController.xib */; };
+		7D9C7CD11B49BBAB000CF769 /* BNRArcEditingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D9C7CD01B49BBAB000CF769 /* BNRArcEditingView.m */; };
 		7DC6D54B1A5DA4D8007AF35B /* NSView+CGStuff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC6D54A1A5DA4D8007AF35B /* NSView+CGStuff.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,8 @@
 		7D9C7CC91B49AD0C000CF769 /* PathSamplerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathSamplerView.swift; sourceTree = "<group>"; };
 		7D9C7CCB1B49BA89000CF769 /* BNRArcTypesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BNRArcTypesWindowController.swift; sourceTree = "<group>"; };
 		7D9C7CCC1B49BA89000CF769 /* BNRArcTypesWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRArcTypesWindowController.xib; sourceTree = "<group>"; };
+		7D9C7CCF1B49BBAB000CF769 /* BNRArcEditingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRArcEditingView.h; sourceTree = "<group>"; };
+		7D9C7CD01B49BBAB000CF769 /* BNRArcEditingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRArcEditingView.m; sourceTree = "<group>"; };
 		7DC6D54A1A5DA4D8007AF35B /* NSView+CGStuff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSView+CGStuff.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -161,6 +164,8 @@
 				7D07800019AEE08100E431A5 /* BNRSimpleView.m */,
 				7D3908941A3655D50005FA24 /* BNRLinesView.h */,
 				7D3908951A3655D50005FA24 /* BNRLinesView.m */,
+				7D9C7CCF1B49BBAB000CF769 /* BNRArcEditingView.h */,
+				7D9C7CD01B49BBAB000CF769 /* BNRArcEditingView.m */,
 			);
 			name = "ObjC Styles";
 			sourceTree = "<group>";
@@ -321,6 +326,7 @@
 				7D0BA72C1A4B367B0052A633 /* LinesView.swift in Sources */,
 				7D077FE019AEE01300E431A5 /* main.m in Sources */,
 				7D9C7CCD1B49BA89000CF769 /* BNRArcTypesWindowController.swift in Sources */,
+				7D9C7CD11B49BBAB000CF769 /* BNRArcEditingView.m in Sources */,
 				7D3908961A3655D50005FA24 /* BNRLinesView.m in Sources */,
 				7D3908991A365CD20005FA24 /* BNRUtilities.m in Sources */,
 			);
