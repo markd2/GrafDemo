@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8121.20" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8121.20"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="BNRPostScriptWindowController" customModule="GrafDemo" customModuleProvider="target">
+            <connections>
+                <outlet property="codeText" destination="kzo-SH-nBf" id="usf-MX-Ggt"/>
+                <outlet property="pdfView" destination="0Ki-DA-jNN" id="f6t-Zn-vWP"/>
+                <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="PostCode™" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="687" height="442"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+            <view key="contentView" id="se5-gp-TjO">
+                <rect key="frame" x="0.0" y="0.0" width="687" height="442"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EfX-s2-q9n">
+                        <rect key="frame" x="20" y="46" width="240" height="377"/>
+                        <clipView key="contentView" id="WeK-Qu-faW">
+                            <rect key="frame" x="1" y="1" width="223" height="375"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <textView importsGraphics="NO" richText="NO" findStyle="panel" allowsUndo="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" id="kzo-SH-nBf">
+                                    <rect key="frame" x="0.0" y="0.0" width="223" height="375"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <color key="backgroundColor" red="1" green="0.98550883990000004" blue="0.98160850860000004" alpha="1" colorSpace="calibratedRGB"/>
+                                    <size key="minSize" width="223" height="375"/>
+                                    <size key="maxSize" width="463" height="10000000"/>
+                                    <attributedString key="textStorage">
+                                        <fragment content="stuff">
+                                            <attributes>
+                                                <font key="NSFont" size="13" name="Courier"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="minSize" width="223" height="375"/>
+                                    <size key="maxSize" width="463" height="10000000"/>
+                                </textView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </clipView>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="240" id="Nud-Tt-zp7"/>
+                        </constraints>
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="AQg-j4-015">
+                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="SZc-ZR-KkE">
+                            <rect key="frame" x="224" y="1" width="15" height="375"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                    </scrollView>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="0Ki-DA-jNN" customClass="PDFView" customModule="GrafDemo" customModuleProvider="target">
+                        <rect key="frame" x="268" y="20" width="399" height="403"/>
+                    </customView>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9oM-Bf-FgB">
+                        <rect key="frame" x="14" y="13" width="73" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="61" id="oAp-mA-YnI"/>
+                            <constraint firstAttribute="height" constant="21" id="rKi-V8-3do"/>
+                        </constraints>
+                        <buttonCell key="cell" type="push" title="Draw" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qc9-B2-27L">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="draw:" target="-2" id="eYM-mj-cab"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="0Ki-DA-jNN" secondAttribute="bottom" constant="20" id="0lx-pv-gQd"/>
+                    <constraint firstItem="0Ki-DA-jNN" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="19" id="4n9-4k-KDm"/>
+                    <constraint firstAttribute="bottom" secondItem="9oM-Bf-FgB" secondAttribute="bottom" constant="20" id="JAA-aW-0AK"/>
+                    <constraint firstItem="9oM-Bf-FgB" firstAttribute="top" secondItem="EfX-s2-q9n" secondAttribute="bottom" constant="5" id="TA5-ew-Dv6"/>
+                    <constraint firstItem="9oM-Bf-FgB" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="YGU-zm-in7"/>
+                    <constraint firstItem="9oM-Bf-FgB" firstAttribute="top" secondItem="EfX-s2-q9n" secondAttribute="bottom" constant="5" id="hMn-TU-ISi"/>
+                    <constraint firstItem="EfX-s2-q9n" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="19" id="pi0-I7-gFN"/>
+                    <constraint firstItem="0Ki-DA-jNN" firstAttribute="leading" secondItem="EfX-s2-q9n" secondAttribute="trailing" constant="8" id="qbc-bK-dfz"/>
+                    <constraint firstItem="EfX-s2-q9n" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="uTs-1C-pah"/>
+                    <constraint firstAttribute="trailing" secondItem="0Ki-DA-jNN" secondAttribute="trailing" constant="20" id="xhW-vQ-UJb"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
+            </connections>
+            <point key="canvasLocation" x="381.5" y="407"/>
+        </window>
+    </objects>
+</document>

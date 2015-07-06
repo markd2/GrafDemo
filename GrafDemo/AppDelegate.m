@@ -41,6 +41,11 @@
 } // #ilyxc
 
 
+- (IBAction)showPostScript: (NSButton *) sender {
+    [self showViewControllerNamed: @"BNRPostScriptWindowController"];
+} // showSimpleView
+
+
 - (IBAction)showSimpleView: (NSButton *) sender {
     [self showViewControllerNamed: @"BNRSimpleWindowController"];
 } // showSimpleView
