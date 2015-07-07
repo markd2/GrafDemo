@@ -13,6 +13,12 @@ class TransformView: NSView {
         }
     }
     
+    private var rotation: CGFloat = 0 {
+        didSet {
+            needsDisplay = true
+        }
+    }
+    
     private var animationFunction: (() -> Bool)?  // returns true when finished
     
 
@@ -94,8 +100,11 @@ class TransformView: NSView {
 
             
             // Light grid lines every 10 points
-            lightGray.setStroke()
-            self.drawGridLinesWithStride(10, withLabels: false, context: context)
+            
+            if self.animationFunction == nil {
+                lightGray.setStroke()
+                self.drawGridLinesWithStride(10, withLabels: false, context: context)
+            }
             
             // darker gray lines every 100 points
             darkGray.setStroke()
@@ -125,18 +134,18 @@ class TransformView: NSView {
         
         if useContextTransforms {
             CGContextTranslateCTM(currentContext, translation.x, translation.y)
-//            CGContextRotateCTM(currentContext, π / 3.0)
+            CGContextRotateCTM(currentContext, self.rotation)
 //            CGContextScaleCTM(currentContext, 0.5, 1.5)
             
         } else { // use matrix transforms
             let identity = CGAffineTransformIdentity
             let shiftCenter = CGAffineTransformTranslate(identity, translation.x, translation.y)
-            let rotate = CGAffineTransformRotate(shiftCenter, π / 3.0)
+            let rotate = CGAffineTransformRotate(shiftCenter, self.rotation)
             let scale = CGAffineTransformScale(rotate, 0.5, 1.5)
             
             // makes experimentation a little easier - just set to the transform you want to apply
             // to see how it looks
-            let lastTransform = shiftCenter
+            let lastTransform = rotate
             
             CGContextConcatCTM(currentContext, lastTransform)
         }
@@ -147,8 +156,10 @@ class TransformView: NSView {
         super.drawRect(dirtyRect)
         
         drawBackground()
-        applyTransforms()
-        drawGrid()
+        protectGState() {
+            self.applyTransforms()
+            self.drawGrid()
+        }
         drawBorder()
     }
     
@@ -163,12 +174,13 @@ class TransformView: NSView {
         if animator() {
             self.animationTimer.invalidate()
             self.animationTimer = nil
+            animationFunction = nil
+            self.needsDisplay = true
         }
     }
     
     
     func translationAnimator(from from: CGPoint, to: CGPoint) -> () -> Bool {
-
         translation = from
 
         let steps: CGFloat = 50
@@ -190,11 +202,32 @@ class TransformView: NSView {
         }
     }
     
+    
+    func rotationAnimator(from from: CGFloat, to: CGFloat) -> () -> Bool {
+        rotation = from
+
+        let steps: CGFloat = 15
+        
+        let delta = (to - from) / steps
+        
+        return {
+            self.rotation += delta
+            
+            if self.rotation > to {
+                return true
+            } else {
+                return false
+            }
+        }
+    }
+    
+    
     func startAnimation() {
         // The worst possible way to animate, but I'm in a hurry right now prior
         // to cocoaconf/columbus. ++md 2015-07-07
         
         animationFunction = translationAnimator(from: CGPoint(), to: CGPoint(x: 200, y: 100))
+        animationFunction = rotationAnimator(from: 0, to: π / 6)
 
         animationTimer = NSTimer.scheduledTimerWithTimeInterval(1 / 30, target: self, selector: "tick:", userInfo: nil, repeats: true)
     }
