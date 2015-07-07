@@ -7,13 +7,13 @@ class TransformView: NSView {
     
     private var animationTimer: NSTimer!
     
-    private var destinationTranslation = CGPoint()
-    private var destinationTranslationDelta = CGPoint()
     private var translation = CGPoint() {
         didSet {
             needsDisplay = true
         }
     }
+    
+    private var animationFunction: (() -> Bool)?  // returns true when finished
     
 
 
@@ -157,28 +157,44 @@ class TransformView: NSView {
     }
     
     func tick(timer: NSTimer) {
-        translation.x += destinationTranslationDelta.x
-        translation.y += destinationTranslationDelta.y
-
-        self.needsDisplay = true
-        
-        if translation.x > destinationTranslation.x {
+        guard let animator = animationFunction else {
+            return
+        }
+        if animator() {
             self.animationTimer.invalidate()
             self.animationTimer = nil
         }
     }
     
     
+    func translationAnimator(from from: CGPoint, to: CGPoint) -> () -> Bool {
+
+        translation = from
+
+        let steps: CGFloat = 50
+        
+        let delta = CGPoint(x: (to.x - from.x) / steps,
+            y: (to.y - from.y) / steps)
+        
+        return {
+            self.translation.x += delta.x
+            self.translation.y += delta.y
+            
+            self.needsDisplay = true
+            
+            if self.translation.x > to.x {
+                return true
+            } else {
+                return false
+            }
+        }
+    }
+    
     func startAnimation() {
         // The worst possible way to animate, but I'm in a hurry right now prior
         // to cocoaconf/columbus. ++md 2015-07-07
         
-        let steps: CGFloat = 50
-        
-        destinationTranslation = CGPoint(x: 200, y: 100)
-        destinationTranslationDelta = CGPoint(x: destinationTranslation.x / steps,
-            y: destinationTranslation.y / steps)
-        translation = CGPoint()
+        animationFunction = translationAnimator(from: CGPoint(), to: CGPoint(x: 200, y: 100))
 
         animationTimer = NSTimer.scheduledTimerWithTimeInterval(1 / 30, target: self, selector: "tick:", userInfo: nil, repeats: true)
     }
