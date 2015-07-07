@@ -672,8 +672,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="111" height="216"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3gF-dL-a19">
-                        <rect key="frame" x="14" y="168" width="83" height="32"/>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yj6-yx-fVU">
+                        <rect key="frame" x="3" y="180" width="105" height="32"/>
+                        <buttonCell key="cell" type="push" title="PostScript" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CHj-mp-K3V">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="showPostScript:" target="Voe-Tx-rLC" id="kxA-jM-OJj"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3gF-dL-a19">
+                        <rect key="frame" x="3" y="147" width="105" height="32"/>
                         <buttonCell key="cell" type="push" title="Simple" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sVS-DX-oQj">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -682,8 +692,8 @@
                             <action selector="showSimpleView:" target="Voe-Tx-rLC" id="M13-S8-OOG"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aPA-J2-I4L">
-                        <rect key="frame" x="14" y="135" width="83" height="32"/>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aPA-J2-I4L">
+                        <rect key="frame" x="3" y="114" width="105" height="32"/>
                         <buttonCell key="cell" type="push" title="Lines" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WZQ-Q2-1xp">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -693,7 +703,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bab-6J-ltU">
-                        <rect key="frame" x="14" y="102" width="83" height="32"/>
+                        <rect key="frame" x="3" y="81" width="105" height="32"/>
                         <buttonCell key="cell" type="push" title="Paths" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cZz-YX-0uK">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -703,7 +713,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t30-Xq-8de">
-                        <rect key="frame" x="14" y="69" width="83" height="32"/>
+                        <rect key="frame" x="3" y="48" width="105" height="32"/>
                         <buttonCell key="cell" type="push" title="Arcs" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QOb-6w-OLc">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -713,13 +723,6 @@
                         </connections>
                     </button>
                 </subviews>
-                <constraints>
-                    <constraint firstItem="3gF-dL-a19" firstAttribute="width" secondItem="aPA-J2-I4L" secondAttribute="width" id="FVY-Xd-CI7"/>
-                    <constraint firstItem="aPA-J2-I4L" firstAttribute="top" secondItem="3gF-dL-a19" secondAttribute="bottom" constant="12" id="NMc-bA-rVQ"/>
-                    <constraint firstItem="3gF-dL-a19" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="SgH-AP-dTi"/>
-                    <constraint firstItem="aPA-J2-I4L" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="WeI-F7-lOs"/>
-                    <constraint firstItem="3gF-dL-a19" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="wPl-8q-rIq"/>
-                </constraints>
             </view>
             <point key="canvasLocation" x="-207.5" y="94"/>
         </window>

@@ -30,7 +30,10 @@
 		7D9C7CD11B49BBAB000CF769 /* BNRArcEditingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D9C7CD01B49BBAB000CF769 /* BNRArcEditingView.m */; };
 		7D9C7CD41B4B03A9000CF769 /* BNRRelativeArcEditingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D9C7CD31B4B03A9000CF769 /* BNRRelativeArcEditingView.m */; };
 		7D9C7CD71B4B0844000CF769 /* BNRArcToPointEditingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D9C7CD61B4B0844000CF769 /* BNRArcToPointEditingView.m */; };
+		7D9C7CDA1B4B34BD000CF769 /* BNRPostScriptWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9C7CD81B4B34BD000CF769 /* BNRPostScriptWindowController.swift */; };
+		7D9C7CDB1B4B34BD000CF769 /* BNRPostScriptWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D9C7CD91B4B34BD000CF769 /* BNRPostScriptWindowController.xib */; };
 		7DC6D54B1A5DA4D8007AF35B /* NSView+CGStuff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC6D54A1A5DA4D8007AF35B /* NSView+CGStuff.swift */; };
+		7DC731181B4B3E7A00161DD1 /* PDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC731171B4B3E7A00161DD1 /* PDFView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,7 +85,10 @@
 		7D9C7CD31B4B03A9000CF769 /* BNRRelativeArcEditingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRRelativeArcEditingView.m; sourceTree = "<group>"; };
 		7D9C7CD51B4B0844000CF769 /* BNRArcToPointEditingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRArcToPointEditingView.h; sourceTree = "<group>"; };
 		7D9C7CD61B4B0844000CF769 /* BNRArcToPointEditingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRArcToPointEditingView.m; sourceTree = "<group>"; };
+		7D9C7CD81B4B34BD000CF769 /* BNRPostScriptWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BNRPostScriptWindowController.swift; sourceTree = "<group>"; };
+		7D9C7CD91B4B34BD000CF769 /* BNRPostScriptWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRPostScriptWindowController.xib; sourceTree = "<group>"; };
 		7DC6D54A1A5DA4D8007AF35B /* NSView+CGStuff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSView+CGStuff.swift"; sourceTree = "<group>"; };
+		7DC731171B4B3E7A00161DD1 /* PDFView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,13 +131,13 @@
 			isa = PBXGroup;
 			children = (
 				7D39089A1A3666D20005FA24 /* Useful Stuff */,
-				7D3908541A3644770005FA24 /* View Controllers */,
+				7D3908541A3644770005FA24 /* Window Controllers */,
 				7D077FFD19AEE04900E431A5 /* ObjC Styles */,
 				7D077FFE19AEE04F00E431A5 /* Swift Styles */,
+				7D077FE619AEE01300E431A5 /* MainMenu.xib */,
 				7D077FE119AEE01300E431A5 /* AppDelegate.h */,
 				7D077FE219AEE01300E431A5 /* AppDelegate.m */,
 				7D077FE419AEE01300E431A5 /* Images.xcassets */,
-				7D077FE619AEE01300E431A5 /* MainMenu.xib */,
 				7D077FDD19AEE01200E431A5 /* Supporting Files */,
 			);
 			path = GrafDemo;
@@ -187,13 +193,16 @@
 				7D0BA72B1A4B367B0052A633 /* LinesView.swift */,
 				7D07800219AEEA9B00E431A5 /* GrafDemo-Bridging-Header.h */,
 				7D9C7CC91B49AD0C000CF769 /* PathSamplerView.swift */,
+				7DC731171B4B3E7A00161DD1 /* PDFView.swift */,
 			);
 			name = "Swift Styles";
 			sourceTree = "<group>";
 		};
-		7D3908541A3644770005FA24 /* View Controllers */ = {
+		7D3908541A3644770005FA24 /* Window Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7D9C7CD81B4B34BD000CF769 /* BNRPostScriptWindowController.swift */,
+				7D9C7CD91B4B34BD000CF769 /* BNRPostScriptWindowController.xib */,
 				7D3908551A3648AE0005FA24 /* BNRSimpleWindowController.h */,
 				7D3908561A3648AE0005FA24 /* BNRSimpleWindowController.m */,
 				7D3908571A3648AE0005FA24 /* BNRSimpleWindowController.xib */,
@@ -205,7 +214,7 @@
 				7D9C7CCB1B49BA89000CF769 /* BNRArcTypesWindowController.swift */,
 				7D9C7CCC1B49BA89000CF769 /* BNRArcTypesWindowController.xib */,
 			);
-			name = "View Controllers";
+			name = "Window Controllers";
 			sourceTree = "<group>";
 		};
 		7D39089A1A3666D20005FA24 /* Useful Stuff */ = {
@@ -305,6 +314,7 @@
 				7D9C7CCE1B49BA89000CF769 /* BNRArcTypesWindowController.xib in Resources */,
 				7D077FE819AEE01300E431A5 /* MainMenu.xib in Resources */,
 				7D3908931A3655BB0005FA24 /* BNRLinesWindowController.xib in Resources */,
+				7D9C7CDB1B4B34BD000CF769 /* BNRPostScriptWindowController.xib in Resources */,
 				7D3908591A3648AE0005FA24 /* BNRSimpleWindowController.xib in Resources */,
 				7D9C7CC81B499EDB000CF769 /* BNRPathWindowController.xib in Resources */,
 			);
@@ -329,6 +339,7 @@
 				7D9C7CCA1B49AD0C000CF769 /* PathSamplerView.swift in Sources */,
 				7D3908921A3655BB0005FA24 /* BNRLinesWindowController.swift in Sources */,
 				7D9C7CC71B499EDB000CF769 /* BNRPathWindowController.m in Sources */,
+				7D9C7CDA1B4B34BD000CF769 /* BNRPostScriptWindowController.swift in Sources */,
 				7D07800119AEE08100E431A5 /* BNRSimpleView.m in Sources */,
 				7D3908581A3648AE0005FA24 /* BNRSimpleWindowController.m in Sources */,
 				7D39089D1A3666F60005FA24 /* BNRCheckboxBox.m in Sources */,
@@ -340,6 +351,7 @@
 				7D9C7CCD1B49BA89000CF769 /* BNRArcTypesWindowController.swift in Sources */,
 				7D9C7CD11B49BBAB000CF769 /* BNRArcEditingView.m in Sources */,
 				7D3908961A3655D50005FA24 /* BNRLinesView.m in Sources */,
+				7DC731181B4B3E7A00161DD1 /* PDFView.swift in Sources */,
 				7D3908991A365CD20005FA24 /* BNRUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
