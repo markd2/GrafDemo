@@ -34,6 +34,8 @@
 		7D9C7CDB1B4B34BD000CF769 /* BNRPostScriptWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D9C7CD91B4B34BD000CF769 /* BNRPostScriptWindowController.xib */; };
 		7DC6D54B1A5DA4D8007AF35B /* NSView+CGStuff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC6D54A1A5DA4D8007AF35B /* NSView+CGStuff.swift */; };
 		7DC731181B4B3E7A00161DD1 /* PDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC731171B4B3E7A00161DD1 /* PDFView.swift */; };
+		7DC7311C1B4C3DDF00161DD1 /* BNRTransformsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7311A1B4C3DDF00161DD1 /* BNRTransformsWindowController.m */; };
+		7DC7311D1B4C3DDF00161DD1 /* BNRTransformsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DC7311B1B4C3DDF00161DD1 /* BNRTransformsWindowController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +91,9 @@
 		7D9C7CD91B4B34BD000CF769 /* BNRPostScriptWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRPostScriptWindowController.xib; sourceTree = "<group>"; };
 		7DC6D54A1A5DA4D8007AF35B /* NSView+CGStuff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSView+CGStuff.swift"; sourceTree = "<group>"; };
 		7DC731171B4B3E7A00161DD1 /* PDFView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFView.swift; sourceTree = "<group>"; };
+		7DC731191B4C3DDF00161DD1 /* BNRTransformsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRTransformsWindowController.h; sourceTree = "<group>"; };
+		7DC7311A1B4C3DDF00161DD1 /* BNRTransformsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRTransformsWindowController.m; sourceTree = "<group>"; };
+		7DC7311B1B4C3DDF00161DD1 /* BNRTransformsWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRTransformsWindowController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +218,9 @@
 				7D9C7CC61B499EDB000CF769 /* BNRPathWindowController.xib */,
 				7D9C7CCB1B49BA89000CF769 /* BNRArcTypesWindowController.swift */,
 				7D9C7CCC1B49BA89000CF769 /* BNRArcTypesWindowController.xib */,
+				7DC731191B4C3DDF00161DD1 /* BNRTransformsWindowController.h */,
+				7DC7311A1B4C3DDF00161DD1 /* BNRTransformsWindowController.m */,
+				7DC7311B1B4C3DDF00161DD1 /* BNRTransformsWindowController.xib */,
 			);
 			name = "Window Controllers";
 			sourceTree = "<group>";
@@ -315,6 +323,7 @@
 				7D077FE819AEE01300E431A5 /* MainMenu.xib in Resources */,
 				7D3908931A3655BB0005FA24 /* BNRLinesWindowController.xib in Resources */,
 				7D9C7CDB1B4B34BD000CF769 /* BNRPostScriptWindowController.xib in Resources */,
+				7DC7311D1B4C3DDF00161DD1 /* BNRTransformsWindowController.xib in Resources */,
 				7D3908591A3648AE0005FA24 /* BNRSimpleWindowController.xib in Resources */,
 				7D9C7CC81B499EDB000CF769 /* BNRPathWindowController.xib in Resources */,
 			);
@@ -341,6 +350,7 @@
 				7D9C7CC71B499EDB000CF769 /* BNRPathWindowController.m in Sources */,
 				7D9C7CDA1B4B34BD000CF769 /* BNRPostScriptWindowController.swift in Sources */,
 				7D07800119AEE08100E431A5 /* BNRSimpleView.m in Sources */,
+				7DC7311C1B4C3DDF00161DD1 /* BNRTransformsWindowController.m in Sources */,
 				7D3908581A3648AE0005FA24 /* BNRSimpleWindowController.m in Sources */,
 				7D39089D1A3666F60005FA24 /* BNRCheckboxBox.m in Sources */,
 				7DC6D54B1A5DA4D8007AF35B /* NSView+CGStuff.swift in Sources */,

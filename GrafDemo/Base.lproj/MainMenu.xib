@@ -722,6 +722,16 @@
                             <action selector="showArcsController:" target="Voe-Tx-rLC" id="Myl-L7-FP5"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GoJ-ia-nRC">
+                        <rect key="frame" x="1" y="13" width="109" height="32"/>
+                        <buttonCell key="cell" type="push" title="Transforms" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ode-GW-M8b">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="showTransformsController:" target="Voe-Tx-rLC" id="6Kv-q9-cbl"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <point key="canvasLocation" x="-207.5" y="94"/>
