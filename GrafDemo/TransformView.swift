@@ -3,6 +3,7 @@ import Cocoa
 class TransformView: NSView {
 
     private let kBig:CGFloat = 1000
+    private var useContextTransforms = false
 
     // TODO(markd 2015-07-07) this common stuff could use a nice refactoring.
     private func drawBackground() {
@@ -105,11 +106,34 @@ class TransformView: NSView {
             CGContextStrokePath (context)
         }
     }
-
+    
+    private func applyTransforms() {
+        
+        if useContextTransforms {
+            CGContextTranslateCTM(currentContext, 200, 150)
+            CGContextRotateCTM(currentContext, π / 3.0)
+            CGContextScaleCTM(currentContext, 0.5, 1.5)
+            
+        } else { // use matrix transforms
+            let identity = CGAffineTransformIdentity
+            let shiftCenter = CGAffineTransformTranslate(identity, 200, 150)
+            let rotate = CGAffineTransformRotate(shiftCenter, π / 3.0)
+            let scale = CGAffineTransformScale(rotate, 0.5, 1.5)
+            
+            // makes experimentation a little easier - just set to the transform you want to apply
+            // to see how it looks
+            let lastTransform = scale
+            
+            CGContextConcatCTM(currentContext, lastTransform)
+        }
+        
+    }
+    
     override func drawRect(dirtyRect: NSRect) {
         super.drawRect(dirtyRect)
-
+        
         drawBackground()
+        applyTransforms()
         drawGrid()
         drawBorder()
     }
