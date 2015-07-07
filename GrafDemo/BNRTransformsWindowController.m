@@ -15,7 +15,6 @@
 
 
 - (IBAction) animate: (NSButton *) sender {
-    NSLog (@"OOK");
     [self.transformView startAnimation];
 } // animate
 

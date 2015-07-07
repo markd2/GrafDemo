@@ -110,6 +110,8 @@ class TransformView: NSView {
             
             // Light grid lines every 10 points
             
+            // Performance hack - if the transform has a rotation, speed of drawing
+            // plummets, so hide the inner lines when animating.
             if self.animationFunction == nil {
                 lightGray.setStroke()
                 self.drawGridLinesWithStride(10, withLabels: false, context: context)
@@ -337,8 +339,6 @@ class TransformView: NSView {
         translateAnimation.additive = true
         layer?.addAnimation(translateAnimation, forKey: "translate X")
       */  
-        
-        Swift.print("OOK")
     }
     
     override func actionForLayer(layer: CALayer, forKey event: String) -> CAAction? {
