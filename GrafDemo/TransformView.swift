@@ -270,15 +270,45 @@ class TransformView: NSView {
         }
     }
     
+    func compositeAnimator(animations: [ () -> Bool ]) -> () -> Bool {
+        guard var currentAnimation = animations.first else {
+            return {
+                return true // no animations, so we're done
+            }
+        }
+        
+        var animatorIndex = 0
+        
+        return {
+            if currentAnimation() {
+                // move to the next one
+                animatorIndex++
+
+                // run out?
+                if animatorIndex >= animations.count {
+                    return true
+                }
+                
+                // otherwise, tick over
+                currentAnimation = animations[animatorIndex]
+                return false // not done
+            } else {
+                return false // not done
+            }
+        }
+    }
+    
     
     func startAnimation() {
         // The worst possible way to animate, but I'm in a hurry right now prior
         // to cocoaconf/columbus. ++md 2015-07-07
         
-        animationFunction = translationAnimator(from: CGPoint(), to: CGPoint(x: 200, y: 100))
-        animationFunction = rotationAnimator(from: 0, to: π / 6)
-        animationFunction = scaleAnimator(from: CGSize(width: 1.0, height: 1.0),
+        let translator = translationAnimator(from: CGPoint(), to: CGPoint(x: 200, y: 100))
+        let rotator = rotationAnimator(from: 0, to: π / 6)
+        let scaler = scaleAnimator(from: CGSize(width: 1.0, height: 1.0),
             to: CGSize(width: 0.75, height: 1.5))
+        
+        animationFunction = compositeAnimator([translator, rotator, scaler])
 
         animationTimer = NSTimer.scheduledTimerWithTimeInterval(1 / 30, target: self, selector: "tick:", userInfo: nil, repeats: true)
     }
