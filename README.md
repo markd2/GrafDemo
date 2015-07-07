@@ -6,7 +6,8 @@ for a set of posts over at the Big Nerd Ranch blog:
 
 * [In the Beginning](https://www.bignerdranch.com/blog/core-graphics-part-1-in-the-beginning/)
 * [Contextually Speaking](https://www.bignerdranch.com/blog/core-graphics-part-2-contextually-speaking/)
-* Lines (forthcoming)
+* [Lines](https://www.bignerdranch.com/blog/core-graphics-part-three-lines/)
+* Paths (forthcoming)
 
 Digital Dashboard
 -----------------
@@ -37,3 +38,28 @@ line phases.
 
 ![](assets/lines-window.png)
 
+
+Paths
+-----
+A sampler of the different path component calls.  Click and drag the control points to
+see how they behave.
+
+![](assets/paths-window.png)
+
+
+Arcs
+----
+The plethora of "arc" calls are confusing.  Here they are with influence lines
+and tweakable settings.
+
+![](assets/arcs-window.png)
+
+
+
+PostScript
+----------
+A bit of history - Core Graphics is based on the PostScript drawing model.  CG also
+includes a full postscript interpreter. This window lets you enter code and run it.
+Worst IDE Evar.
+
+![](assets/postscript-window.png)
