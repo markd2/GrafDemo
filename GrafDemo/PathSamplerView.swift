@@ -169,6 +169,16 @@ class PathSamplerView: NSView {
     }
     
     
+    private func drawBorder() {
+        let context = currentContext
+        
+        protectGState {
+            NSColor.blackColor().set()
+            CGContextStrokeRect (context, self.bounds)
+        }
+    }
+    
+    
     func addChunk(chunk: ChunkType) {
         chunks.append(chunk)
         needsDisplay = true
@@ -211,6 +221,7 @@ class PathSamplerView: NSView {
             self.drawControlPoints()
         }
         drawPath()
+        drawBorder()
     }
     
     
