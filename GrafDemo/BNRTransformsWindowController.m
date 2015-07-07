@@ -19,4 +19,9 @@
     [self.transformView startAnimation];
 } // animate
 
+
+- (IBAction) reset: (NSButton *) sender {
+    [self.transformView reset];
+} // reset
+
 @end // BNRTransformsWindowController

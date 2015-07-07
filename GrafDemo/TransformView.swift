@@ -26,10 +26,13 @@ class TransformView: NSView {
     }
     
     private var animationFunction: (() -> Bool)?  // returns true when finished
-    
 
 
-    private var translateY: CGFloat = 0
+    func reset() {
+        translation = CGPoint()
+        rotation = 0
+        scale = CGSize(width: 1.0, height: 1.0)
+    }
 
     // TODO(markd 2015-07-07) this common stuff could use a nice refactoring.
     private func drawBackground() {
