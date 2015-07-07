@@ -1,5 +1,6 @@
 import Cocoa
 
+let π = CGFloat(Darwin.M_PI)
 
 enum ChunkType {
     case MoveTo(point: CGPoint)
@@ -271,7 +272,6 @@ class PathSamplerView: NSView {
     
     
     func addSamplePath() {
-        let π = CGFloat(Darwin.M_PI)
 
         addChunk(.MoveTo(point: CGPoint(x: 184, y: 363)))
         addChunk(.LineTo(point: CGPoint(x: 175, y: 311)))
