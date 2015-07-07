@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8121.20" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8121.20"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="BNRSimpleWindowController">
@@ -18,18 +18,18 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="437" height="225"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
             <view key="contentView" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="437" height="225"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                 <subviews>
-                    <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Her-SE-Pdr" customClass="BNRSimpleView">
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Her-SE-Pdr" customClass="BNRSimpleView">
                         <rect key="frame" x="20" y="42" width="165" height="163"/>
                     </customView>
-                    <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ycI-1i-Ub2" customClass="SimpleView" customModule="GrafDemo" customModuleProvider="target">
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="ycI-1i-Ub2" customClass="SimpleView" customModule="GrafDemo" customModuleProvider="target">
                         <rect key="frame" x="253" y="42" width="164" height="163"/>
                     </customView>
-                    <button translatesAutoresizingMaskIntoConstraints="NO" id="IIg-w7-JaP">
+                    <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IIg-w7-JaP">
                         <rect key="frame" x="187" y="18" width="64" height="18"/>
                         <buttonCell key="cell" type="check" title="Sloppy" bezelStyle="regularSquare" imagePosition="left" inset="2" id="ApM-dJ-WWZ">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>

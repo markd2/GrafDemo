@@ -55,6 +55,13 @@ and tweakable settings.
 ![](assets/arcs-window.png)
 
 
+Transforms
+----------
+Transformations are a-fine thing.
+
+![](assets/transforms-window.png)
+
+
 
 PostScript
 ----------

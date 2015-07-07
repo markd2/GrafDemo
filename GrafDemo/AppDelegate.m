@@ -64,6 +64,9 @@
     [self showViewControllerNamed: @"BNRArcTypesWindowController"];
 } // showArcsController
 
+- (IBAction) showTransformsController: (NSButton *) sender {
+    [self showViewControllerNamed: @"BNRTransformsWindowController"];
+} // showTransformsController
 
 
 
