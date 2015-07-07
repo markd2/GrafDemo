@@ -2,8 +2,22 @@ import Cocoa
 
 class TransformView: NSView {
 
-    private let kBig:CGFloat = 1000
+    private let kBig: CGFloat = 10000
     private var useContextTransforms = false
+    
+    private var animationTimer: NSTimer!
+    
+    private var destinationTranslation = CGPoint()
+    private var destinationTranslationDelta = CGPoint()
+    private var translation = CGPoint() {
+        didSet {
+            needsDisplay = true
+        }
+    }
+    
+
+
+    private var translateY: CGFloat = 0
 
     // TODO(markd 2015-07-07) this common stuff could use a nice refactoring.
     private func drawBackground() {
@@ -110,19 +124,19 @@ class TransformView: NSView {
     private func applyTransforms() {
         
         if useContextTransforms {
-            CGContextTranslateCTM(currentContext, 200, 150)
-            CGContextRotateCTM(currentContext, π / 3.0)
-            CGContextScaleCTM(currentContext, 0.5, 1.5)
+            CGContextTranslateCTM(currentContext, translation.x, translation.y)
+//            CGContextRotateCTM(currentContext, π / 3.0)
+//            CGContextScaleCTM(currentContext, 0.5, 1.5)
             
         } else { // use matrix transforms
             let identity = CGAffineTransformIdentity
-            let shiftCenter = CGAffineTransformTranslate(identity, 200, 150)
+            let shiftCenter = CGAffineTransformTranslate(identity, translation.x, translation.y)
             let rotate = CGAffineTransformRotate(shiftCenter, π / 3.0)
             let scale = CGAffineTransformScale(rotate, 0.5, 1.5)
             
             // makes experimentation a little easier - just set to the transform you want to apply
             // to see how it looks
-            let lastTransform = scale
+            let lastTransform = shiftCenter
             
             CGContextConcatCTM(currentContext, lastTransform)
         }
@@ -141,4 +155,66 @@ class TransformView: NSView {
     override var flipped : Bool{
         return true
     }
+    
+    func tick(timer: NSTimer) {
+        translation.x += destinationTranslationDelta.x
+        translation.y += destinationTranslationDelta.y
+
+        self.needsDisplay = true
+        
+        if translation.x > destinationTranslation.x {
+            self.animationTimer.invalidate()
+            self.animationTimer = nil
+        }
+    }
+    
+    
+    func startAnimation() {
+        // The worst possible way to animate, but I'm in a hurry right now prior
+        // to cocoaconf/columbus. ++md 2015-07-07
+        
+        let steps: CGFloat = 50
+        
+        destinationTranslation = CGPoint(x: 200, y: 100)
+        destinationTranslationDelta = CGPoint(x: destinationTranslation.x / steps,
+            y: destinationTranslation.y / steps)
+        translation = CGPoint()
+
+        animationTimer = NSTimer.scheduledTimerWithTimeInterval(1 / 30, target: self, selector: "tick:", userInfo: nil, repeats: true)
+    }
+    
+    
+/*
+    For now giving up on core animation since I don't have a layer subclass.
+
+    func startAnimation() {
+        let anim = CABasicAnimation()
+        anim.keyPath = "translateX"
+        anim.fromValue = 0
+        anim.toValue = 100
+        anim.repeatCount = 1
+        anim.duration = 3
+        layer!.style = [ "translateX" : 0 ]
+        layer!.addAnimation(anim, forKey: "translateX")
+        
+        Swift.print ("blah \(layer!.style)")
+    
+    /*
+        let translateAnimation = CAKeyframeAnimation(keyPath: "translateX")
+        translateAnimation.values = [ 200 ]
+        translateAnimation.keyTimes = [ 100 ]
+        translateAnimation.duration = 2.0
+        translateAnimation.additive = true
+        layer?.addAnimation(translateAnimation, forKey: "translate X")
+      */  
+        
+        Swift.print("OOK")
+    }
+    
+    override func actionForLayer(layer: CALayer, forKey event: String) -> CAAction? {
+        Swift.print("flonk \(event)")
+        return super.actionForLayer(layer, forKey: event)
+    }
+    
+    */
 }

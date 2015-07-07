@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="BNRTransformsWindowController">
             <connections>
+                <outlet property="transformView" destination="hh4-TQ-rCY" id="aes-3v-Ybi"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -21,9 +22,19 @@
                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="hh4-TQ-rCY" customClass="TransformView" customModule="GrafDemo" customModuleProvider="target">
+                    <customView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hh4-TQ-rCY" customClass="TransformView" customModule="GrafDemo" customModuleProvider="target">
                         <rect key="frame" x="166" y="20" width="294" height="230"/>
                     </customView>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="361-ob-XxK">
+                        <rect key="frame" x="9" y="222" width="91" height="32"/>
+                        <buttonCell key="cell" type="push" title="Animate" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="LOb-0i-iVX">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="animate:" target="-2" id="eiA-aJ-PD5"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="hh4-TQ-rCY" secondAttribute="bottom" constant="20" id="8MU-re-MvE"/>
