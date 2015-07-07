@@ -19,6 +19,12 @@ class TransformView: NSView {
         }
     }
     
+    private var scale = CGSize(width: 1.0, height: 1.0) {
+        didSet {
+            needsDisplay = true
+        }
+    }
+    
     private var animationFunction: (() -> Bool)?  // returns true when finished
     
 
@@ -134,18 +140,18 @@ class TransformView: NSView {
         
         if useContextTransforms {
             CGContextTranslateCTM(currentContext, translation.x, translation.y)
-            CGContextRotateCTM(currentContext, self.rotation)
-//            CGContextScaleCTM(currentContext, 0.5, 1.5)
+            CGContextRotateCTM(currentContext, rotation)
+            CGContextScaleCTM(currentContext, scale.width, scale.height)
             
         } else { // use matrix transforms
             let identity = CGAffineTransformIdentity
-            let shiftCenter = CGAffineTransformTranslate(identity, translation.x, translation.y)
-            let rotate = CGAffineTransformRotate(shiftCenter, self.rotation)
-            let scale = CGAffineTransformScale(rotate, 0.5, 1.5)
+            let shiftingCenter = CGAffineTransformTranslate(identity, translation.x, translation.y)
+            let rotating = CGAffineTransformRotate(shiftingCenter, self.rotation)
+            let scaling = CGAffineTransformScale(rotating, scale.width, scale.height)
             
             // makes experimentation a little easier - just set to the transform you want to apply
             // to see how it looks
-            let lastTransform = rotate
+            let lastTransform = scaling
             
             CGContextConcatCTM(currentContext, lastTransform)
         }
@@ -193,7 +199,8 @@ class TransformView: NSView {
             self.translation.y += delta.y
             
             self.needsDisplay = true
-            
+
+            // this is insufficient, if from.x == to.x
             if self.translation.x > to.x {
                 return true
             } else {
@@ -221,6 +228,30 @@ class TransformView: NSView {
         }
     }
     
+
+    func scaleAnimator(from from: CGSize, to: CGSize) -> () -> Bool {
+        scale = from
+
+        let steps: CGFloat = 50
+        
+        let delta = CGSize(width: (to.width - from.width) / steps,
+            height: (to.height - from.height) / steps)
+        
+        return {
+            self.scale.width += delta.width
+            self.scale.height += delta.height
+            
+            self.needsDisplay = true
+            
+            // this is insufficient, if from.width == to.width
+            if self.scale.height > to.height {
+                return true
+            } else {
+                return false
+            }
+        }
+    }
+    
     
     func startAnimation() {
         // The worst possible way to animate, but I'm in a hurry right now prior
@@ -228,6 +259,8 @@ class TransformView: NSView {
         
         animationFunction = translationAnimator(from: CGPoint(), to: CGPoint(x: 200, y: 100))
         animationFunction = rotationAnimator(from: 0, to: π / 6)
+        animationFunction = scaleAnimator(from: CGSize(width: 1.0, height: 1.0),
+            to: CGSize(width: 0.75, height: 1.5))
 
         animationTimer = NSTimer.scheduledTimerWithTimeInterval(1 / 30, target: self, selector: "tick:", userInfo: nil, repeats: true)
     }
