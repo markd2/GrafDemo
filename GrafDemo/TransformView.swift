@@ -3,6 +3,7 @@ import Cocoa
 class TransformView: NSView {
 
     private let kBig: CGFloat = 10000
+    private let animationSteps: CGFloat = 15
     private var useContextTransforms = false
     
     private var animationTimer: NSTimer!
@@ -209,10 +210,8 @@ class TransformView: NSView {
     func translationAnimator(from from: CGPoint, to: CGPoint) -> () -> Bool {
         translation = from
 
-        let steps: CGFloat = 50
-        
-        let delta = CGPoint(x: (to.x - from.x) / steps,
-            y: (to.y - from.y) / steps)
+        let delta = CGPoint(x: (to.x - from.x) / animationSteps,
+            y: (to.y - from.y) / animationSteps)
         
         return {
             self.translation.x += delta.x
@@ -232,10 +231,8 @@ class TransformView: NSView {
     
     func rotationAnimator(from from: CGFloat, to: CGFloat) -> () -> Bool {
         rotation = from
-
-        let steps: CGFloat = 15
         
-        let delta = (to - from) / steps
+        let delta = (to - from) / animationSteps
         
         return {
             self.rotation += delta
@@ -252,10 +249,8 @@ class TransformView: NSView {
     func scaleAnimator(from from: CGSize, to: CGSize) -> () -> Bool {
         scale = from
 
-        let steps: CGFloat = 50
-        
-        let delta = CGSize(width: (to.width - from.width) / steps,
-            height: (to.height - from.height) / steps)
+        let delta = CGSize(width: (to.width - from.width) / animationSteps,
+            height: (to.height - from.height) / animationSteps)
         
         return {
             self.scale.width += delta.width
@@ -305,10 +300,15 @@ class TransformView: NSView {
         // The worst possible way to animate, but I'm in a hurry right now prior
         // to cocoaconf/columbus. ++md 2015-07-07
         
-        let translator = translationAnimator(from: CGPoint(), to: CGPoint(x: 200, y: 100))
-        let rotator = rotationAnimator(from: 0, to: π / 6)
-        let scaler = scaleAnimator(from: CGSize(width: 1.0, height: 1.0),
-            to: CGSize(width: 0.75, height: 1.5))
+        let translateFrom = translation
+        let translateTo = CGPoint(x: translation.x + 15, y: translation.y + 15)
+        let translator = translationAnimator(from: translateFrom, to: translateTo)
+        
+        let rotator = rotationAnimator(from: rotation, to: rotation + π / 20)
+        
+        let scaleFrom = scale
+        let scaleTo = CGSize(width: scale.width - 0.1, height: scale.height + 0.15)
+        let scaler = scaleAnimator(from: scaleFrom, to: scaleTo)
         
         animationFunction = compositeAnimator([translator, rotator, scaler])
 
