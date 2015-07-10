@@ -33,7 +33,6 @@ class TransformView: NSView {
     var shouldRotate = true
     var shouldScale = true
 
-
     func reset() {
         translation = CGPoint()
         rotation = 0
@@ -263,8 +262,8 @@ class TransformView: NSView {
             
             self.needsDisplay = true
             
-            // this is insufficient, if from.width == to.width
-            if self.scale.height > to.height {
+            // this is insufficient, if from.height == to.height
+            if self.scale.width > to.width {
                 return true
             } else {
                 return false
@@ -305,14 +304,14 @@ class TransformView: NSView {
         // The worst possible way to animate, but I'm in a hurry right now prior
         // to cocoaconf/columbus. ++md 2015-07-07
         
-        let translateFrom = translation
-        let translateTo = CGPoint(x: translation.x + 15, y: translation.y + 15)
+        let translateFrom = CGPoint()
+        let translateTo = CGPoint(x: 200, y: 100)
         let translator = translationAnimator(from: translateFrom, to: translateTo)
         
-        let rotator = rotationAnimator(from: rotation, to: rotation + π / 20)
+        let rotator = rotationAnimator(from: 0.0, to: rotation + π / 12)
         
-        let scaleFrom = scale
-        let scaleTo = CGSize(width: scale.width - 0.1, height: scale.height + 0.15)
+        let scaleFrom = CGSize(width: 1.0, height: 1.0)
+        let scaleTo = CGSize(width: 1.5, height: 0.75)
         let scaler = scaleAnimator(from: scaleFrom, to: scaleTo)
         
         var things: [(() -> Bool)] = []
