@@ -22,8 +22,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <customView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hh4-TQ-rCY" customClass="TransformView" customModule="GrafDemo" customModuleProvider="target">
-                        <rect key="frame" x="166" y="20" width="294" height="230"/>
+                    <customView wantsLayer="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hh4-TQ-rCY" customClass="TransformView" customModule="GrafDemo" customModuleProvider="target">
+                        <rect key="frame" x="110" y="20" width="350" height="230"/>
                     </customView>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="361-ob-XxK">
                         <rect key="frame" x="9" y="222" width="91" height="32"/>
@@ -35,8 +35,38 @@
                             <action selector="animate:" target="-2" id="eiA-aJ-PD5"/>
                         </connections>
                     </button>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LWl-HA-wAC">
+                        <rect key="frame" x="16" y="193" width="78" height="18"/>
+                        <buttonCell key="cell" type="check" title="Translate" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="1TD-fT-T46">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="toggleTranslate:" target="-2" id="Ilv-HD-zAC"/>
+                        </connections>
+                    </button>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="90T-z7-4b6">
+                        <rect key="frame" x="16" y="173" width="63" height="18"/>
+                        <buttonCell key="cell" type="check" title="Rotate" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="euO-NJ-TVM">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="toggleRotate:" target="-2" id="vgH-EB-xz5"/>
+                        </connections>
+                    </button>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GgL-Az-RR6">
+                        <rect key="frame" x="16" y="153" width="57" height="18"/>
+                        <buttonCell key="cell" type="check" title="Scale" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="aR9-60-2VD">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="toggleScale:" target="-2" id="hmT-lG-yVZ"/>
+                        </connections>
+                    </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p4n-DH-UJD">
-                        <rect key="frame" x="16" y="189" width="76" height="32"/>
+                        <rect key="frame" x="17" y="107" width="76" height="32"/>
                         <buttonCell key="cell" type="push" title="Reset" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QGa-0V-jnh">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>

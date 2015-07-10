@@ -28,6 +28,11 @@ class TransformView: NSView {
     
     private var animationFunction: (() -> Bool)?  // returns true when finished
 
+    // until get a fancy UI
+    var shouldTranslate = true
+    var shouldRotate = true
+    var shouldScale = true
+
 
     func reset() {
         translation = CGPoint()
@@ -310,7 +315,19 @@ class TransformView: NSView {
         let scaleTo = CGSize(width: scale.width - 0.1, height: scale.height + 0.15)
         let scaler = scaleAnimator(from: scaleFrom, to: scaleTo)
         
-        animationFunction = compositeAnimator([translator, rotator, scaler])
+        var things: [(() -> Bool)] = []
+
+        if shouldTranslate {
+            things += [translator]
+        }
+        if shouldRotate {
+            things += [rotator]
+        }
+        if shouldScale {
+            things += [scaler]
+        }
+        
+        animationFunction = compositeAnimator(things)
 
         animationTimer = NSTimer.scheduledTimerWithTimeInterval(1 / 30, target: self, selector: "tick:", userInfo: nil, repeats: true)
     }
