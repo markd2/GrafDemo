@@ -9,6 +9,14 @@ for a set of posts over at the Big Nerd Ranch blog:
 * [Lines](https://www.bignerdranch.com/blog/core-graphics-part-three-lines/)
 * Paths (forthcoming)
 
+Here are some other, possibly interesting, CG-related blog posts:
+
+* [Rectangles, Part 1](https://www.bignerdranch.com/blog/rectangles-part-1/) - an 
+  introduction to CGRect and basic manipulations.
+* [Rectangles, Part 2](https://www.bignerdranch.com/blog/rectangles-part-2/) - more
+  CGRect and more fun API (union, intersection, insets, dividing)
+
+
 Digital Dashboard
 -----------------
 
@@ -70,3 +78,10 @@ includes a full postscript interpreter. This window lets you enter code and run 
 Worst IDE Evar.
 
 ![](assets/postscript-window.png)
+
+
+Interesting Docs
+----------------
+
+* [Quartz 2D Programming Guide (Apple docs)](https://developer.apple.com/library/mac/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html)
+* [Programming  with Quartz: 2D and PDF Graphics in Mac OS X (book)](http://www.amazon.com/Programming-Quartz-Graphics-Kaufmann-Computer/dp/0123694736/)
