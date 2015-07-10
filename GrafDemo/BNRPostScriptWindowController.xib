@@ -71,7 +71,7 @@
                             <constraint firstAttribute="width" constant="61" id="oAp-mA-YnI"/>
                             <constraint firstAttribute="height" constant="21" id="rKi-V8-3do"/>
                         </constraints>
-                        <buttonCell key="cell" type="push" title="Draw" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qc9-B2-27L">
+                        <buttonCell key="cell" type="push" title="Run" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qc9-B2-27L">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
