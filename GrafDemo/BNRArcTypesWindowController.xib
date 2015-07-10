@@ -52,7 +52,7 @@
                     </button>
                     <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="avQ-yB-6cv">
                         <rect key="frame" x="103" y="35" width="92" height="20"/>
-                        <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="6.2831799999999998" tickMarkPosition="above" sliderType="linear" id="LpH-AY-e6M"/>
+                        <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="-6.2831799999999998" maxValue="6.2831799999999998" tickMarkPosition="above" sliderType="linear" id="LpH-AY-e6M"/>
                         <connections>
                             <action selector="setStartAngle:" target="-2" id="5r3-Cc-Adu"/>
                         </connections>
@@ -99,7 +99,7 @@
                     </textField>
                     <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Uc-c8-4ja">
                         <rect key="frame" x="103" y="10" width="92" height="20"/>
-                        <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="6.2831799999999998" tickMarkPosition="above" sliderType="linear" id="s28-q5-gVr"/>
+                        <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="-6.2831799999999998" maxValue="6.2831799999999998" tickMarkPosition="above" sliderType="linear" id="s28-q5-gVr"/>
                         <connections>
                             <action selector="setEndAngle:" target="-2" id="Mzu-pC-VId"/>
                         </connections>
@@ -114,7 +114,7 @@
                     </textField>
                     <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wJ5-25-G7c">
                         <rect key="frame" x="333" y="35" width="92" height="20"/>
-                        <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="6.2831799999999998" tickMarkPosition="above" sliderType="linear" id="Ccr-4i-9hD"/>
+                        <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="-6.2831799999999998" maxValue="6.2831799999999998" tickMarkPosition="above" sliderType="linear" id="Ccr-4i-9hD"/>
                         <connections>
                             <action selector="setRelativeStartAngle:" target="-2" id="Lar-ny-DD2"/>
                         </connections>
