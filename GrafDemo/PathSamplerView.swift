@@ -189,7 +189,7 @@ class PathSamplerView: NSView {
     func buildPath() -> CGMutablePath {
         let path = CGPathCreateMutable()
         
-        chunks.map { $0.appendToPath(path) }
+        _ = chunks.map { $0.appendToPath(path) }
 
         return path
     }

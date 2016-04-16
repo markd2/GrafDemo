@@ -42,7 +42,7 @@ class BNRPostScriptWindowController: NSWindowController {
         self.codeText.string = initialText
     }
     
-    @IBAction func draw(AnyObject) {
+    @IBAction func draw(_: AnyObject) {
         var callbacks = CGPSConverterCallbacks()
         guard let converter = CGPSConverterCreate (nil, &callbacks, nil) else {
             return

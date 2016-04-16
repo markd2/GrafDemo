@@ -328,7 +328,7 @@ class TransformView: NSView {
         
         animationFunction = compositeAnimator(things)
 
-        animationTimer = NSTimer.scheduledTimerWithTimeInterval(1 / 30, target: self, selector: "tick:", userInfo: nil, repeats: true)
+        animationTimer = NSTimer.scheduledTimerWithTimeInterval(1 / 30, target: self, selector: #selector(TransformView.tick(_:)), userInfo: nil, repeats: true)
     }
     
     

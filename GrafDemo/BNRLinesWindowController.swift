@@ -42,7 +42,7 @@ public class BNRLinesWindowController: NSWindowController {
         }
         
         linePhaseBox.target = self
-        linePhaseBox.action = "refreshViews:"
+        linePhaseBox.action = #selector(BNRLinesWindowController.refreshViews(_:))
         linePhaseBox.enabled = false
     }
     
