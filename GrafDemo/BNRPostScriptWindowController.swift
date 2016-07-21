@@ -47,22 +47,24 @@ class BNRPostScriptWindowController: NSWindowController {
         guard let converter = CGPSConverter (info: nil, callbacks: &callbacks, options: nil) else {
             return
         }
-
+        
         guard let codeData = self.codeText.string?.data(using: .utf8),
             let provider = CGDataProvider(data: codeData) else {
                 return
         }
         
-        guard let consumer = CGDataConsumer (data: codeData as! CFMutableData) else {
+        let nsdata = NSMutableData(data:  codeData)
+        
+        guard let consumer = CGDataConsumer (data: nsdata as CFMutableData) else {
             return
         }
-
+        
         let converted = converter.convert (provider, consumer: consumer, options: nil)
         if !converted {
-            print("boo")
+            print("Could not convert postscript text")
         }
         
-        let pdfDataProvider = CGDataProvider(data: codeData)
+        let pdfDataProvider = CGDataProvider(data: nsdata)
         let pdf = CGPDFDocument(pdfDataProvider!)
         self.pdfView.pdfDocument = pdf
     }
