@@ -4,20 +4,12 @@ extension NSView {
 
     var currentContext : CGContext? {
         get {
-            // The 10.10 SDK provdes a CGContext on NSGraphicsContext, but
-            // that's not available to folks running 10.9, so perform this
-            // violence to get a context via a void*.
-            // iOS can use UIGraphicsGetCurrentContext.
+            // 10.9 doesn't have a reasonable call for getting the current context
+            // that doesn't require jumping through ever-changing opaque pointers.
             
-            let unsafeContextPointer = NSGraphicsContext.current()?.graphicsPort
-            
-            if let contextPointer = unsafeContextPointer {
-                let opaquePointer = OpaquePointer(contextPointer)
-                let context: CGContext = Unmanaged.fromOpaque(opaquePointer).takeUnretainedValue()
-                return context
-            } else {
-                return nil
-            }
+            let context = NSGraphicsContext.current()
+
+            return context?.cgContext
         }
     }
     

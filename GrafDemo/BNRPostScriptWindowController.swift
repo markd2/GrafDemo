@@ -48,17 +48,12 @@ class BNRPostScriptWindowController: NSWindowController {
             return
         }
 
-
-        let code = self.codeText.string
-
-        let codeCString = (code as NSString!).utf8String
-        guard let provider = CGDataProvider (dataInfo: nil,
-            data: codeCString!, size: Int(strlen(codeCString)), releaseData: nil) else {
+        guard let codeData = self.codeText.string?.data(using: .utf8),
+            let provider = CGDataProvider(data: codeData) else {
                 return
         }
         
-        let data = NSMutableData()
-        guard let consumer = CGDataConsumer (data: data) else {
+        guard let consumer = CGDataConsumer (data: codeData as! CFMutableData) else {
             return
         }
 
@@ -67,10 +62,9 @@ class BNRPostScriptWindowController: NSWindowController {
             print("boo")
         }
         
-        let pdfDataProvider = CGDataProvider(data: data)
+        let pdfDataProvider = CGDataProvider(data: codeData)
         let pdf = CGPDFDocument(pdfDataProvider!)
         self.pdfView.pdfDocument = pdf
     }
-    
     
 }

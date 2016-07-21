@@ -60,16 +60,16 @@ class TransformView: NSView {
         }
     }
     
-    private func drawGridLinesWithStride(_ stride: CGFloat, withLabels: Bool, context: CGContext) {
+    private func drawGridLinesWithStride(_ strideLength: CGFloat, withLabels: Bool, context: CGContext) {
         let font = NSFont.systemFont(ofSize: 10.0)
 
         let darkGray = NSColor.darkGray().withAlphaComponent(0.3)
 
         let textAttributes: [String : AnyObject] = [ NSFontAttributeName : font,
             NSForegroundColorAttributeName: darkGray]
-        
+
         // draw vertical lines
-        for var x = bounds.minX - kBig; x < kBig; x += stride {
+        for x in stride(from: bounds.midX - kBig, to: kBig, by: strideLength) {
             let start = CGPoint(x: x + 0.25, y: -kBig)
             let end = CGPoint(x: x + 0.25, y: kBig )
             context.moveTo (x: start.x, y: start.y)
@@ -85,13 +85,13 @@ class TransformView: NSView {
         }
         
         // draw horizontal lines
-        for var y = bounds.minY - kBig; y < kBig; y += stride {
+        for y in stride(from: bounds.minY - kBig, to: kBig, by: strideLength) {
             let start = CGPoint(x: -kBig, y: y + 0.25)
             let end = CGPoint(x: kBig, y: y + 0.25)
             context.moveTo (x: start.x, y: start.y)
             context.addLineTo (x: end.x, y: end.y)
             context.strokePath ()
-            
+
             if (withLabels) {
                 var textOrigin = CGPoint(x: bounds.minX + 0.25, y: y + 0.25)
                 textOrigin.x += 3.0
@@ -100,7 +100,6 @@ class TransformView: NSView {
                 label.draw(at: textOrigin,  withAttributes: textAttributes)
             }
         }
-        
     }
     
     private func drawGrid() {
