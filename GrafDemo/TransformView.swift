@@ -168,17 +168,19 @@ class TransformView: NSView {
     }
     
     private func drawPath() {
-        let hat = RanchLogoPath()
-        var flipTransform = AffineTransform()
-        flipTransform.translate(x: 0.0, y: 300.0)
+        guard let hat = RanchLogoPath() else { return }
+
+        var flipTransform = AffineTransform.identity
+        let bounds = hat.bounds
+        flipTransform.translate(x: 0.0, y: bounds.height * 4)
         flipTransform.scale(x: 2.0, y: -2.0)
-        hat?.transform(using: flipTransform)
-        
+        hat.transform(using: flipTransform)
+
         NSColor.orange().set()
-        hat?.fill()
+        hat.fill()
         
         NSColor.black().set()
-        hat?.stroke()
+        hat.stroke()
     }
     
     override func draw(_ dirtyRect: NSRect) {
