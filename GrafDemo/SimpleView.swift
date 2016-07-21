@@ -13,10 +13,10 @@ class SimpleView: NSView {
     
     func drawSloppily () {
         
-        CGContextSetRGBStrokeColor (currentContext, 0.0, 0.0, 0.0, 1.0) // Black
-        CGContextSetRGBFillColor (currentContext, 1.0, 1.0, 1.0, 1.0) // White
+        currentContext?.setStrokeColor (red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0) // Black
+        currentContext?.setFillColor (red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) // White
         
-        CGContextSetLineWidth (currentContext, 3.0)
+        currentContext?.setLineWidth (3.0)
         
         drawSloppyBackground()
         drawSloppyContents()
@@ -24,33 +24,33 @@ class SimpleView: NSView {
     }
     
     func drawSloppyBackground() {
-        CGContextFillRect (currentContext, bounds)
+        currentContext?.fill (bounds)
     }
     
     func drawSloppyContents() {
-        let innerRect = CGRectInset(bounds, 20.0, 20.0)
-        if CGRectIsEmpty(innerRect) {
+        let innerRect = bounds.insetBy(dx: 20.0, dy: 20.0)
+        if innerRect.isEmpty {
             return
         }
         
-        CGContextSetRGBFillColor (currentContext, 0.0, 1.0, 0.0, 1.0) // Green
-        CGContextFillEllipseInRect (currentContext, innerRect)
+        currentContext?.setFillColor (red: 0.0, green: 1.0, blue: 0.0, alpha: 1.0) // Green
+        currentContext?.fillEllipse (in: innerRect)
         
-        CGContextSetRGBStrokeColor (currentContext, 0.0, 0.0, 1.0, 1.0) // Blue
-        CGContextSetLineWidth (currentContext, 6.0)
-        CGContextStrokeEllipseInRect (currentContext, innerRect)
+        currentContext?.setStrokeColor (red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0) // Blue
+        currentContext?.setLineWidth (6.0)
+        currentContext?.strokeEllipse (in: innerRect)
     }
     
     func drawSloppyBorder() {
-        CGContextStrokeRect (currentContext, self.bounds)
+        currentContext?.stroke (self.bounds)
     }
     
     // --------------------------------------------------
     
     func drawNicely () {
-        CGContextSetRGBStrokeColor (currentContext, 0.0, 0.0, 0.0, 1.0) // Black
-        CGContextSetRGBFillColor (currentContext, 1.0, 1.0, 1.0, 1.0) // White
-        CGContextSetLineWidth (currentContext, 3.0)
+        currentContext?.setStrokeColor (red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0) // Black
+        currentContext?.setFillColor (red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) // White
+        currentContext?.setLineWidth (3.0)
         
         drawNiceBackground()
         drawNiceContents()
@@ -59,38 +59,38 @@ class SimpleView: NSView {
     
     func drawNiceBackground() {
         protectGState {
-            CGContextFillRect (self.currentContext, self.bounds)
+            self.currentContext?.fill (self.bounds)
         }
     }
     
     func drawNiceContents() {
-        let innerRect = CGRectInset(self.bounds, 20.0, 20.0)
+        let innerRect = self.bounds.insetBy(dx: 20.0, dy: 20.0)
         
-        if CGRectIsEmpty(innerRect) {
+        if innerRect.isEmpty {
             return
         }
         
         protectGState {
-            CGContextSetRGBFillColor (self.currentContext, 0.0, 1.0, 0.0, 1.0) // Green
-            CGContextFillEllipseInRect (self.currentContext, innerRect)
+            self.currentContext?.setFillColor (red: 0.0, green: 1.0, blue: 0.0, alpha: 1.0) // Green
+            self.currentContext?.fillEllipse (in: innerRect)
             
-            CGContextSetRGBStrokeColor (self.currentContext, 0.0, 0.0, 1.0, 1.0) // Blue
-            CGContextSetLineWidth (self.currentContext, 6.0)
-            CGContextStrokeEllipseInRect (self.currentContext, innerRect)
+            self.currentContext?.setStrokeColor (red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0) // Blue
+            self.currentContext?.setLineWidth (6.0)
+            self.currentContext?.strokeEllipse (in: innerRect)
         }
     }
     
     func drawNiceBorder() {
         protectGState {
-            CGContextStrokeRect (self.currentContext, self.bounds)
+            self.currentContext?.stroke (self.bounds)
         }
     }
     
     
     // --------------------------------------------------
     
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
         
         if beSloppy {
             drawSloppily()

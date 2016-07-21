@@ -9,11 +9,11 @@ extension NSView {
             // violence to get a context via a void*.
             // iOS can use UIGraphicsGetCurrentContext.
             
-            let unsafeContextPointer = NSGraphicsContext.currentContext()?.graphicsPort
+            let unsafeContextPointer = NSGraphicsContext.current()?.graphicsPort
             
             if let contextPointer = unsafeContextPointer {
-                let opaquePointer = COpaquePointer(contextPointer)
-                let context: CGContextRef = Unmanaged.fromOpaque(opaquePointer).takeUnretainedValue()
+                let opaquePointer = OpaquePointer(contextPointer)
+                let context: CGContext = Unmanaged.fromOpaque(opaquePointer).takeUnretainedValue()
                 return context
             } else {
                 return nil
@@ -21,10 +21,10 @@ extension NSView {
         }
     }
     
-    func protectGState(drawStuff: () -> Void) {
-        CGContextSaveGState (currentContext)
+    func protectGState(_ drawStuff: () -> Void) {
+        currentContext?.saveGState ()
         drawStuff()
-        CGContextRestoreGState (currentContext)
+        currentContext?.restoreGState ()
     }
 }
 

@@ -44,31 +44,31 @@ class BNRPostScriptWindowController: NSWindowController {
     
     @IBAction func draw(_: AnyObject) {
         var callbacks = CGPSConverterCallbacks()
-        guard let converter = CGPSConverterCreate (nil, &callbacks, nil) else {
+        guard let converter = CGPSConverter (info: nil, callbacks: &callbacks, options: nil) else {
             return
         }
 
 
         let code = self.codeText.string
 
-        let codeCString = (code as NSString!).UTF8String
-        guard let provider = CGDataProviderCreateWithData (nil,
-            codeCString, Int(strlen(codeCString)), nil) else {
+        let codeCString = (code as NSString!).utf8String
+        guard let provider = CGDataProvider (dataInfo: nil,
+            data: codeCString!, size: Int(strlen(codeCString)), releaseData: nil) else {
                 return
         }
         
         let data = NSMutableData()
-        guard let consumer = CGDataConsumerCreateWithCFData (data) else {
+        guard let consumer = CGDataConsumer (data: data) else {
             return
         }
 
-        let converted = CGPSConverterConvert (converter, provider, consumer, nil)
+        let converted = converter.convert (provider, consumer: consumer, options: nil)
         if !converted {
             print("boo")
         }
         
-        let pdfDataProvider = CGDataProviderCreateWithCFData(data)
-        let pdf = CGPDFDocumentCreateWithProvider(pdfDataProvider)
+        let pdfDataProvider = CGDataProvider(data: data)
+        let pdf = CGPDFDocument(pdfDataProvider!)
         self.pdfView.pdfDocument = pdf
     }
     
