@@ -3,25 +3,25 @@ import Cocoa
 
 class PDFView: NSView {
 
-    var pdfDocument : CGPDFDocumentRef? {
+    var pdfDocument : CGPDFDocument? {
         willSet {
             needsDisplay = true
         }
     }
 
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
 
-        NSColor.whiteColor().set()
+        NSColor.white().set()
         NSRectFill(bounds)
         
         if let pdf = pdfDocument {
-            let page1 = CGPDFDocumentGetPage(pdf, 1)
+            let page1 = pdf.page(at: 1)
  
-            CGContextDrawPDFPage (currentContext, page1)
+            currentContext?.drawPDFPage (page1!)
         }
         
-        NSColor.blackColor().set()
+        NSColor.black().set()
         NSFrameRect(bounds)
     }
 }

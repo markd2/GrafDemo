@@ -3,121 +3,121 @@ import Cocoa
 let π = CGFloat(Darwin.M_PI)
 
 enum ChunkType {
-    case MoveTo(point: CGPoint)
-    case LineTo(point: CGPoint)
-    case CurveTo(point: CGPoint, control1: CGPoint, control2: CGPoint)
-    case QuadCurveTo(point: CGPoint, control: CGPoint)
-    case Close
-    case Arc(center: CGPoint, radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat, clockwise: Bool)
-    case ArcToPoint(control1: CGPoint, control2: CGPoint, radius: CGFloat)
-    case RelativeArc(center: CGPoint, radius: CGFloat, startAngle: CGFloat, deltaAngle: CGFloat)
+    case moveTo(point: CGPoint)
+    case lineTo(point: CGPoint)
+    case curveTo(point: CGPoint, control1: CGPoint, control2: CGPoint)
+    case quadCurveTo(point: CGPoint, control: CGPoint)
+    case close
+    case arc(center: CGPoint, radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat, clockwise: Bool)
+    case arcToPoint(control1: CGPoint, control2: CGPoint, radius: CGFloat)
+    case relativeArc(center: CGPoint, radius: CGFloat, startAngle: CGFloat, deltaAngle: CGFloat)
     
     func prettyName() -> String {
         switch self {
-        case .MoveTo: return "Move To"
-        case .LineTo: return "Line To"
-        case .CurveTo: return "Curve To"
-        case .QuadCurveTo: return "Quad Curve To"
-        case .Close: return "Close"
-        case .Arc: return "Arc"
-        case .ArcToPoint: return "Arc To Point"
-        case .RelativeArc: return "Relative Arc"
+        case .moveTo: return "Move To"
+        case .lineTo: return "Line To"
+        case .curveTo: return "Curve To"
+        case .quadCurveTo: return "Quad Curve To"
+        case .close: return "Close"
+        case .arc: return "Arc"
+        case .arcToPoint: return "Arc To Point"
+        case .relativeArc: return "Relative Arc"
         }
     }
     
     func controlPoints() -> [CGPoint] {
         switch self {
-            case .MoveTo(let point): return [point]
-            case .LineTo(let point): return [point]
-            case .CurveTo(let point, let control1, let control2): return [point, control1, control2]
-            case .QuadCurveTo(let point, let control): return [point, control]
-            case .Close: return []
-            case .Arc(let center, _, _, _, _): return [center]
-            case .ArcToPoint(let control1, let control2, _): return [control1, control2]
-            case .RelativeArc(let center, _, _, _): return [center]
+            case .moveTo(let point): return [point]
+            case .lineTo(let point): return [point]
+            case .curveTo(let point, let control1, let control2): return [point, control1, control2]
+            case .quadCurveTo(let point, let control): return [point, control]
+            case .close: return []
+            case .arc(let center, _, _, _, _): return [center]
+            case .arcToPoint(let control1, let control2, _): return [control1, control2]
+            case .relativeArc(let center, _, _, _): return [center]
         }
     }
     
     func controlColor() -> NSColor {
         switch self {
-            case .MoveTo: return NSColor.yellowColor()
-            case .LineTo: return NSColor.greenColor()
-            case .CurveTo: return NSColor.blueColor()
-            case .QuadCurveTo: return NSColor.orangeColor()
-            case .Close: return NSColor.purpleColor()
-            case .Arc: return NSColor.redColor()
-            case .ArcToPoint: return NSColor.lightGrayColor()
-            case .RelativeArc: return NSColor.magentaColor()
+            case .moveTo: return NSColor.yellow()
+            case .lineTo: return NSColor.green()
+            case .curveTo: return NSColor.blue()
+            case .quadCurveTo: return NSColor.orange()
+            case .close: return NSColor.purple()
+            case .arc: return NSColor.red()
+            case .arcToPoint: return NSColor.lightGray()
+            case .relativeArc: return NSColor.magenta()
         }
     }
     
-    func appendToPath(path: CGMutablePath) {
+    func appendToPath(_ path: CGMutablePath) {
         switch self {
-        case .MoveTo(let point):
-            CGPathMoveToPoint(path, nil, point.x, point.y)
+        case .moveTo(let point):
+            path.moveTo(nil, x: point.x, y: point.y)
             
-        case .LineTo(let point):
-            CGPathAddLineToPoint(path, nil, point.x, point.y)
+        case .lineTo(let point):
+            path.addLineTo(nil, x: point.x, y: point.y)
             
-        case .CurveTo(let point, let control1, let control2):
-            CGPathAddCurveToPoint(path, nil, control1.x, control1.y, control2.x, control2.y, point.x, point.y)
+        case .curveTo(let point, let control1, let control2):
+            path.addCurve(nil, cp1x: control1.x, cp1y: control1.y, cp2x: control2.x, cp2y: control2.y, endingAtX: point.x, y: point.y)
             
-        case .QuadCurveTo(let point, let control):
-            CGPathAddQuadCurveToPoint(path, nil, control.x, control.y, point.x, point.y)
+        case .quadCurveTo(let point, let control):
+            path.addQuadCurve(nil, cpx: control.x, cpy: control.y, endingAtX: point.x, y: point.y)
             
-        case .Close:
-            CGPathCloseSubpath(path)
+        case .close:
+            path.closeSubpath()
         
-        case .Arc(let center, let radius, let startAngle, let endAngle, let clockwise):
-            CGPathAddArc(path, nil, center.x, center.y, radius, startAngle, endAngle, clockwise)
+        case .arc(let center, let radius, let startAngle, let endAngle, let clockwise):
+            path.addArc(nil, x: center.x, y: center.y, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: clockwise)
             
-        case ArcToPoint(let control1, let control2, let radius):
-            CGPathAddArcToPoint(path, nil, control1.x, control1.y, control2.x, control2.y, radius)
+        case arcToPoint(let control1, let control2, let radius):
+            path.addArc(nil, x1: control1.x, y1: control1.y, x2: control2.x, y2: control2.y, radius: radius)
 
-        case RelativeArc(let center, let radius, let startAngle, let deltaAngle):
-            CGPathAddRelativeArc(path, nil, center.x, center.y, radius, startAngle, deltaAngle)
+        case relativeArc(let center, let radius, let startAngle, let deltaAngle):
+            path.addRelativeArc(matrix: nil, x: center.x, y: center.y, radius: radius, startAngle: startAngle, delta: deltaAngle)
         }
     }
     
-    func chunkLikeMeButWithDifferentPoint(newPoint: CGPoint, atElementIndex: Int) -> ChunkType {
+    func chunkLikeMeButWithDifferentPoint(_ newPoint: CGPoint, atElementIndex: Int) -> ChunkType {
         switch self {
-        case .MoveTo:
+        case .moveTo:
             precondition(atElementIndex == 0)
-            return .MoveTo(point: newPoint)
+            return .moveTo(point: newPoint)
             
-        case .LineTo:
+        case .lineTo:
             precondition(atElementIndex == 0)
-            return .LineTo(point: newPoint)
+            return .lineTo(point: newPoint)
             
-        case .CurveTo(var point, var control1, var control2):
+        case .curveTo(var point, var control1, var control2):
             precondition(atElementIndex >= 0 && atElementIndex <= 2)
             if (atElementIndex == 0) { point = newPoint }
             if (atElementIndex == 1) { control1 = newPoint }
             if (atElementIndex == 2) { control2 = newPoint }
-            return .CurveTo(point: point, control1: control1, control2: control2)
+            return .curveTo(point: point, control1: control1, control2: control2)
 
-        case .QuadCurveTo(var point, var control):
+        case .quadCurveTo(var point, var control):
             precondition (atElementIndex == 0 || atElementIndex == 1)
             if (atElementIndex == 0) { point = newPoint }
             if (atElementIndex == 1) { control = newPoint }
-            return .QuadCurveTo(point: point, control: control)
+            return .quadCurveTo(point: point, control: control)
             
-        case .Close:
-            return .Close
+        case .close:
+            return .close
             
-        case .Arc(_, let radius, let startAngle, let endAngle, let clockwise):
+        case .arc(_, let radius, let startAngle, let endAngle, let clockwise):
             precondition (atElementIndex == 0)
-            return .Arc(center: newPoint, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: clockwise)
+            return .arc(center: newPoint, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: clockwise)
             
-        case .ArcToPoint(var control1, var control2, let radius):
+        case .arcToPoint(var control1, var control2, let radius):
             precondition (atElementIndex == 0 || atElementIndex == 1)
             if (atElementIndex == 0) { control1 = newPoint }
             if (atElementIndex == 1) { control2 = newPoint }
-            return .ArcToPoint(control1: control1, control2: control2, radius: radius)
+            return .arcToPoint(control1: control1, control2: control2, radius: radius)
             
-        case .RelativeArc(_, let radius, let startAngle, let deltaAngle):
+        case .relativeArc(_, let radius, let startAngle, let deltaAngle):
             precondition (atElementIndex == 0)
-            return .RelativeArc(center: newPoint, radius: radius,
+            return .relativeArc(center: newPoint, radius: radius,
                 startAngle: startAngle, deltaAngle: deltaAngle)
         }
     }
@@ -141,20 +141,20 @@ class PathSamplerView: NSView {
     }
     
 
-    private func boxForPoint(point: CGPoint) -> CGRect {
+    private func boxForPoint(_ point: CGPoint) -> CGRect {
         let boxxy = CGRect(x: point.x - BoxSize / 2.0,
             y: point.y - BoxSize / 2.0,
             width: BoxSize, height: BoxSize)
         return boxxy
     }
     
-    private func drawBoxAt(point: CGPoint, color: NSColor) {
+    private func drawBoxAt(_ point: CGPoint, color: NSColor) {
         let rect = boxForPoint(point);
         
         protectGState {
-            CGContextAddRect(self.currentContext, rect)
+            self.currentContext?.addRect(rect)
             color.set()
-            CGContextFillPath(self.currentContext)
+            self.currentContext?.fillPath()
         }
     }
     
@@ -163,9 +163,9 @@ class PathSamplerView: NSView {
         let rect = bounds
 
         protectGState {
-            CGContextAddRect(self.currentContext, rect)
-            NSColor.whiteColor().set()
-            CGContextFillPath(self.currentContext)
+            self.currentContext?.addRect(rect)
+            NSColor.white().set()
+            self.currentContext?.fillPath()
         }
     }
     
@@ -174,20 +174,20 @@ class PathSamplerView: NSView {
         let context = currentContext
         
         protectGState {
-            NSColor.blackColor().set()
-            CGContextStrokeRect (context, self.bounds)
+            NSColor.black().set()
+            context?.stroke (self.bounds)
         }
     }
     
     
-    func addChunk(chunk: ChunkType) {
+    func addChunk(_ chunk: ChunkType) {
         chunks.append(chunk)
         needsDisplay = true
     }
     
     
     func buildPath() -> CGMutablePath {
-        let path = CGPathCreateMutable()
+        let path = CGMutablePath()
         
         _ = chunks.map { $0.appendToPath(path) }
 
@@ -199,8 +199,8 @@ class PathSamplerView: NSView {
          let path = buildPath()
         
         protectGState {
-            CGContextAddPath(self.currentContext, path)
-            CGContextStrokePath(self.currentContext)
+            self.currentContext?.addPath(path)
+            self.currentContext?.strokePath()
         }
     }
     
@@ -214,8 +214,8 @@ class PathSamplerView: NSView {
     }
     
     
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
         
         drawBackground()
         protectGState {
@@ -226,14 +226,14 @@ class PathSamplerView: NSView {
     }
     
     
-    private func startDrag(chunk: ChunkType, _ chunkIndex: Int, _ controlPointIndex: Int) {
+    private func startDrag(_ chunk: ChunkType, _ chunkIndex: Int, _ controlPointIndex: Int) {
         trackingChunk = chunk
         trackingChunkIndex = chunkIndex
         trackingChunkElementIndex = controlPointIndex
     }
     
     
-    private func updateDragWithPoint(point: CGPoint) {
+    private func updateDragWithPoint(_ point: CGPoint) {
         guard let trackingChunk = self.trackingChunk,
             let trackingChunkElementIndex = self.trackingChunkElementIndex,
             let trackingChunkIndex = self.trackingChunkIndex else { return }
@@ -245,26 +245,26 @@ class PathSamplerView: NSView {
     }
     
     
-    override func mouseDown (event: NSEvent) {
-        let localPoint = self.convertPoint(event.locationInWindow, fromView: nil)
+    override func mouseDown (_ event: NSEvent) {
+        let localPoint = self.convert(event.locationInWindow, from: nil)
         
-        for (chunkIndex, chunk) in chunks.enumerate() {
-            for (controlPointIndex, controlPoint) in chunk.controlPoints().enumerate() {
+        for (chunkIndex, chunk) in chunks.enumerated() {
+            for (controlPointIndex, controlPoint) in chunk.controlPoints().enumerated() {
                 let box = boxForPoint(controlPoint)
-                if (CGRectContainsPoint(box, localPoint)) {
+                if (box.contains(localPoint)) {
                     startDrag(chunk, chunkIndex, controlPointIndex)
                 }
             }
         }
     }
     
-    override func mouseDragged (event: NSEvent) {
-        let localPoint = self.convertPoint(event.locationInWindow, fromView: nil)
+    override func mouseDragged (_ event: NSEvent) {
+        let localPoint = self.convert(event.locationInWindow, from: nil)
         updateDragWithPoint(localPoint)
     }
     
     
-    override func mouseUp (event: NSEvent) {
+    override func mouseUp (_ event: NSEvent) {
         trackingChunk = nil
         trackingChunkIndex = nil
         trackingChunkElementIndex = nil
@@ -273,27 +273,27 @@ class PathSamplerView: NSView {
     
     func addSamplePath() {
 
-        addChunk(.MoveTo(point: CGPoint(x: 184, y: 363)))
-        addChunk(.LineTo(point: CGPoint(x: 175, y: 311)))
+        addChunk(.moveTo(point: CGPoint(x: 184, y: 363)))
+        addChunk(.lineTo(point: CGPoint(x: 175, y: 311)))
 
-        addChunk(.RelativeArc(center: CGPoint(x: 105, y: 280.0), radius: 25,
+        addChunk(.relativeArc(center: CGPoint(x: 105, y: 280.0), radius: 25,
             startAngle: π / 2, deltaAngle: π))
 
-        addChunk(.CurveTo(point: CGPoint(x: 109, y: 100),
+        addChunk(.curveTo(point: CGPoint(x: 109, y: 100),
             control1: CGPoint(x: 121, y: 207),
             control2: CGPoint(x: 63, y: 157)))
-        addChunk(.QuadCurveTo(point: CGPoint(x: 219, y: 73),
+        addChunk(.quadCurveTo(point: CGPoint(x: 219, y: 73),
             control: CGPoint(x: 157, y: 141)))
 
-        addChunk(.LineTo(point: CGPoint(x: 273, y: 145)))
+        addChunk(.lineTo(point: CGPoint(x: 273, y: 145)))
         
-        addChunk(.ArcToPoint(control1: CGPoint(x: 318, y: 131),
+        addChunk(.arcToPoint(control1: CGPoint(x: 318, y: 131),
             control2: CGPoint(x:260, y: 190), radius: 40))
 
-        addChunk(.LineTo(point: CGPoint(x: 282, y: 320)))
+        addChunk(.lineTo(point: CGPoint(x: 282, y: 320)))
         
-        addChunk(.Arc(center: CGPoint(x: 230, y: 351), radius: 30.0, startAngle: 0.0,
+        addChunk(.arc(center: CGPoint(x: 230, y: 351), radius: 30.0, startAngle: 0.0,
             endAngle: π, clockwise: false))
-        addChunk(.Close)
+        addChunk(.close)
     }
 }

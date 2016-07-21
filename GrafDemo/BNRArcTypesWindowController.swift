@@ -45,27 +45,27 @@ class BNRArcTypesWindowController: NSWindowController {
         raRelativeAngleLabel.stringValue = String(relativeDeltaStringValue)
     }
     
-    @IBAction func toggleArcClockwise(toggle: NSButton) {
+    @IBAction func toggleArcClockwise(_ toggle: NSButton) {
         arcEditingView.clockwise = toggle.state == NSOnState
     }
     
     
-    @IBAction func setStartAngle(slider: NSSlider) {
+    @IBAction func setStartAngle(_ slider: NSSlider) {
         arcEditingView.startAngle = CGFloat(slider.floatValue)
         updateSliderLabels()
     }
     
-    @IBAction func setEndAngle(slider: NSSlider) {
+    @IBAction func setEndAngle(_ slider: NSSlider) {
         arcEditingView.endAngle = CGFloat(slider.floatValue)
         updateSliderLabels()
     }
 
-    @IBAction func setRelativeStartAngle(slider: NSSlider) {
+    @IBAction func setRelativeStartAngle(_ slider: NSSlider) {
         relativeArcEditingView.startAngle = CGFloat(slider.floatValue)
         updateSliderLabels()
     }
     
-    @IBAction func setRelativeDeltaAngle(slider: NSSlider) {
+    @IBAction func setRelativeDeltaAngle(_ slider: NSSlider) {
         relativeArcEditingView.deltaAngle = CGFloat(slider.floatValue)
         updateSliderLabels()
     }

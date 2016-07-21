@@ -6,7 +6,7 @@ class TransformView: NSView {
     private let animationSteps: CGFloat = 15
     private var useContextTransforms = false
     
-    private var animationTimer: NSTimer!
+    private var animationTimer: Timer!
     
     private var translation = CGPoint() {
         didSet {
@@ -44,9 +44,9 @@ class TransformView: NSView {
         let rect = bounds
 
         protectGState {
-            CGContextAddRect(self.currentContext, rect)
-            NSColor.whiteColor().set()
-            CGContextFillPath(self.currentContext)
+            self.currentContext?.addRect(rect)
+            NSColor.white().set()
+            self.currentContext?.fillPath()
         }
     }
     
@@ -55,62 +55,61 @@ class TransformView: NSView {
         let context = currentContext
         
         protectGState {
-            NSColor.blackColor().set()
-            CGContextStrokeRect (context, self.bounds)
+            NSColor.black().set()
+            context?.stroke (self.bounds)
         }
     }
     
-    private func drawGridLinesWithStride(stride: CGFloat, withLabels: Bool, context: CGContextRef) {
-        let font = NSFont.systemFontOfSize(10.0)
+    private func drawGridLinesWithStride(_ strideLength: CGFloat, withLabels: Bool, context: CGContext) {
+        let font = NSFont.systemFont(ofSize: 10.0)
 
-        let darkGray = NSColor.darkGrayColor().colorWithAlphaComponent(0.3)
+        let darkGray = NSColor.darkGray().withAlphaComponent(0.3)
 
         let textAttributes: [String : AnyObject] = [ NSFontAttributeName : font,
             NSForegroundColorAttributeName: darkGray]
-        
+
         // draw vertical lines
-        for var x = CGRectGetMinX(bounds) - kBig; x < kBig; x += stride {
+        for x in stride(from: bounds.midX - kBig, to: kBig, by: strideLength) {
             let start = CGPoint(x: x + 0.25, y: -kBig)
             let end = CGPoint(x: x + 0.25, y: kBig )
-            CGContextMoveToPoint (context, start.x, start.y)
-            CGContextAddLineToPoint (context, end.x, end.y)
-            CGContextStrokePath (context)
+            context.moveTo (x: start.x, y: start.y)
+            context.addLineTo (x: end.x, y: end.y)
+            context.strokePath ()
             
             if (withLabels) {
-                var textOrigin = CGPoint(x: x + 0.25, y: CGRectGetMinY(bounds) + 0.25)
+                var textOrigin = CGPoint(x: x + 0.25, y: bounds.minY + 0.25)
                 textOrigin.x += 2.0
                 let label = NSString(format: "%d", Int(x))
-                label.drawAtPoint(textOrigin,  withAttributes: textAttributes)
+                label.draw(at: textOrigin,  withAttributes: textAttributes)
             }
         }
         
         // draw horizontal lines
-        for var y = CGRectGetMinY(bounds) - kBig; y < kBig; y += stride {
+        for y in stride(from: bounds.minY - kBig, to: kBig, by: strideLength) {
             let start = CGPoint(x: -kBig, y: y + 0.25)
             let end = CGPoint(x: kBig, y: y + 0.25)
-            CGContextMoveToPoint (context, start.x, start.y)
-            CGContextAddLineToPoint (context, end.x, end.y)
-            CGContextStrokePath (context)
-            
+            context.moveTo (x: start.x, y: start.y)
+            context.addLineTo (x: end.x, y: end.y)
+            context.strokePath ()
+
             if (withLabels) {
-                var textOrigin = CGPoint(x: CGRectGetMinX(bounds) + 0.25, y: y + 0.25)
+                var textOrigin = CGPoint(x: bounds.minX + 0.25, y: y + 0.25)
                 textOrigin.x += 3.0
                 
                 let label = NSString(format: "%d", Int(y))
-                label.drawAtPoint(textOrigin,  withAttributes: textAttributes)
+                label.draw(at: textOrigin,  withAttributes: textAttributes)
             }
         }
-        
     }
     
     private func drawGrid() {
         let context = currentContext!
         
         protectGState {
-            CGContextSetLineWidth (context, 0.5)
+            context.setLineWidth (0.5)
             
-            let lightGray = NSColor.lightGrayColor().colorWithAlphaComponent(0.3)
-            let darkGray = NSColor.darkGrayColor().colorWithAlphaComponent(0.3)
+            let lightGray = NSColor.lightGray().withAlphaComponent(0.3)
+            let darkGray = NSColor.darkGray().withAlphaComponent(0.3)
 
             
             // Light grid lines every 10 points
@@ -130,60 +129,62 @@ class TransformView: NSView {
             // P.S. "AND MY AXE" -- Gimli
             let bounds = self.bounds
             
-            let start = CGPoint (x: CGRectGetMinX(bounds) + 0.25, y: CGRectGetMinY(bounds))
-            let horizontalEnd = CGPoint (x: CGRectGetMaxX(bounds) + 0.25, y: CGRectGetMinY(bounds))
-            let verticalEnd = CGPoint (x: CGRectGetMinX(bounds) + 0.25, y: CGRectGetMaxY(bounds))
+            let start = CGPoint (x: bounds.minX + 0.25, y: bounds.minY)
+            let horizontalEnd = CGPoint (x: bounds.maxX + 0.25, y: bounds.minY)
+            let verticalEnd = CGPoint (x: bounds.minX + 0.25, y: bounds.maxY)
             
-            CGContextSetLineWidth (context, 2.0)
-            NSColor.blackColor().setStroke()
-            CGContextMoveToPoint (context, -self.kBig, start.y)
-            CGContextAddLineToPoint (context, self.kBig, horizontalEnd.y)
+            context.setLineWidth (2.0)
+            NSColor.black().setStroke()
+            context.moveTo (x: -self.kBig, y: start.y)
+            context.addLineTo (x: self.kBig, y: horizontalEnd.y)
             
-            CGContextMoveToPoint (context, start.x, -self.kBig)
-            CGContextAddLineToPoint (context, verticalEnd.x, self.kBig)
+            context.moveTo (x: start.x, y: -self.kBig)
+            context.addLineTo (x: verticalEnd.x, y: self.kBig)
             
-            CGContextStrokePath (context)
+            context.strokePath ()
         }
     }
     
     private func applyTransforms() {
         
         if useContextTransforms {
-            CGContextTranslateCTM(currentContext, translation.x, translation.y)
-            CGContextRotateCTM(currentContext, rotation)
-            CGContextScaleCTM(currentContext, scale.width, scale.height)
+            currentContext?.translate(x: translation.x, y: translation.y)
+            currentContext?.rotate(byAngle: rotation)
+            currentContext?.scale(x: scale.width, y: scale.height)
             
         } else { // use matrix transforms
-            let identity = CGAffineTransformIdentity
-            let shiftingCenter = CGAffineTransformTranslate(identity, translation.x, translation.y)
-            let rotating = CGAffineTransformRotate(shiftingCenter, self.rotation)
-            let scaling = CGAffineTransformScale(rotating, scale.width, scale.height)
+            let identity = CGAffineTransform.identity
+            let shiftingCenter = identity.translateBy(x: translation.x, y: translation.y)
+            let rotating = shiftingCenter.rotate(self.rotation)
+            let scaling = rotating.scaleBy(x: scale.width, y: scale.height)
             
             // makes experimentation a little easier - just set to the transform you want to apply
             // to see how it looks
             let lastTransform = scaling
             
-            CGContextConcatCTM(currentContext, lastTransform)
+            currentContext?.concatCTM(lastTransform)
         }
         
     }
     
     private func drawPath() {
-        let hat = RanchLogoPath()
-        let flipTransform = NSAffineTransform()
-        flipTransform.translateXBy(0.0, yBy: 300.0)
-        flipTransform.scaleXBy(2.0, yBy: -2.0)
-        hat.transformUsingAffineTransform(flipTransform)
-        
-        NSColor.orangeColor().set()
+        guard let hat = RanchLogoPath() else { return }
+
+        var flipTransform = AffineTransform.identity
+        let bounds = hat.bounds
+        flipTransform.translate(x: 0.0, y: bounds.height * 4)
+        flipTransform.scale(x: 2.0, y: -2.0)
+        hat.transform(using: flipTransform)
+
+        NSColor.orange().set()
         hat.fill()
         
-        NSColor.blackColor().set()
+        NSColor.black().set()
         hat.stroke()
     }
     
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
         
         drawBackground()
         protectGState() {
@@ -194,11 +195,11 @@ class TransformView: NSView {
         drawBorder()
     }
     
-    override var flipped : Bool{
+    override var isFlipped : Bool{
         return true
     }
     
-    func tick(timer: NSTimer) {
+    func tick(_ timer: Timer) {
         guard let animator = animationFunction else {
             return
         }
@@ -211,7 +212,7 @@ class TransformView: NSView {
     }
     
     
-    func translationAnimator(from from: CGPoint, to: CGPoint) -> () -> Bool {
+    func translationAnimator(from: CGPoint, to: CGPoint) -> () -> Bool {
         translation = from
 
         let delta = CGPoint(x: (to.x - from.x) / animationSteps,
@@ -233,7 +234,7 @@ class TransformView: NSView {
     }
     
     
-    func rotationAnimator(from from: CGFloat, to: CGFloat) -> () -> Bool {
+    func rotationAnimator(from: CGFloat, to: CGFloat) -> () -> Bool {
         rotation = from
         
         let delta = (to - from) / animationSteps
@@ -250,7 +251,7 @@ class TransformView: NSView {
     }
     
 
-    func scaleAnimator(from from: CGSize, to: CGSize) -> () -> Bool {
+    func scaleAnimator(from: CGSize, to: CGSize) -> () -> Bool {
         scale = from
 
         let delta = CGSize(width: (to.width - from.width) / animationSteps,
@@ -271,7 +272,7 @@ class TransformView: NSView {
         }
     }
     
-    func compositeAnimator(animations: [ () -> Bool ]) -> () -> Bool {
+    func compositeAnimator(_ animations: [ () -> Bool ]) -> () -> Bool {
         guard var currentAnimation = animations.first else {
             return {
                 return true // no animations, so we're done
@@ -283,7 +284,7 @@ class TransformView: NSView {
         return {
             if currentAnimation() {
                 // move to the next one
-                animatorIndex++
+                animatorIndex += 1
 
                 // run out?
                 if animatorIndex >= animations.count {
@@ -328,7 +329,7 @@ class TransformView: NSView {
         
         animationFunction = compositeAnimator(things)
 
-        animationTimer = NSTimer.scheduledTimerWithTimeInterval(1 / 30, target: self, selector: #selector(TransformView.tick(_:)), userInfo: nil, repeats: true)
+        animationTimer = Timer.scheduledTimer(timeInterval: 1 / 30, target: self, selector: #selector(TransformView.tick(_:)), userInfo: nil, repeats: true)
     }
     
     

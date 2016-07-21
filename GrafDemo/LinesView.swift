@@ -3,10 +3,10 @@ import Cocoa
 class LinesView : NSView {
 
      enum RenderMode: Int {
-        case SinglePath     // make one path manually and stroke it
-        case AddLines       // make one path via CGPathAddLines
-        case MultiplePaths  // one stroke per line segment
-        case Segments       // use CGContextStrokeLineSegments
+        case singlePath     // make one path manually and stroke it
+        case addLines       // make one path via CGPathAddLines
+        case multiplePaths  // one stroke per line segment
+        case segments       // use CGContextStrokeLineSegments
     }
     
    var preRenderHook: ((LinesView, CGContext) -> ())? {
@@ -21,7 +21,7 @@ class LinesView : NSView {
         }
     }
     
-    var renderMode: RenderMode = .SinglePath {
+    var renderMode: RenderMode = .singlePath {
         didSet {
             needsDisplay = true
         }
@@ -41,8 +41,8 @@ class LinesView : NSView {
         let context = currentContext
 
         protectGState {
-            CGContextSetRGBFillColor (context, 1.0, 1.0, 1.0, 1.0) // White
-            CGContextFillRect (context, self.bounds)
+            context?.setFillColor (red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) // White
+            context?.fill (self.bounds)
         }
     }
     
@@ -50,45 +50,45 @@ class LinesView : NSView {
         let context = currentContext
         
         protectGState {
-            CGContextSetRGBStrokeColor (context, 0.0, 0.0, 0.0, 1.0) // Black
-            CGContextStrokeRect (context, self.bounds)
+            context?.setStrokeColor (red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0) // Black
+            context?.stroke (self.bounds)
         }
     }
 
 
     private func renderAsSinglePath() {
         let context = currentContext
-        let path = CGPathCreateMutable()
+        let path = CGMutablePath()
         
-        CGPathMoveToPoint (path, nil, points[0].x, points[0].y)
+        path.moveTo (nil, x: points[0].x, y: points[0].y)
         
         for i in 1 ..< points.count {
-            CGPathAddLineToPoint (path, nil, points[i].x, points[i].y)
+            path.addLineTo (nil, x: points[i].x, y: points[i].y)
         }
         
-        CGContextAddPath (context, path)
-        CGContextStrokePath (context)
+        context?.addPath (path)
+        context?.strokePath ()
     }
     
     private func renderAsSinglePathByAddingLines() {
         let context = currentContext
-        let path = CGPathCreateMutable()
+        let path = CGMutablePath()
         
-        CGPathAddLines (path, nil, self.points, self.points.count)
-        CGContextAddPath (context, path)
-        CGContextStrokePath (context)
+        path.addLines (nil, between: self.points, count: self.points.count)
+        context?.addPath (path)
+        context?.strokePath ()
     }
 
      private func renderAsMultiplePaths() {
         let context = currentContext
         
         for i in 0 ..< points.count - 1 {
-            let path = CGPathCreateMutable()
-            CGPathMoveToPoint (path, nil, points[i].x, points[i].y)
-            CGPathAddLineToPoint (path, nil, points[i + 1].x, points[i + 1].y)
+            let path = CGMutablePath()
+            path.moveTo (nil, x: points[i].x, y: points[i].y)
+            path.addLineTo (nil, x: points[i + 1].x, y: points[i + 1].y)
             
-            CGContextAddPath (context, path)
-            CGContextStrokePath (context)
+            context?.addPath (path)
+            context?.strokePath ()
         }
     }
 
@@ -103,18 +103,18 @@ class LinesView : NSView {
         }
 
         // Strokes points 0->1 2->3 4->5
-        CGContextStrokeLineSegments (context, segments, segments.count)
+        context?.strokeLineSegments (between: segments, count: segments.count)
     }
 
    private func renderPath() {
         switch renderMode {
-        case .SinglePath:
+        case .singlePath:
             renderAsSinglePath()
-        case .AddLines:
+        case .addLines:
             renderAsSinglePathByAddingLines()
-        case .MultiplePaths:
+        case .multiplePaths:
             renderAsMultiplePaths()
-        case .Segments:
+        case .segments:
             renderAsSegments()
         }
     }
@@ -122,15 +122,15 @@ class LinesView : NSView {
 
     // --------------------------------------------------
     
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
         
         let context = currentContext;
         
         drawNiceBackground()
         
         protectGState() {
-            NSColor.greenColor().set()
+            NSColor.green().set()
             
             if let hook = self.preRenderHook {
                 hook(self, context!)
@@ -139,7 +139,7 @@ class LinesView : NSView {
         }
         
         if (showLogicalPath) {
-            CGContextSetRGBStrokeColor (context, 1.0, 1.0, 1.0, 1.0) // White
+            context?.setStrokeColor (red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) // White
             renderPath()
         }
         
@@ -147,16 +147,16 @@ class LinesView : NSView {
     }
     
     // Behave more like iOS, or most sane toolkits.
-    override var flipped: Bool {
+    override var isFlipped: Bool {
         return true
     }
     
     // Which point of the multi-segment line is close to the mouse point?
-    private func pointIndexForMouse (mousePoint: CGPoint) -> Int? {
+    private func pointIndexForMouse (_ mousePoint: CGPoint) -> Int? {
         let kClickTolerance: Float = 10.0
         var pointIndex: Int? = nil
         
-        for (index, point) in points.enumerate() {
+        for (index, point) in points.enumerated() {
             let distance = hypotf(Float(mousePoint.x - point.x),
                 Float(mousePoint.y - point.y))
             if distance < kClickTolerance {
@@ -168,22 +168,22 @@ class LinesView : NSView {
         return pointIndex
     }
     
-    override func mouseDown (event: NSEvent) {
-        let localPoint = self.convertPoint(event.locationInWindow, fromView: nil)
+    override func mouseDown (_ event: NSEvent) {
+        let localPoint = self.convert(event.locationInWindow, from: nil)
         
         draggedPointIndex = self.pointIndexForMouse(localPoint)
         needsDisplay = true
     }
     
-    override func mouseDragged (event: NSEvent) {
+    override func mouseDragged (_ event: NSEvent) {
         if let pointIndex = draggedPointIndex {
-            let localPoint = self.convertPoint(event.locationInWindow, fromView: nil)
+            let localPoint = self.convert(event.locationInWindow, from: nil)
             points[pointIndex] = localPoint
             needsDisplay = true
         }
     }
     
-    override func mouseUp (event: NSEvent) {
+    override func mouseUp (_ event: NSEvent) {
         draggedPointIndex = nil
     }
 }

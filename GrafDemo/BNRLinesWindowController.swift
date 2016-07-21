@@ -43,23 +43,23 @@ public class BNRLinesWindowController: NSWindowController {
         
         linePhaseBox.target = self
         linePhaseBox.action = #selector(BNRLinesWindowController.refreshViews(_:))
-        linePhaseBox.enabled = false
+        linePhaseBox.isEnabled = false
     }
     
     // Called by the line view prior to constructing and stroking the example path
-    public func setupContext (context: CGContext!) {
-        CGContextSetLineWidth (context, CGFloat(lineWidthSlider.floatValue))
-        CGContextSetMiterLimit (context, CGFloat(miterLimitSlider.floatValue))
-        CGContextSetLineCap (context, CGLineCap(rawValue: Int32(endCapPopUp.indexOfSelectedItem))!)
-        CGContextSetLineJoin (context, CGLineJoin(rawValue: Int32(lineJoinPopUp.indexOfSelectedItem))!)
+    public func setupContext (_ context: CGContext!) {
+        context.setLineWidth (CGFloat(lineWidthSlider.floatValue))
+        context.setMiterLimit (CGFloat(miterLimitSlider.floatValue))
+        context.setLineCap (CGLineCap(rawValue: Int32(endCapPopUp.indexOfSelectedItem))!)
+        context.setLineJoin (CGLineJoin(rawValue: Int32(lineJoinPopUp.indexOfSelectedItem))!)
         
         if self.lineAlphaCheckbox.state == NSOnState {
-            NSColor.blueColor().colorWithAlphaComponent(0.50).set()
+            NSColor.blue().withAlphaComponent(0.50).set()
         } else {
-            NSColor.blueColor().set()
+            NSColor.blue().set()
         }
         
-        if linePhaseBox.enabled {
+        if linePhaseBox.isEnabled {
             let phase = CGFloat(linePhaseSlider.floatValue)
             let lengths = [
                 dash0Slider.floatValue, space0Slider.floatValue,
@@ -67,24 +67,24 @@ public class BNRLinesWindowController: NSWindowController {
                 dash2Slider.floatValue, space2Slider.floatValue
             ].map { CGFloat($0) }
             
-            CGContextSetLineDash (context, phase, lengths, lengths.count)
+            context.setLineDash (phase: phase, lengths: lengths, count: lengths.count)
         }
     }
 
     // A change was made to a control that affects what the render hook uses.
     // Don't care what the control was, just cause a redraw to happen.
-    @IBAction func refreshViews(smarf: NSControl) {
+    @IBAction func refreshViews(_ smarf: NSControl) {
         linesView.needsDisplay = true
         swiftLinesView.needsDisplay = true
     }
     
     // Two of the checkboxes actually change the lines view configuration.
-    @IBAction func toggleShowLogicalPath (sender: NSButton) {
+    @IBAction func toggleShowLogicalPath (_ sender: NSButton) {
         linesView.showLogicalPath = (sender.state == NSOnState)
         swiftLinesView.showLogicalPath = (sender.state == NSOnState)
     }
     
-    @IBAction func changeRenderMode (sender: NSPopUpButton) {
+    @IBAction func changeRenderMode (_ sender: NSPopUpButton) {
         linesView.renderMode = BNRLinesViewRenderMode(rawValue: sender.indexOfSelectedItem)!
         swiftLinesView.renderMode = LinesView.RenderMode(rawValue: sender.indexOfSelectedItem)!
     }
