@@ -30,7 +30,7 @@ class BNRArcTypesWindowController: NSWindowController {
         updateSliderLabels()
     }
     
-    private func updateSliderLabels() {
+    fileprivate func updateSliderLabels() {
         let startStringValue = NSString(format: "%0.2f", arcEditingView.startAngle)
         let endStringValue = NSString(format: "%0.2f", arcEditingView.endAngle)
 

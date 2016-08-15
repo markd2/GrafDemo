@@ -40,42 +40,42 @@ enum ChunkType {
     
     func controlColor() -> NSColor {
         switch self {
-            case .moveTo: return NSColor.yellow()
-            case .lineTo: return NSColor.green()
-            case .curveTo: return NSColor.blue()
-            case .quadCurveTo: return NSColor.orange()
-            case .close: return NSColor.purple()
-            case .arc: return NSColor.red()
-            case .arcToPoint: return NSColor.lightGray()
-            case .relativeArc: return NSColor.magenta()
+            case .moveTo: return NSColor.yellow
+            case .lineTo: return NSColor.green
+            case .curveTo: return NSColor.blue
+            case .quadCurveTo: return NSColor.orange
+            case .close: return NSColor.purple
+            case .arc: return NSColor.red
+            case .arcToPoint: return NSColor.lightGray
+            case .relativeArc: return NSColor.magenta
         }
     }
     
     func appendToPath(_ path: CGMutablePath) {
         switch self {
         case .moveTo(let point):
-            path.moveTo(nil, x: point.x, y: point.y)
+            path.move(to: point)
             
         case .lineTo(let point):
-            path.addLineTo(nil, x: point.x, y: point.y)
+            path.addLine(to: point)
             
         case .curveTo(let point, let control1, let control2):
-            path.addCurve(nil, cp1x: control1.x, cp1y: control1.y, cp2x: control2.x, cp2y: control2.y, endingAtX: point.x, y: point.y)
-            
+            path.addCurve(to: point, control1: control1, control2: control2)
+                        
         case .quadCurveTo(let point, let control):
-            path.addQuadCurve(nil, cpx: control.x, cpy: control.y, endingAtX: point.x, y: point.y)
+            path.addQuadCurve(to: point, control: control)
             
         case .close:
             path.closeSubpath()
         
         case .arc(let center, let radius, let startAngle, let endAngle, let clockwise):
-            path.addArc(nil, x: center.x, y: center.y, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: clockwise)
+            path.addArc(center: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: clockwise)
             
-        case arcToPoint(let control1, let control2, let radius):
-            path.addArc(nil, x1: control1.x, y1: control1.y, x2: control2.x, y2: control2.y, radius: radius)
+        case .arcToPoint(let control1, let control2, let radius):
+            path.addArc(tangent1End: control1, tangent2End: control2, radius: radius)
 
-        case relativeArc(let center, let radius, let startAngle, let deltaAngle):
-            path.addRelativeArc(matrix: nil, x: center.x, y: center.y, radius: radius, startAngle: startAngle, delta: deltaAngle)
+        case .relativeArc(let center, let radius, let startAngle, let deltaAngle):
+            path.addRelativeArc(center: center, radius: radius, startAngle: startAngle, delta: deltaAngle)
         }
     }
     
@@ -127,11 +127,11 @@ enum ChunkType {
 
 class PathSamplerView: NSView {
     var chunks : [ChunkType] = []  // Love ya, Brian
-    private let BoxSize: CGFloat = 10.0
+    fileprivate let BoxSize: CGFloat = 10.0
 
-    private var trackingChunk: ChunkType?
-    private var trackingChunkIndex: Int?
-    private var trackingChunkElementIndex: Int?
+    fileprivate var trackingChunk: ChunkType?
+    fileprivate var trackingChunkIndex: Int?
+    fileprivate var trackingChunkElementIndex: Int?
     
     
     @IBAction func dumpChunks(_: AnyObject?) {
@@ -141,14 +141,14 @@ class PathSamplerView: NSView {
     }
     
 
-    private func boxForPoint(_ point: CGPoint) -> CGRect {
+    fileprivate func boxForPoint(_ point: CGPoint) -> CGRect {
         let boxxy = CGRect(x: point.x - BoxSize / 2.0,
             y: point.y - BoxSize / 2.0,
             width: BoxSize, height: BoxSize)
         return boxxy
     }
     
-    private func drawBoxAt(_ point: CGPoint, color: NSColor) {
+    fileprivate func drawBoxAt(_ point: CGPoint, color: NSColor) {
         let rect = boxForPoint(point);
         
         protectGState {
@@ -159,22 +159,22 @@ class PathSamplerView: NSView {
     }
     
     
-    private func drawBackground() {
+    fileprivate func drawBackground() {
         let rect = bounds
 
         protectGState {
             self.currentContext?.addRect(rect)
-            NSColor.white().set()
+            NSColor.white.set()
             self.currentContext?.fillPath()
         }
     }
     
     
-    private func drawBorder() {
+    fileprivate func drawBorder() {
         let context = currentContext
         
         protectGState {
-            NSColor.black().set()
+            NSColor.black.set()
             context?.stroke (self.bounds)
         }
     }
@@ -226,14 +226,14 @@ class PathSamplerView: NSView {
     }
     
     
-    private func startDrag(_ chunk: ChunkType, _ chunkIndex: Int, _ controlPointIndex: Int) {
+    fileprivate func startDrag(_ chunk: ChunkType, _ chunkIndex: Int, _ controlPointIndex: Int) {
         trackingChunk = chunk
         trackingChunkIndex = chunkIndex
         trackingChunkElementIndex = controlPointIndex
     }
     
     
-    private func updateDragWithPoint(_ point: CGPoint) {
+    fileprivate func updateDragWithPoint(_ point: CGPoint) {
         guard let trackingChunk = self.trackingChunk,
             let trackingChunkElementIndex = self.trackingChunkElementIndex,
             let trackingChunkIndex = self.trackingChunkIndex else { return }
@@ -245,7 +245,7 @@ class PathSamplerView: NSView {
     }
     
     
-    override func mouseDown (_ event: NSEvent) {
+    override func mouseDown (with event: NSEvent) {
         let localPoint = self.convert(event.locationInWindow, from: nil)
         
         for (chunkIndex, chunk) in chunks.enumerated() {
@@ -258,13 +258,13 @@ class PathSamplerView: NSView {
         }
     }
     
-    override func mouseDragged (_ event: NSEvent) {
+    override func mouseDragged (with event: NSEvent) {
         let localPoint = self.convert(event.locationInWindow, from: nil)
         updateDragWithPoint(localPoint)
     }
     
     
-    override func mouseUp (_ event: NSEvent) {
+    override func mouseUp (with event: NSEvent) {
         trackingChunk = nil
         trackingChunkIndex = nil
         trackingChunkElementIndex = nil

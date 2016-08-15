@@ -8,7 +8,7 @@
 
 import Cocoa
 
-public class BNRLinesWindowController: NSWindowController {
+open class BNRLinesWindowController: NSWindowController {
     @IBOutlet weak var linesView: BNRLinesView!
     @IBOutlet weak var swiftLinesView: LinesView!
     
@@ -30,7 +30,7 @@ public class BNRLinesWindowController: NSWindowController {
     @IBOutlet weak var dash2Slider: NSSlider!
     @IBOutlet weak var space2Slider: NSSlider!
     
-    public override func awakeFromNib() {
+    open override func awakeFromNib() {
         linesView.preRenderHook = {
             linesView, cgContext in
             self.setupContext(cgContext)
@@ -47,16 +47,16 @@ public class BNRLinesWindowController: NSWindowController {
     }
     
     // Called by the line view prior to constructing and stroking the example path
-    public func setupContext (_ context: CGContext!) {
+    open func setupContext (_ context: CGContext!) {
         context.setLineWidth (CGFloat(lineWidthSlider.floatValue))
         context.setMiterLimit (CGFloat(miterLimitSlider.floatValue))
         context.setLineCap (CGLineCap(rawValue: Int32(endCapPopUp.indexOfSelectedItem))!)
         context.setLineJoin (CGLineJoin(rawValue: Int32(lineJoinPopUp.indexOfSelectedItem))!)
         
         if self.lineAlphaCheckbox.state == NSOnState {
-            NSColor.blue().withAlphaComponent(0.50).set()
+            NSColor.blue.withAlphaComponent(0.50).set()
         } else {
-            NSColor.blue().set()
+            NSColor.blue.set()
         }
         
         if linePhaseBox.isEnabled {
@@ -67,7 +67,7 @@ public class BNRLinesWindowController: NSWindowController {
                 dash2Slider.floatValue, space2Slider.floatValue
             ].map { CGFloat($0) }
             
-            context.setLineDash (phase: phase, lengths: lengths, count: lengths.count)
+            context.setLineDash (phase: phase, lengths: lengths)
         }
     }
 
