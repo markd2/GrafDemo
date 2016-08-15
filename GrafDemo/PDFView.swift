@@ -12,7 +12,7 @@ class PDFView: NSView {
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
 
-        NSColor.white().set()
+        NSColor.white.set()
         NSRectFill(bounds)
         
         if let pdf = pdfDocument {
@@ -21,7 +21,7 @@ class PDFView: NSView {
             currentContext?.drawPDFPage (page1!)
         }
         
-        NSColor.black().set()
+        NSColor.black.set()
         NSFrameRect(bounds)
     }
 }

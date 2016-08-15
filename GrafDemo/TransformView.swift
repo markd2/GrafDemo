@@ -2,31 +2,31 @@ import Cocoa
 
 class TransformView: NSView {
 
-    private let kBig: CGFloat = 10000
-    private let animationSteps: CGFloat = 15
-    private var useContextTransforms = false
+    fileprivate let kBig: CGFloat = 10000
+    fileprivate let animationSteps: CGFloat = 15
+    fileprivate var useContextTransforms = false
     
-    private var animationTimer: Timer!
+    fileprivate var animationTimer: Timer!
     
-    private var translation = CGPoint() {
+    fileprivate var translation = CGPoint() {
         didSet {
             needsDisplay = true
         }
     }
     
-    private var rotation: CGFloat = 0 {
+    fileprivate var rotation: CGFloat = 0 {
         didSet {
             needsDisplay = true
         }
     }
     
-    private var scale = CGSize(width: 1.0, height: 1.0) {
+    fileprivate var scale = CGSize(width: 1.0, height: 1.0) {
         didSet {
             needsDisplay = true
         }
     }
     
-    private var animationFunction: (() -> Bool)?  // returns true when finished
+    fileprivate var animationFunction: (() -> Bool)?  // returns true when finished
 
     // until get a fancy UI
     var shouldTranslate = true
@@ -40,30 +40,30 @@ class TransformView: NSView {
     }
 
     // TODO(markd 2015-07-07) this common stuff could use a nice refactoring.
-    private func drawBackground() {
+    fileprivate func drawBackground() {
         let rect = bounds
 
         protectGState {
             self.currentContext?.addRect(rect)
-            NSColor.white().set()
+            NSColor.white.set()
             self.currentContext?.fillPath()
         }
     }
     
     
-    private func drawBorder() {
+    fileprivate func drawBorder() {
         let context = currentContext
         
         protectGState {
-            NSColor.black().set()
+            NSColor.black.set()
             context?.stroke (self.bounds)
         }
     }
     
-    private func drawGridLinesWithStride(_ strideLength: CGFloat, withLabels: Bool, context: CGContext) {
+    fileprivate func drawGridLinesWithStride(_ strideLength: CGFloat, withLabels: Bool, context: CGContext) {
         let font = NSFont.systemFont(ofSize: 10.0)
 
-        let darkGray = NSColor.darkGray().withAlphaComponent(0.3)
+        let darkGray = NSColor.darkGray.withAlphaComponent(0.3)
 
         let textAttributes: [String : AnyObject] = [ NSFontAttributeName : font,
             NSForegroundColorAttributeName: darkGray]
@@ -102,14 +102,14 @@ class TransformView: NSView {
         }
     }
     
-    private func drawGrid() {
+    fileprivate func drawGrid() {
         let context = currentContext!
         
         protectGState {
             context.setLineWidth (0.5)
             
-            let lightGray = NSColor.lightGray().withAlphaComponent(0.3)
-            let darkGray = NSColor.darkGray().withAlphaComponent(0.3)
+            let lightGray = NSColor.lightGray.withAlphaComponent(0.3)
+            let darkGray = NSColor.darkGray.withAlphaComponent(0.3)
 
             
             // Light grid lines every 10 points
@@ -134,7 +134,7 @@ class TransformView: NSView {
             let verticalEnd = CGPoint (x: bounds.minX + 0.25, y: bounds.maxY)
             
             context.setLineWidth (2.0)
-            NSColor.black().setStroke()
+            NSColor.black.setStroke()
             context.moveTo (x: -self.kBig, y: start.y)
             context.addLineTo (x: self.kBig, y: horizontalEnd.y)
             
@@ -145,11 +145,11 @@ class TransformView: NSView {
         }
     }
     
-    private func applyTransforms() {
+    fileprivate func applyTransforms() {
         
         if useContextTransforms {
             currentContext?.translate(x: translation.x, y: translation.y)
-            currentContext?.rotate(byAngle: rotation)
+            currentContext?.rotate(by: rotation)
             currentContext?.scale(x: scale.width, y: scale.height)
             
         } else { // use matrix transforms
@@ -167,19 +167,19 @@ class TransformView: NSView {
         
     }
     
-    private func drawPath() {
+    fileprivate func drawPath() {
         guard let hat = RanchLogoPath() else { return }
 
         var flipTransform = AffineTransform.identity
         let bounds = hat.bounds
         flipTransform.translate(x: 0.0, y: bounds.height * 4)
         flipTransform.scale(x: 2.0, y: -2.0)
-        hat.transform(using: flipTransform)
+        hat.transform(using: flipTransform as NSAffineTransform)
 
-        NSColor.orange().set()
+        NSColor.orange.set()
         hat.fill()
         
-        NSColor.black().set()
+        NSColor.black.set()
         hat.stroke()
     }
     
@@ -212,7 +212,7 @@ class TransformView: NSView {
     }
     
     
-    func translationAnimator(from: CGPoint, to: CGPoint) -> () -> Bool {
+    func translationAnimator(_ from: CGPoint, to: CGPoint) -> () -> Bool {
         translation = from
 
         let delta = CGPoint(x: (to.x - from.x) / animationSteps,
@@ -234,7 +234,7 @@ class TransformView: NSView {
     }
     
     
-    func rotationAnimator(from: CGFloat, to: CGFloat) -> () -> Bool {
+    func rotationAnimator(_ from: CGFloat, to: CGFloat) -> () -> Bool {
         rotation = from
         
         let delta = (to - from) / animationSteps
@@ -251,7 +251,7 @@ class TransformView: NSView {
     }
     
 
-    func scaleAnimator(from: CGSize, to: CGSize) -> () -> Bool {
+    func scaleAnimator(_ from: CGSize, to: CGSize) -> () -> Bool {
         scale = from
 
         let delta = CGSize(width: (to.width - from.width) / animationSteps,
@@ -307,13 +307,13 @@ class TransformView: NSView {
         
         let translateFrom = CGPoint()
         let translateTo = CGPoint(x: 200, y: 100)
-        let translator = translationAnimator(from: translateFrom, to: translateTo)
+        let translator = translationAnimator(translateFrom, to: translateTo)
         
-        let rotator = rotationAnimator(from: 0.0, to: rotation + π / 12)
+        let rotator = rotationAnimator(0.0, to: rotation + π / 12)
         
         let scaleFrom = CGSize(width: 1.0, height: 1.0)
         let scaleTo = CGSize(width: 1.5, height: 0.75)
-        let scaler = scaleAnimator(from: scaleFrom, to: scaleTo)
+        let scaler = scaleAnimator(scaleFrom, to: scaleTo)
         
         var things: [(() -> Bool)] = []
 

@@ -27,17 +27,17 @@ class LinesView : NSView {
         }
     }
     
-    private var points: [CGPoint] = [
+    fileprivate var points: [CGPoint] = [
         CGPoint(x: 17, y: 400),
         CGPoint(x: 175, y: 20),
         CGPoint(x: 330, y: 275),
         CGPoint(x: 150, y: 371),
     ]
     
-    private var draggedPointIndex: Int?
+    fileprivate var draggedPointIndex: Int?
     
 
-    private func drawNiceBackground() {
+    fileprivate func drawNiceBackground() {
         let context = currentContext
 
         protectGState {
@@ -46,7 +46,7 @@ class LinesView : NSView {
         }
     }
     
-    private func drawNiceBorder() {
+    fileprivate func drawNiceBorder() {
         let context = currentContext
         
         protectGState {
@@ -56,7 +56,7 @@ class LinesView : NSView {
     }
 
 
-    private func renderAsSinglePath() {
+    fileprivate func renderAsSinglePath() {
         let context = currentContext
         let path = CGMutablePath()
         
@@ -70,7 +70,7 @@ class LinesView : NSView {
         context?.strokePath ()
     }
     
-    private func renderAsSinglePathByAddingLines() {
+    fileprivate func renderAsSinglePathByAddingLines() {
         let context = currentContext
         let path = CGMutablePath()
         
@@ -79,7 +79,7 @@ class LinesView : NSView {
         context?.strokePath ()
     }
 
-     private func renderAsMultiplePaths() {
+     fileprivate func renderAsMultiplePaths() {
         let context = currentContext
         
         for i in 0 ..< points.count - 1 {
@@ -92,7 +92,7 @@ class LinesView : NSView {
         }
     }
 
-    private func renderAsSegments() {
+    fileprivate func renderAsSegments() {
         let context = currentContext
         
         var segments: [CGPoint] = []
@@ -106,7 +106,7 @@ class LinesView : NSView {
         context?.strokeLineSegments (between: segments, count: segments.count)
     }
 
-   private func renderPath() {
+   fileprivate func renderPath() {
         switch renderMode {
         case .singlePath:
             renderAsSinglePath()
@@ -130,7 +130,7 @@ class LinesView : NSView {
         drawNiceBackground()
         
         protectGState() {
-            NSColor.green().set()
+            NSColor.green.set()
             
             if let hook = self.preRenderHook {
                 hook(self, context!)
@@ -152,7 +152,7 @@ class LinesView : NSView {
     }
     
     // Which point of the multi-segment line is close to the mouse point?
-    private func pointIndexForMouse (_ mousePoint: CGPoint) -> Int? {
+    fileprivate func pointIndexForMouse (_ mousePoint: CGPoint) -> Int? {
         let kClickTolerance: Float = 10.0
         var pointIndex: Int? = nil
         
@@ -168,14 +168,14 @@ class LinesView : NSView {
         return pointIndex
     }
     
-    override func mouseDown (_ event: NSEvent) {
+    override func mouseDown (with event: NSEvent) {
         let localPoint = self.convert(event.locationInWindow, from: nil)
         
         draggedPointIndex = self.pointIndexForMouse(localPoint)
         needsDisplay = true
     }
     
-    override func mouseDragged (_ event: NSEvent) {
+    override func mouseDragged (with event: NSEvent) {
         if let pointIndex = draggedPointIndex {
             let localPoint = self.convert(event.locationInWindow, from: nil)
             points[pointIndex] = localPoint
@@ -183,7 +183,7 @@ class LinesView : NSView {
         }
     }
     
-    override func mouseUp (_ event: NSEvent) {
+    override func mouseUp (with event: NSEvent) {
         draggedPointIndex = nil
     }
 }
