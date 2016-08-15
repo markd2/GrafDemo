@@ -72,8 +72,8 @@ class TransformView: NSView {
         for x in stride(from: bounds.midX - kBig, to: kBig, by: strideLength) {
             let start = CGPoint(x: x + 0.25, y: -kBig)
             let end = CGPoint(x: x + 0.25, y: kBig )
-            context.moveTo (x: start.x, y: start.y)
-            context.addLineTo (x: end.x, y: end.y)
+            context.move (to: start)
+            context.addLine (to: end)
             context.strokePath ()
             
             if (withLabels) {
@@ -88,8 +88,8 @@ class TransformView: NSView {
         for y in stride(from: bounds.minY - kBig, to: kBig, by: strideLength) {
             let start = CGPoint(x: -kBig, y: y + 0.25)
             let end = CGPoint(x: kBig, y: y + 0.25)
-            context.moveTo (x: start.x, y: start.y)
-            context.addLineTo (x: end.x, y: end.y)
+            context.move (to: start)
+            context.addLine (to: end)
             context.strokePath ()
 
             if (withLabels) {
@@ -135,11 +135,11 @@ class TransformView: NSView {
             
             context.setLineWidth (2.0)
             NSColor.black.setStroke()
-            context.moveTo (x: -self.kBig, y: start.y)
-            context.addLineTo (x: self.kBig, y: horizontalEnd.y)
+            context.move (to: CGPoint(x: -self.kBig, y: start.y))
+            context.addLine (to: CGPoint(x: self.kBig, y: horizontalEnd.y))
             
-            context.moveTo (x: start.x, y: -self.kBig)
-            context.addLineTo (x: verticalEnd.x, y: self.kBig)
+            context.move (to: CGPoint(x: start.x, y: -self.kBig))
+            context.addLine (to: CGPoint(x: verticalEnd.x, y: self.kBig))
             
             context.strokePath ()
         }
@@ -148,21 +148,21 @@ class TransformView: NSView {
     fileprivate func applyTransforms() {
         
         if useContextTransforms {
-            currentContext?.translate(x: translation.x, y: translation.y)
+            currentContext?.translateBy(x: translation.x, y: translation.y)
             currentContext?.rotate(by: rotation)
-            currentContext?.scale(x: scale.width, y: scale.height)
+            currentContext?.scaleBy(x: scale.width, y: scale.height)
             
         } else { // use matrix transforms
             let identity = CGAffineTransform.identity
-            let shiftingCenter = identity.translateBy(x: translation.x, y: translation.y)
-            let rotating = shiftingCenter.rotate(self.rotation)
-            let scaling = rotating.scaleBy(x: scale.width, y: scale.height)
+            let shiftingCenter = identity.translatedBy(x: translation.x, y: translation.y)
+            let rotating = shiftingCenter.rotated(by: self.rotation)
+            let scaling = rotating.scaledBy(x: scale.width, y: scale.height)
             
             // makes experimentation a little easier - just set to the transform you want to apply
             // to see how it looks
             let lastTransform = scaling
             
-            currentContext?.concatCTM(lastTransform)
+            currentContext?.concatenate(lastTransform)
         }
         
     }

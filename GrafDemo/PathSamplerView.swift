@@ -54,28 +54,28 @@ enum ChunkType {
     func appendToPath(_ path: CGMutablePath) {
         switch self {
         case .moveTo(let point):
-            path.moveTo(nil, x: point.x, y: point.y)
+            path.move(to: point)
             
         case .lineTo(let point):
-            path.addLineTo(nil, x: point.x, y: point.y)
+            path.addLine(to: point)
             
         case .curveTo(let point, let control1, let control2):
-            path.addCurve(nil, cp1x: control1.x, cp1y: control1.y, cp2x: control2.x, cp2y: control2.y, endingAtX: point.x, y: point.y)
-            
+            path.addCurve(to: point, control1: control1, control2: control2)
+                        
         case .quadCurveTo(let point, let control):
-            path.addQuadCurve(nil, cpx: control.x, cpy: control.y, endingAtX: point.x, y: point.y)
+            path.addQuadCurve(to: point, control: control)
             
         case .close:
             path.closeSubpath()
         
         case .arc(let center, let radius, let startAngle, let endAngle, let clockwise):
-            path.addArc(nil, x: center.x, y: center.y, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: clockwise)
+            path.addArc(center: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: clockwise)
             
         case .arcToPoint(let control1, let control2, let radius):
-            path.addArc(center: nil, radius: radius, startAngle: control1.x, endAngle: control1.y, clockwise: control2.x, transform: control2.y)
+            path.addArc(tangent1End: control1, tangent2End: control2, radius: radius)
 
         case .relativeArc(let center, let radius, let startAngle, let deltaAngle):
-            path.addRelativeArc(matrix: nil, x: center.x, y: center.y, radius: radius, startAngle: startAngle, delta: deltaAngle)
+            path.addRelativeArc(center: center, radius: radius, startAngle: startAngle, delta: deltaAngle)
         }
     }
     

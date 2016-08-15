@@ -67,7 +67,7 @@ open class BNRLinesWindowController: NSWindowController {
                 dash2Slider.floatValue, space2Slider.floatValue
             ].map { CGFloat($0) }
             
-            context.setLineDash (phase: phase, lengths: lengths, count: lengths.count)
+            context.setLineDash (phase: phase, lengths: lengths)
         }
     }
 

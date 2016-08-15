@@ -60,10 +60,10 @@ class LinesView : NSView {
         let context = currentContext
         let path = CGMutablePath()
         
-        path.moveTo (nil, x: points[0].x, y: points[0].y)
+        path.move(to: points[0])
         
         for i in 1 ..< points.count {
-            path.addLineTo (nil, x: points[i].x, y: points[i].y)
+            path.addLine(to: points[i])
         }
         
         context?.addPath (path)
@@ -74,7 +74,7 @@ class LinesView : NSView {
         let context = currentContext
         let path = CGMutablePath()
         
-        path.addLines (nil, between: self.points, count: self.points.count)
+        path.addLines (between: self.points)
         context?.addPath (path)
         context?.strokePath ()
     }
@@ -84,8 +84,8 @@ class LinesView : NSView {
         
         for i in 0 ..< points.count - 1 {
             let path = CGMutablePath()
-            path.moveTo (nil, x: points[i].x, y: points[i].y)
-            path.addLineTo (nil, x: points[i + 1].x, y: points[i + 1].y)
+            path.move (to: points[i])
+            path.addLine (to: points[i + 1])
             
             context?.addPath (path)
             context?.strokePath ()
@@ -103,7 +103,7 @@ class LinesView : NSView {
         }
 
         // Strokes points 0->1 2->3 4->5
-        context?.strokeLineSegments (between: segments, count: segments.count)
+        context?.strokeLineSegments (between: segments)
     }
 
    fileprivate func renderPath() {
