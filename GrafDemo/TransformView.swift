@@ -69,7 +69,7 @@ class TransformView: NSView {
             NSForegroundColorAttributeName: darkGray]
 
         // draw vertical lines
-        for x in stride(from: bounds.midX - kBig, to: kBig, by: strideLength) {
+        for x in stride(from: bounds.minX - kBig, to: kBig, by: strideLength) {
             let start = CGPoint(x: x + 0.25, y: -kBig)
             let end = CGPoint(x: x + 0.25, y: kBig )
             context.move (to: start)
