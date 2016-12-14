@@ -174,7 +174,7 @@ class TransformView: NSView {
         let bounds = hat.bounds
         flipTransform.translate(x: 0.0, y: bounds.height * 4)
         flipTransform.scale(x: 2.0, y: -2.0)
-        hat.transform(using: flipTransform as NSAffineTransform)
+        hat.transform(using: flipTransform as AffineTransform)
 
         NSColor.orange.set()
         hat.fill()
