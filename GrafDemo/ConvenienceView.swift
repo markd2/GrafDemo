@@ -60,11 +60,11 @@ class ConvenienceView: NSView {
             // draw the influence lines
             NSColor.gray.set()
             let pattern: [CGFloat] = [ 1.0, 1.0 ]
-            self.currentContext?.setLineDash(phase: 0.0, lengths: pattern)
+            currentContext?.setLineDash(phase: 0.0, lengths: pattern)
 
             if type == .roundedRect {
-                self.currentContext?.move(to: topLeft)
-                self.currentContext?.addLine(to: controlPoints[2])
+                currentContext?.move(to: topLeft)
+                currentContext?.addLine(to: controlPoints[2])
                 currentContext?.strokePath()
             }
 
@@ -116,13 +116,13 @@ class ConvenienceView: NSView {
         let rect = boxForPoint(point);
         
         protectGState {
-            self.currentContext?.addRect(rect)
+            currentContext?.addRect(rect)
             color.set()
             
             if filled {
-                self.currentContext?.fillPath()
+                currentContext?.fillPath()
             } else {
-                self.currentContext?.strokePath()
+                currentContext?.strokePath()
             }
         }
     }
@@ -164,7 +164,7 @@ class ConvenienceView: NSView {
 
 extension ConvenienceView {
     override func mouseDown (with event: NSEvent) {
-        let localPoint = self.convert(event.locationInWindow, from: nil)
+        let localPoint = convert(event.locationInWindow, from: nil)
         
         for (index, point) in controlPoints.enumerated() {
             let box = boxForPoint(point)
@@ -178,7 +178,7 @@ extension ConvenienceView {
     override func mouseDragged (with event: NSEvent) {
         guard let index = draggingIndex else { return }
         
-        let localPoint = self.convert(event.locationInWindow, from: nil)
+        let localPoint = convert(event.locationInWindow, from: nil)
         
         controlPoints[index] = localPoint
         needsDisplay = true

@@ -42,7 +42,7 @@ class LinesView : NSView {
 
         protectGState {
             context?.setFillColor (red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) // White
-            context?.fill (self.bounds)
+            context?.fill (bounds)
         }
     }
     
@@ -51,7 +51,7 @@ class LinesView : NSView {
         
         protectGState {
             context?.setStrokeColor (red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0) // Black
-            context?.stroke (self.bounds)
+            context?.stroke (bounds)
         }
     }
 
@@ -74,7 +74,7 @@ class LinesView : NSView {
         let context = currentContext
         let path = CGMutablePath()
         
-        path.addLines (between: self.points)
+        path.addLines (between: points)
         context?.addPath (path)
         context?.strokePath ()
     }
@@ -132,10 +132,10 @@ class LinesView : NSView {
         protectGState() {
             NSColor.green.set()
             
-            if let hook = self.preRenderHook {
+            if let hook = preRenderHook {
                 hook(self, context!)
             }
-            self.renderPath()
+            renderPath()
         }
         
         if (showLogicalPath) {
@@ -169,15 +169,15 @@ class LinesView : NSView {
     }
     
     override func mouseDown (with event: NSEvent) {
-        let localPoint = self.convert(event.locationInWindow, from: nil)
+        let localPoint = convert(event.locationInWindow, from: nil)
         
-        draggedPointIndex = self.pointIndexForMouse(localPoint)
+        draggedPointIndex = pointIndexForMouse(localPoint)
         needsDisplay = true
     }
     
     override func mouseDragged (with event: NSEvent) {
         if let pointIndex = draggedPointIndex {
-            let localPoint = self.convert(event.locationInWindow, from: nil)
+            let localPoint = convert(event.locationInWindow, from: nil)
             points[pointIndex] = localPoint
             needsDisplay = true
         }
