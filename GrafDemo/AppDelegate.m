@@ -55,6 +55,9 @@
     [self showViewControllerNamed: @"BNRLinesWindowController"];
 } // showLinesController
 
+- (IBAction) showPathPartsController: (NSButton *) sender {
+    [self showViewControllerNamed: @"BNRPathPartsWindowController"];
+}
 
 - (IBAction) showPathController: (NSButton *) sender {
     [self showViewControllerNamed: @"BNRPathWindowController"];
