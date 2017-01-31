@@ -56,8 +56,8 @@ class ConvenienceView: NSView {
                           width: bottomRight.x - topLeft.x,
                           height: bottomRight.y - topLeft.y)
    
+        // draw the influence lines
         protectGState {
-            // draw the influence lines
             NSColor.gray.set()
             let pattern: [CGFloat] = [ 1.0, 1.0 ]
             currentContext?.setLineDash(phase: 0.0, lengths: pattern)
@@ -96,10 +96,12 @@ class ConvenienceView: NSView {
                                cornerHeight: controlDistance,
                                transform: nil)
         }
-        NSColor.black.set()
-        currentContext?.addPath(path)
-        currentContext?.strokePath()
         
+        protectGState {
+            NSColor.black.set()
+            currentContext?.addPath(path)
+            currentContext?.strokePath()
+        }
     }
 
     fileprivate let BoxSize: CGFloat = 8.0

@@ -7,6 +7,9 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="BNRPathPartsWindowController">
             <connections>
+                <outlet property="ovalView" destination="2wg-RK-SOI" id="jUQ-dX-EiW"/>
+                <outlet property="rectView" destination="S5c-gb-11i" id="l5u-DI-llW"/>
+                <outlet property="roundedRectView" destination="Sng-TR-Yiv" id="U7I-hV-bzN"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -61,6 +64,14 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2wg-RK-SOI" customClass="ConvenienceView" customModule="GrafDemo" customModuleProvider="target">
+                        <rect key="frame" x="178" y="103" width="125" height="122"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </customView>
+                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S5c-gb-11i" customClass="ConvenienceView" customModule="GrafDemo" customModuleProvider="target">
+                        <rect key="frame" x="20" y="103" width="125" height="122"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </customView>
                 </subviews>
             </view>
             <connections>
