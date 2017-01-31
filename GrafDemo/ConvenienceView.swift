@@ -47,14 +47,37 @@ class ConvenienceView: NSView {
         }
     }
     
-
-    func drawShape() {
+    
+    var controlRect: CGRect {
         let topLeft = controlPoints[0]
         let bottomRight = controlPoints[1]
         
         let rect = CGRect(x: topLeft.x, y: topLeft.y,
                           width: bottomRight.x - topLeft.x,
                           height: bottomRight.y - topLeft.y)
+        return rect
+    }
+    
+    var controlDistance: CGFloat {
+        guard type == .roundedRect else { return 0 }
+
+        let topLeft = controlPoints[0]
+        let radiusPoint = controlPoints[2]
+        
+        let xdist = topLeft.x - radiusPoint.x
+        let ydist = topLeft.y - radiusPoint.y
+        var controlDistance = sqrt(xdist * xdist + ydist * ydist)
+        
+        let rect = controlRect
+        
+        controlDistance = min(controlDistance, rect.height / 2)
+        controlDistance = min(controlDistance, rect.width / 2)
+
+        return controlDistance
+    }
+    
+
+    func drawShape() {
    
         // draw the influence lines
         protectGState {
@@ -63,13 +86,16 @@ class ConvenienceView: NSView {
             currentContext?.setLineDash(phase: 0.0, lengths: pattern)
 
             if type == .roundedRect {
+                let topLeft = controlPoints[0]
+                
                 currentContext?.move(to: topLeft)
                 currentContext?.addLine(to: controlPoints[2])
+                
                 currentContext?.strokePath()
             }
-
+            
             if type == .roundedRect || type == .oval {
-                currentContext?.stroke(rect)
+                currentContext?.stroke(controlRect)
             }
         }
 
@@ -80,18 +106,11 @@ class ConvenienceView: NSView {
         
         switch type {
         case .rect:
-            path = CGPath.init(rect: rect, transform: nil)
+            path = CGPath.init(rect: controlRect, transform: nil)
         case .oval:
-            path = CGPath.init(ellipseIn: rect, transform: nil)
+            path = CGPath.init(ellipseIn: controlRect, transform: nil)
         case .roundedRect:
-            let radiusPoint = controlPoints[2]
-            let xdist = topLeft.x - radiusPoint.x
-            let ydist = topLeft.y - radiusPoint.y
-            var controlDistance = sqrt(xdist * xdist + ydist * ydist)
-            controlDistance = min(controlDistance, rect.height / 2)
-            controlDistance = min(controlDistance, rect.width / 2)
-
-            path = CGPath.init(roundedRect: rect, 
+            path = CGPath.init(roundedRect: controlRect, 
                                cornerWidth: controlDistance, 
                                cornerHeight: controlDistance,
                                transform: nil)
