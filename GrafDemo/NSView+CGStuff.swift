@@ -13,7 +13,7 @@ extension NSView {
         }
     }
     
-    func protectGState(_ drawStuff: () -> Void) {
+    func protectGState(_ drawStuff : () -> Void) {
         currentContext?.saveGState ()
         drawStuff()
         currentContext?.restoreGState ()

@@ -1,10 +1,18 @@
 import Cocoa
 
+enum ConvenienceType {
+    case rect
+    case oval
+    case roundedRect
+}
+
+
 class ConvenienceView: NSView {
 
     var controlPoints: [CGPoint] = []
     
     var draggingIndex: Int?
+    var type = ConvenienceType.rect
     
     
     func auxiliaryPoints() -> [CGPoint] {
@@ -22,7 +30,7 @@ class ConvenienceView: NSView {
     
     func controlPointsCount() -> Int {
         // How many control points there are
-        return 3
+        return type == .roundedRect ? 3 : 2
     }
     
     func initialControlPoints() -> [CGPoint] {
@@ -30,16 +38,71 @@ class ConvenienceView: NSView {
         
         let topLeft = CGPoint(x: insetBounds.minX, y: insetBounds.minY)
         let bottomRight = CGPoint(x: insetBounds.maxX, y: insetBounds.maxY)
-        let radius = CGPoint(x: topLeft.x + 15, y: topLeft.y + 15)
         
-        return [topLeft, bottomRight, radius]
+        if type == .roundedRect {
+            let radius = CGPoint(x: topLeft.x + 15, y: topLeft.y + 15)
+            return [topLeft, bottomRight, radius]
+        } else {
+            return [topLeft, bottomRight]
+        }
     }
     
+
     func drawShape() {
-    
+        let topLeft = controlPoints[0]
+        let bottomRight = controlPoints[1]
+        
+        let rect = CGRect(x: topLeft.x, y: topLeft.y,
+                          width: bottomRight.x - topLeft.x,
+                          height: bottomRight.y - topLeft.y)
+   
+        protectGState {
+            // draw the influence lines
+            NSColor.gray.set()
+            let pattern: [CGFloat] = [ 1.0, 1.0 ]
+            self.currentContext?.setLineDash(phase: 0.0, lengths: pattern)
+
+            if type == .roundedRect {
+                self.currentContext?.move(to: topLeft)
+                self.currentContext?.addLine(to: controlPoints[2])
+                currentContext?.strokePath()
+            }
+
+            if type == .roundedRect || type == .oval {
+                currentContext?.stroke(rect)
+            }
+        }
+
+
+        // draw the shape
+        
+        let path: CGPath
+        
+        switch type {
+        case .rect:
+            path = CGPath.init(rect: rect, transform: nil)
+        case .oval:
+            path = CGPath.init(ellipseIn: rect, transform: nil)
+        case .roundedRect:
+            let radiusPoint = controlPoints[2]
+            let xdist = topLeft.x - radiusPoint.x
+            let ydist = topLeft.y - radiusPoint.y
+            var controlDistance = sqrt(xdist * xdist + ydist * ydist)
+            controlDistance = min(controlDistance, rect.height / 2)
+            controlDistance = min(controlDistance, rect.width / 2)
+
+            path = CGPath.init(roundedRect: rect, 
+                               cornerWidth: controlDistance, 
+                               cornerHeight: controlDistance,
+                               transform: nil)
+        }
+        NSColor.black.set()
+        currentContext?.addPath(path)
+        currentContext?.strokePath()
+        
     }
 
-    fileprivate let BoxSize: CGFloat = 10.0
+    fileprivate let BoxSize: CGFloat = 8.0
 
     fileprivate func boxForPoint(_ point: CGPoint) -> CGRect {
         let boxxy = CGRect(x: point.x - BoxSize / 2.0,
@@ -85,8 +148,8 @@ class ConvenienceView: NSView {
         NSColor.white.set()
         NSRectFill(bounds)
         
-        drawControlPoints()
         drawShape()
+        drawControlPoints()
         
         NSColor.black.set()
         NSFrameRect(bounds)
