@@ -44,9 +44,9 @@ class TransformView: NSView {
         let rect = bounds
 
         protectGState {
-            self.currentContext?.addRect(rect)
+            currentContext?.addRect(rect)
             NSColor.white.set()
-            self.currentContext?.fillPath()
+            currentContext?.fillPath()
         }
     }
     
@@ -56,7 +56,7 @@ class TransformView: NSView {
         
         protectGState {
             NSColor.black.set()
-            context?.stroke (self.bounds)
+            context?.stroke (bounds)
         }
     }
     
@@ -116,14 +116,14 @@ class TransformView: NSView {
             
             // Performance hack - if the transform has a rotation, speed of drawing
             // plummets, so hide the inner lines when animating.
-            if self.animationFunction == nil {
+            if animationFunction == nil {
                 lightGray.setStroke()
-                self.drawGridLinesWithStride(10, withLabels: false, context: context)
+                drawGridLinesWithStride(10, withLabels: false, context: context)
             }
             
             // darker gray lines every 100 points
             darkGray.setStroke()
-            self.drawGridLinesWithStride(100, withLabels: true, context: context)
+            drawGridLinesWithStride(100, withLabels: true, context: context)
             
             // black lines on cartesian axes
             // P.S. "AND MY AXE" -- Gimli
@@ -135,11 +135,11 @@ class TransformView: NSView {
             
             context.setLineWidth (2.0)
             NSColor.black.setStroke()
-            context.move (to: CGPoint(x: -self.kBig, y: start.y))
-            context.addLine (to: CGPoint(x: self.kBig, y: horizontalEnd.y))
+            context.move (to: CGPoint(x: -kBig, y: start.y))
+            context.addLine (to: CGPoint(x: kBig, y: horizontalEnd.y))
             
-            context.move (to: CGPoint(x: start.x, y: -self.kBig))
-            context.addLine (to: CGPoint(x: verticalEnd.x, y: self.kBig))
+            context.move (to: CGPoint(x: start.x, y: -kBig))
+            context.addLine (to: CGPoint(x: verticalEnd.x, y: kBig))
             
             context.strokePath ()
         }
@@ -155,7 +155,7 @@ class TransformView: NSView {
         } else { // use matrix transforms
             let identity = CGAffineTransform.identity
             let shiftingCenter = identity.translatedBy(x: translation.x, y: translation.y)
-            let rotating = shiftingCenter.rotated(by: self.rotation)
+            let rotating = shiftingCenter.rotated(by: rotation)
             let scaling = rotating.scaledBy(x: scale.width, y: scale.height)
             
             // makes experimentation a little easier - just set to the transform you want to apply
@@ -188,9 +188,9 @@ class TransformView: NSView {
         
         drawBackground()
         protectGState() {
-            self.applyTransforms()
-            self.drawGrid()
-            self.drawPath()
+            applyTransforms()
+            drawGrid()
+            drawPath()
         }
         drawBorder()
     }
@@ -204,10 +204,10 @@ class TransformView: NSView {
             return
         }
         if animator() {
-            self.animationTimer.invalidate()
-            self.animationTimer = nil
+            animationTimer.invalidate()
+            animationTimer = nil
             animationFunction = nil
-            self.needsDisplay = true
+            needsDisplay = true
         }
     }
     

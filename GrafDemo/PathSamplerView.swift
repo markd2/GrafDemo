@@ -152,9 +152,9 @@ class PathSamplerView: NSView {
         let rect = boxForPoint(point);
         
         protectGState {
-            self.currentContext?.addRect(rect)
+            currentContext?.addRect(rect)
             color.set()
-            self.currentContext?.fillPath()
+            currentContext?.fillPath()
         }
     }
     
@@ -163,9 +163,9 @@ class PathSamplerView: NSView {
         let rect = bounds
 
         protectGState {
-            self.currentContext?.addRect(rect)
+            currentContext?.addRect(rect)
             NSColor.white.set()
-            self.currentContext?.fillPath()
+            currentContext?.fillPath()
         }
     }
     
@@ -175,7 +175,7 @@ class PathSamplerView: NSView {
         
         protectGState {
             NSColor.black.set()
-            context?.stroke (self.bounds)
+            context?.stroke (bounds)
         }
     }
     
@@ -199,8 +199,8 @@ class PathSamplerView: NSView {
          let path = buildPath()
         
         protectGState {
-            self.currentContext?.addPath(path)
-            self.currentContext?.strokePath()
+            currentContext?.addPath(path)
+            currentContext?.strokePath()
         }
     }
     
@@ -219,7 +219,7 @@ class PathSamplerView: NSView {
         
         drawBackground()
         protectGState {
-            self.drawControlPoints()
+            drawControlPoints()
         }
         drawPath()
         drawBorder()
@@ -234,19 +234,19 @@ class PathSamplerView: NSView {
     
     
     fileprivate func updateDragWithPoint(_ point: CGPoint) {
-        guard let trackingChunk = self.trackingChunk,
-            let trackingChunkElementIndex = self.trackingChunkElementIndex,
-            let trackingChunkIndex = self.trackingChunkIndex else { return }
+        guard let trackingChunk = trackingChunk,
+            let trackingChunkElementIndex = trackingChunkElementIndex,
+            let trackingChunkIndex = trackingChunkIndex else { return }
         
         let newChunk = trackingChunk.chunkLikeMeButWithDifferentPoint(point,
             atElementIndex: trackingChunkElementIndex)
         chunks[trackingChunkIndex] = newChunk
-        self.needsDisplay = true
+        needsDisplay = true
     }
     
     
     override func mouseDown (with event: NSEvent) {
-        let localPoint = self.convert(event.locationInWindow, from: nil)
+        let localPoint = convert(event.locationInWindow, from: nil)
         
         for (chunkIndex, chunk) in chunks.enumerated() {
             for (controlPointIndex, controlPoint) in chunk.controlPoints().enumerated() {
@@ -259,7 +259,7 @@ class PathSamplerView: NSView {
     }
     
     override func mouseDragged (with event: NSEvent) {
-        let localPoint = self.convert(event.locationInWindow, from: nil)
+        let localPoint = convert(event.locationInWindow, from: nil)
         updateDragWithPoint(localPoint)
     }
     

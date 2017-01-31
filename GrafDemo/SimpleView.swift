@@ -42,7 +42,7 @@ class SimpleView: NSView {
     }
     
     func drawSloppyBorder() {
-        currentContext?.stroke (self.bounds)
+        currentContext?.stroke (bounds)
     }
     
     // --------------------------------------------------
@@ -59,30 +59,30 @@ class SimpleView: NSView {
     
     func drawNiceBackground() {
         protectGState {
-            self.currentContext?.fill (self.bounds)
+            currentContext?.fill (bounds)
         }
     }
     
     func drawNiceContents() {
-        let innerRect = self.bounds.insetBy(dx: 20.0, dy: 20.0)
+        let innerRect = bounds.insetBy(dx: 20.0, dy: 20.0)
         
         if innerRect.isEmpty {
             return
         }
         
         protectGState {
-            self.currentContext?.setFillColor (red: 0.0, green: 1.0, blue: 0.0, alpha: 1.0) // Green
-            self.currentContext?.fillEllipse (in: innerRect)
+            currentContext?.setFillColor (red: 0.0, green: 1.0, blue: 0.0, alpha: 1.0) // Green
+            currentContext?.fillEllipse (in: innerRect)
             
-            self.currentContext?.setStrokeColor (red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0) // Blue
-            self.currentContext?.setLineWidth (6.0)
-            self.currentContext?.strokeEllipse (in: innerRect)
+            currentContext?.setStrokeColor (red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0) // Blue
+            currentContext?.setLineWidth (6.0)
+            currentContext?.strokeEllipse (in: innerRect)
         }
     }
     
     func drawNiceBorder() {
         protectGState {
-            self.currentContext?.stroke (self.bounds)
+            currentContext?.stroke (bounds)
         }
     }
     
