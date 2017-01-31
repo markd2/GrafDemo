@@ -40,6 +40,7 @@
 		7DEB13171E411ADC00B578EE /* BNRPathPartsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEB13151E411ADC00B578EE /* BNRPathPartsWindowController.swift */; };
 		7DEB13181E411ADC00B578EE /* BNRPathPartsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DEB13161E411ADC00B578EE /* BNRPathPartsWindowController.xib */; };
 		7DEB131A1E411B3300B578EE /* ConvenienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEB13191E411B3300B578EE /* ConvenienceView.swift */; };
+		7DEB131C1E413FA400B578EE /* PathChunksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEB131B1E413FA400B578EE /* PathChunksView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +103,7 @@
 		7DEB13151E411ADC00B578EE /* BNRPathPartsWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BNRPathPartsWindowController.swift; sourceTree = "<group>"; };
 		7DEB13161E411ADC00B578EE /* BNRPathPartsWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRPathPartsWindowController.xib; sourceTree = "<group>"; };
 		7DEB13191E411B3300B578EE /* ConvenienceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvenienceView.swift; sourceTree = "<group>"; };
+		7DEB131B1E413FA400B578EE /* PathChunksView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathChunksView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +211,7 @@
 				7DC731171B4B3E7A00161DD1 /* PDFView.swift */,
 				7DDEBD641B4C427900FA9855 /* TransformView.swift */,
 				7DEB13191E411B3300B578EE /* ConvenienceView.swift */,
+				7DEB131B1E413FA400B578EE /* PathChunksView.swift */,
 			);
 			name = "Swift Styles";
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 				7D07800419AEEA9B00E431A5 /* SimpleView.swift in Sources */,
 				7DEB13171E411ADC00B578EE /* BNRPathPartsWindowController.swift in Sources */,
 				7D077FE319AEE01300E431A5 /* AppDelegate.m in Sources */,
+				7DEB131C1E413FA400B578EE /* PathChunksView.swift in Sources */,
 				7D9C7CCA1B49AD0C000CF769 /* PathSamplerView.swift in Sources */,
 				7D3908921A3655BB0005FA24 /* BNRLinesWindowController.swift in Sources */,
 				7D9C7CC71B499EDB000CF769 /* BNRPathWindowController.m in Sources */,

@@ -123,7 +123,7 @@ class ConvenienceView: NSView {
         }
     }
 
-    fileprivate let BoxSize: CGFloat = 8.0
+    fileprivate let BoxSize: CGFloat = 4.0
 
     fileprivate func boxForPoint(_ point: CGPoint) -> CGRect {
         let boxxy = CGRect(x: point.x - BoxSize / 2.0,
@@ -137,12 +137,13 @@ class ConvenienceView: NSView {
         let rect = boxForPoint(point);
         
         protectGState {
-            currentContext?.addRect(rect)
             color.set()
             
             if filled {
+                currentContext?.addEllipse(in: rect)
                 currentContext?.fillPath()
             } else {
+                currentContext?.addRect(rect)
                 currentContext?.strokePath()
             }
         }
@@ -188,7 +189,7 @@ extension ConvenienceView {
         let localPoint = convert(event.locationInWindow, from: nil)
         
         for (index, point) in controlPoints.enumerated() {
-            let box = boxForPoint(point)
+            let box = boxForPoint(point).insetBy(dx: -10.0, dy: -10.0)
             if box.contains(localPoint) {
                 draggingIndex = index
                 break

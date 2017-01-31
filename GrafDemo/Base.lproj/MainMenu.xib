@@ -694,19 +694,8 @@
                             <action selector="showLinesController:" target="Voe-Tx-rLC" id="CQp-cy-XNQ"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bab-6J-ltU">
-                        <rect key="frame" x="-6" y="147" width="120" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="All The Paths" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cZz-YX-0uK">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="showPathController:" target="Voe-Tx-rLC" id="4O7-Ev-fmZ"/>
-                        </connections>
-                    </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t30-Xq-8de">
-                        <rect key="frame" x="1" y="114" width="105" height="32"/>
+                        <rect key="frame" x="1" y="147" width="105" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Arcs" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QOb-6w-OLc">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -747,6 +736,17 @@
                         </buttonCell>
                         <connections>
                             <action selector="showPathPartsController:" target="Voe-Tx-rLC" id="yU8-x5-kJ8"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bab-6J-ltU">
+                        <rect key="frame" x="-3" y="114" width="117" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="All The Parts" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cZz-YX-0uK">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="showPathController:" target="Voe-Tx-rLC" id="4O7-Ev-fmZ"/>
                         </connections>
                     </button>
                 </subviews>
