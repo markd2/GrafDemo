@@ -44,9 +44,9 @@ class TransformView: NSView {
         let rect = bounds
 
         protectGState {
-            currentContext?.addRect(rect)
+            currentContext.addRect(rect)
             NSColor.white.set()
-            currentContext?.fillPath()
+            currentContext.fillPath()
         }
     }
     
@@ -56,7 +56,7 @@ class TransformView: NSView {
         
         protectGState {
             NSColor.black.set()
-            context?.stroke (bounds)
+            context.stroke (bounds)
         }
     }
     
@@ -103,7 +103,7 @@ class TransformView: NSView {
     }
     
     fileprivate func drawGrid() {
-        let context = currentContext!
+        let context = currentContext
         
         protectGState {
             context.setLineWidth (0.5)
@@ -148,9 +148,9 @@ class TransformView: NSView {
     fileprivate func applyTransforms() {
         
         if useContextTransforms {
-            currentContext?.translateBy(x: translation.x, y: translation.y)
-            currentContext?.rotate(by: rotation)
-            currentContext?.scaleBy(x: scale.width, y: scale.height)
+            currentContext.translateBy(x: translation.x, y: translation.y)
+            currentContext.rotate(by: rotation)
+            currentContext.scaleBy(x: scale.width, y: scale.height)
             
         } else { // use matrix transforms
             let identity = CGAffineTransform.identity
@@ -162,7 +162,7 @@ class TransformView: NSView {
             // to see how it looks
             let lastTransform = scaling
             
-            currentContext?.concatenate(lastTransform)
+            currentContext.concatenate(lastTransform)
         }
         
     }
