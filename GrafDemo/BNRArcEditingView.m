@@ -14,7 +14,7 @@ typedef enum {
 
 } ControlPointIndex;
 
-static const CGFloat kBoxSize = 10.0;
+static const CGFloat kBoxSize = 4.0;
 static const NSInteger kNotTrackingIndex = -1;
 
 @interface BNRArcEditingView()
@@ -283,6 +283,7 @@ static const NSInteger kNotTrackingIndex = -1;
 
     for (NSInteger i = 0; i < kControlPointCount; i++) {
         CGRect box = [self boxAtPoint: _controlPoints[i]];
+        box = CGRectInset(box, -10.0, -10.0);
         if (CGRectContainsPoint(box, localPoint)) {
             [self startDragWithControlPointIndex: (ControlPointIndex)i];
             break;
