@@ -1,6 +1,6 @@
 import Cocoa
 
-let π = CGFloat(Darwin.M_PI)
+let π = CGFloat(Double.pi)
 
 enum ChunkType {
     case moveTo(point: CGPoint)
@@ -127,7 +127,7 @@ enum ChunkType {
 
 class PathSamplerView: NSView {
     var chunks : [ChunkType] = []  // Love ya, Brian
-    fileprivate let BoxSize: CGFloat = 10.0
+    fileprivate let BoxSize: CGFloat = 6.0
 
     fileprivate var trackingChunk: ChunkType?
     fileprivate var trackingChunkIndex: Int?
@@ -140,17 +140,17 @@ class PathSamplerView: NSView {
         }
     }
     
-
+    
     fileprivate func boxForPoint(_ point: CGPoint) -> CGRect {
         let boxxy = CGRect(x: point.x - BoxSize / 2.0,
-            y: point.y - BoxSize / 2.0,
-            width: BoxSize, height: BoxSize)
+                           y: point.y - BoxSize / 2.0,
+                           width: BoxSize, height: BoxSize)
         return boxxy
     }
     
     fileprivate func drawBoxAt(_ point: CGPoint, color: NSColor) {
         let rect = boxForPoint(point);
-        
+
         protectGState {
             currentContext?.addRect(rect)
             color.set()
@@ -250,7 +250,7 @@ class PathSamplerView: NSView {
         
         for (chunkIndex, chunk) in chunks.enumerated() {
             for (controlPointIndex, controlPoint) in chunk.controlPoints().enumerated() {
-                let box = boxForPoint(controlPoint)
+                let box = boxForPoint(controlPoint).insetBy(dx: -10.0, dy: -10.0)
                 if (box.contains(localPoint)) {
                     startDrag(chunk, chunkIndex, controlPointIndex)
                 }
