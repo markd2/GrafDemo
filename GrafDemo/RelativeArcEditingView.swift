@@ -13,14 +13,14 @@ class RelativeArcEditingView: NSView {
         
         case count
     }
-
+    
     var radius: CGFloat {
         let center = controlPoints[.arcCenter]!
         let radiusHandle = controlPoints[.radiusHandle]!
         return CGFloat(hypot(Double(center.x - radiusHandle.x),
                              Double(center.y - radiusHandle.y)))
     }
-
+    
     var center: CGPoint {
         return controlPoints[.arcCenter]!
     }
@@ -144,7 +144,7 @@ class RelativeArcEditingView: NSView {
                                           y: center.y + CGFloat(radius * sin(startAngleDouble)))
             let deltaAnglePoint = CGPoint(x: center.x + CGFloat(radius * cos(deltaAngleDouble)),
                                           y: center.y + CGFloat(radius * sin(deltaAngleDouble)))
-                                          
+            
             let startAngleSegments = [center, startAnglePoint]
             let deltaAngleSegments = [center, deltaAnglePoint]
             

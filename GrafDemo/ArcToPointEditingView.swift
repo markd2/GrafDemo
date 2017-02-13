@@ -2,7 +2,7 @@ import Cocoa
 
 
 class ArcToPointEditingView: NSView {
-
+    
     enum ControlPoint: Int {
         case pathStart
         case firstSegment
@@ -15,7 +15,7 @@ class ArcToPointEditingView: NSView {
         
         case count
     }
-
+    
     var radius: CGFloat = 0
     var control1: CGPoint = CGPoint()
     var control2: CGPoint = CGPoint()
@@ -23,7 +23,7 @@ class ArcToPointEditingView: NSView {
     let boxSize = 4
     var trackingPoint: ControlPoint?
     var controlPoints = [ControlPoint: CGPoint]()
-
+    
     private func commonInit(withSize size: CGSize) {
         let defaultRadius: CGFloat = 25.0
         let margin: CGFloat = 5.0
@@ -38,7 +38,7 @@ class ArcToPointEditingView: NSView {
         
         let leftX = margin
         let rightX = size.width - margin
-    
+        
         controlPoints[.pathStart] = CGPoint(x: leftX, y: midY)
         controlPoints[.firstSegment] = CGPoint(x: leftX + lineLength, y: midY)
         controlPoints[.secondSegment] = CGPoint(x: rightX - lineLength, y: midY)
@@ -66,11 +66,11 @@ class ArcToPointEditingView: NSView {
         path.move(to: controlPoints[.pathStart]!)
         path.addLine(to: controlPoints[.firstSegment]!)
         path.addArc(tangent1End: controlPoints[.control1]!,
-	            tangent2End: controlPoints[.control2]!,
-		    radius: radius)
+                    tangent2End: controlPoints[.control2]!,
+                    radius: radius)
         path.addLine(to: controlPoints[.secondSegment]!)
         path.addLine(to: controlPoints[.pathEnd]!)
-
+        
         context.addPath(path)
         context.strokePath()
     }
@@ -104,7 +104,7 @@ class ArcToPointEditingView: NSView {
             }
         }
     }
-
+    
     // Need to dust off the trig book and figure out the proper places to draw
     // gray influence lines to beginning/ending angle
     func drawInfluenceLines() {
@@ -128,7 +128,7 @@ class ArcToPointEditingView: NSView {
             context.strokeLineSegments(between: controlSegments)
         }
     }
-
+    
     override func draw(_ rect: NSRect) {
         NSColor.white.set()
         NSRectFill(bounds)
@@ -142,7 +142,7 @@ class ArcToPointEditingView: NSView {
     
     override func mouseDown(with event: NSEvent) {
         trackingPoint = nil
-
+        
         let localPoint = convert(event.locationInWindow, from: nil)
         
         for (type, point) in controlPoints {
@@ -179,7 +179,7 @@ class ArcToPointEditingView: NSView {
     override func mouseUp(with event: NSEvent) {
         trackingPoint = nil
     }
-
+    
 }
 
 
