@@ -31,7 +31,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="702" height="295"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ayl-hG-Cps" customClass="BNRArcEditingView">
+                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ayl-hG-Cps" customClass="ArcEditingView" customModule="GrafDemo" customModuleProvider="target">
                         <rect key="frame" x="20" y="84" width="202" height="182"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </customView>

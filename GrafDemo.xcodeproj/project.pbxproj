@@ -43,6 +43,7 @@
 		7DEB131C1E413FA400B578EE /* PathChunksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEB131B1E413FA400B578EE /* PathChunksView.swift */; };
 		7DF077DF1E4FD59A00BD43F4 /* ArcToPointEditingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF077DE1E4FD59A00BD43F4 /* ArcToPointEditingView.swift */; };
 		7DF077E11E51498200BD43F4 /* RelativeArcEditingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF077E01E51498200BD43F4 /* RelativeArcEditingView.swift */; };
+		7DF077E31E515ECD00BD43F4 /* ArcEditingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF077E21E515ECD00BD43F4 /* ArcEditingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,7 @@
 		7DEB131B1E413FA400B578EE /* PathChunksView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathChunksView.swift; sourceTree = "<group>"; };
 		7DF077DE1E4FD59A00BD43F4 /* ArcToPointEditingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArcToPointEditingView.swift; sourceTree = "<group>"; };
 		7DF077E01E51498200BD43F4 /* RelativeArcEditingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelativeArcEditingView.swift; sourceTree = "<group>"; };
+		7DF077E21E515ECD00BD43F4 /* ArcEditingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArcEditingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +220,7 @@
 				7DEB131B1E413FA400B578EE /* PathChunksView.swift */,
 				7DF077DE1E4FD59A00BD43F4 /* ArcToPointEditingView.swift */,
 				7DF077E01E51498200BD43F4 /* RelativeArcEditingView.swift */,
+				7DF077E21E515ECD00BD43F4 /* ArcEditingView.swift */,
 			);
 			name = "Swift Styles";
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				7D9C7CD11B49BBAB000CF769 /* BNRArcEditingView.m in Sources */,
 				7D3908961A3655D50005FA24 /* BNRLinesView.m in Sources */,
 				7DC731181B4B3E7A00161DD1 /* PDFView.swift in Sources */,
+				7DF077E31E515ECD00BD43F4 /* ArcEditingView.swift in Sources */,
 				7D3908991A365CD20005FA24 /* BNRUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
