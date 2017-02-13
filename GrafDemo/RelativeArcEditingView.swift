@@ -1,50 +1,65 @@
 import Cocoa
 
 
-class ArcToPointEditingView: NSView {
-
+class RelativeArcEditingView: NSView {
     enum ControlPoint: Int {
         case pathStart
         case firstSegment
         case secondSegment
-        case pathEnd
+        case pathDelta
         
-        case control1
-        case control2
+        case arcCenter
         case radiusHandle
         
         case count
     }
 
-    var radius: CGFloat = 0
-    var control1: CGPoint = CGPoint()
-    var control2: CGPoint = CGPoint()
+    var radius: CGFloat {
+        let center = controlPoints[.arcCenter]!
+        let radiusHandle = controlPoints[.radiusHandle]!
+        return CGFloat(hypot(Double(center.x - radiusHandle.x),
+                             Double(center.y - radiusHandle.y)))
+    }
+
+    var center: CGPoint {
+        return controlPoints[.arcCenter]!
+    }
+    
+    
+    var startAngle: CGFloat = 0 {
+        didSet {
+            needsDisplay = true
+        }
+    }
+    var deltaAngle: CGFloat = 0 {
+        didSet {
+            needsDisplay = true
+        }
+    }
     
     let boxSize = 4
     var trackingPoint: ControlPoint?
     var controlPoints = [ControlPoint: CGPoint]()
-
+    
     private func commonInit(withSize size: CGSize) {
         let defaultRadius: CGFloat = 25.0
         let margin: CGFloat = 5.0
         let lineLength = size.width / 3.0
         
+        startAngle = 3 * (π / 4.0)
+        deltaAngle = -π / 2.0
+        
         let midX = size.width / 2.0
         let midY = size.height / 2.0
         
-        radius = defaultRadius
-        control1 = CGPoint(x: 69, y: 163)
-        control2 = CGPoint(x: 187, y: 61)
-        
         let leftX = margin
         let rightX = size.width - margin
-    
+        
         controlPoints[.pathStart] = CGPoint(x: leftX, y: midY)
         controlPoints[.firstSegment] = CGPoint(x: leftX + lineLength, y: midY)
         controlPoints[.secondSegment] = CGPoint(x: rightX - lineLength, y: midY)
-        controlPoints[.pathEnd] = CGPoint(x: rightX, y: midY)
-        controlPoints[.control1] = control1
-        controlPoints[.control2] = control2
+        controlPoints[.pathDelta] = CGPoint(x: rightX, y: midY)
+        controlPoints[.arcCenter] = CGPoint(x: midX, y: midY)
         controlPoints[.radiusHandle] = CGPoint(x: midX, y: midY - defaultRadius)
     }
     
@@ -65,12 +80,13 @@ class ArcToPointEditingView: NSView {
         
         path.move(to: controlPoints[.pathStart]!)
         path.addLine(to: controlPoints[.firstSegment]!)
-        path.addArc(tangent1End: controlPoints[.control1]!,
-	            tangent2End: controlPoints[.control2]!,
-		    radius: radius)
+        path.addRelativeArc(center: controlPoints[.arcCenter]!, 
+                            radius: radius, 
+                            startAngle: startAngle,
+                            delta: deltaAngle)
         path.addLine(to: controlPoints[.secondSegment]!)
-        path.addLine(to: controlPoints[.pathEnd]!)
-
+        path.addLine(to: controlPoints[.pathDelta]!)
+        
         context.addPath(path)
         context.strokePath()
     }
@@ -90,10 +106,10 @@ class ArcToPointEditingView: NSView {
             for (type, point) in controlPoints {
                 let color: NSColor
                 switch type {
-                case .pathStart, .firstSegment, .secondSegment, .pathEnd:
+                case .pathStart, .firstSegment, .secondSegment, .pathDelta:
                     color = NSColor.blue
-                case .control1, .control2: 
-                    color = NSColor.gray
+                case .arcCenter:
+                    color = NSColor.red
                 case .radiusHandle:
                     color = NSColor.orange
                 default:
@@ -104,31 +120,39 @@ class ArcToPointEditingView: NSView {
             }
         }
     }
-
+    
     // Need to dust off the trig book and figure out the proper places to draw
     // gray influence lines to beginning/ending angle
     func drawInfluenceLines() {
         let context = currentContext
         
+        let influenceOverspill: CGFloat = 20.0 // how many points beyond the circle
+        
         protectGState {
             NSColor.lightGray.set()
             let pattern: [CGFloat] = [2.0, 2.0]
             context.setLineDash(phase: 0.0, lengths: pattern)
-            let midX = self.bounds.midX
-            let midY = self.bounds.midY
             
-            let radiusSegments: [CGPoint] = [CGPoint(x: midX, y: midY),
-                                             controlPoints[.radiusHandle]!]
-            context.strokeLineSegments(between: radiusSegments)
+            let radius = Double(self.radius + influenceOverspill)
+            let deltaAngle = startAngle + self.deltaAngle
             
-            let controlSegments: [CGPoint] = [controlPoints[.firstSegment]!,
-                                              controlPoints[.control1]!,
-                                              controlPoints[.control1]!,
-                                              controlPoints[.control2]!]
-            context.strokeLineSegments(between: controlSegments)
+            
+            let startAngleDouble = Double(startAngle) // I love you Swift.
+            let deltaAngleDouble = Double(deltaAngle)
+            
+            let startAnglePoint = CGPoint(x: center.x + CGFloat(radius * cos(startAngleDouble)),
+                                          y: center.y + CGFloat(radius * sin(startAngleDouble)))
+            let deltaAnglePoint = CGPoint(x: center.x + CGFloat(radius * cos(deltaAngleDouble)),
+                                          y: center.y + CGFloat(radius * sin(deltaAngleDouble)))
+                                          
+            let startAngleSegments = [center, startAnglePoint]
+            let deltaAngleSegments = [center, deltaAnglePoint]
+            
+            context.strokeLineSegments(between: startAngleSegments)
+            context.strokeLineSegments(between: deltaAngleSegments)
         }
     }
-
+    
     override func draw(_ rect: NSRect) {
         NSColor.white.set()
         NSRectFill(bounds)
@@ -142,7 +166,7 @@ class ArcToPointEditingView: NSView {
     
     override func mouseDown(with event: NSEvent) {
         trackingPoint = nil
-
+        
         let localPoint = convert(event.locationInWindow, from: nil)
         
         for (type, point) in controlPoints {
@@ -160,12 +184,6 @@ class ArcToPointEditingView: NSView {
             return
         }
         
-        if trackingIndex == .radiusHandle {
-            let midX = bounds.midX
-            let midY = bounds.midY
-            radius = CGFloat(hypot(Double(midX - point.x), Double(midY - point.y)))
-        }
-        
         controlPoints[trackingIndex] = point
         
         needsDisplay = true
@@ -179,7 +197,7 @@ class ArcToPointEditingView: NSView {
     override func mouseUp(with event: NSEvent) {
         trackingPoint = nil
     }
-
+    
 }
 
 

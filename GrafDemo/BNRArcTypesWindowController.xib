@@ -35,7 +35,7 @@
                         <rect key="frame" x="20" y="84" width="202" height="182"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </customView>
-                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hhw-6C-dlx" customClass="BNRRelativeArcEditingView">
+                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hhw-6C-dlx" customClass="RelativeArcEditingView" customModule="GrafDemo" customModuleProvider="target">
                         <rect key="frame" x="250" y="84" width="202" height="182"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </customView>
