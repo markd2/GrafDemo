@@ -60,7 +60,7 @@
 }
 
 - (IBAction) showPathController: (NSButton *) sender {
-    [self showViewControllerNamed: @"BNRPathWindowController"];
+    [self showViewControllerNamed: @"PathWindowController"];
 } // showPathController
 
 - (IBAction) showArcsController: (NSButton *) sender {

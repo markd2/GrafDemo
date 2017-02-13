@@ -190,13 +190,13 @@ class PathSamplerView: NSView {
         let path = CGMutablePath()
         
         _ = chunks.map { $0.appendToPath(path) }
-
+        
         return path
     }
     
-
+    
     func drawPath() {
-         let path = buildPath()
+        let path = buildPath()
         
         protectGState {
             currentContext.addPath(path)
