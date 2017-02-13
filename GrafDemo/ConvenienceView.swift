@@ -115,7 +115,7 @@ class ConvenienceView: NSView {
                           cornerHeight: controlDistance,
                           transform: nil)
         }
-        
+
         protectGState {
             NSColor.black.set()
             currentContext.addPath(path)
@@ -123,9 +123,8 @@ class ConvenienceView: NSView {
         }
     }
 
-    fileprivate let BoxSize: CGFloat = 4.0
-
     fileprivate func boxForPoint(_ point: CGPoint) -> CGRect {
+        let BoxSize: CGFloat = 4.0
         let boxxy = CGRect(x: point.x - BoxSize / 2.0,
                            y: point.y - BoxSize / 2.0,
                            width: BoxSize, height: BoxSize)

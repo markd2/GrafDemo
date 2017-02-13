@@ -41,6 +41,9 @@
 		7DEB13181E411ADC00B578EE /* BNRPathPartsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DEB13161E411ADC00B578EE /* BNRPathPartsWindowController.xib */; };
 		7DEB131A1E411B3300B578EE /* ConvenienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEB13191E411B3300B578EE /* ConvenienceView.swift */; };
 		7DEB131C1E413FA400B578EE /* PathChunksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEB131B1E413FA400B578EE /* PathChunksView.swift */; };
+		7DF077DF1E4FD59A00BD43F4 /* ArcToPointEditingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF077DE1E4FD59A00BD43F4 /* ArcToPointEditingView.swift */; };
+		7DF077E11E51498200BD43F4 /* RelativeArcEditingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF077E01E51498200BD43F4 /* RelativeArcEditingView.swift */; };
+		7DF077E31E515ECD00BD43F4 /* ArcEditingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF077E21E515ECD00BD43F4 /* ArcEditingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +107,9 @@
 		7DEB13161E411ADC00B578EE /* BNRPathPartsWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRPathPartsWindowController.xib; sourceTree = "<group>"; };
 		7DEB13191E411B3300B578EE /* ConvenienceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvenienceView.swift; sourceTree = "<group>"; };
 		7DEB131B1E413FA400B578EE /* PathChunksView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathChunksView.swift; sourceTree = "<group>"; };
+		7DF077DE1E4FD59A00BD43F4 /* ArcToPointEditingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArcToPointEditingView.swift; sourceTree = "<group>"; };
+		7DF077E01E51498200BD43F4 /* RelativeArcEditingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelativeArcEditingView.swift; sourceTree = "<group>"; };
+		7DF077E21E515ECD00BD43F4 /* ArcEditingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArcEditingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +218,9 @@
 				7DDEBD641B4C427900FA9855 /* TransformView.swift */,
 				7DEB13191E411B3300B578EE /* ConvenienceView.swift */,
 				7DEB131B1E413FA400B578EE /* PathChunksView.swift */,
+				7DF077DE1E4FD59A00BD43F4 /* ArcToPointEditingView.swift */,
+				7DF077E01E51498200BD43F4 /* RelativeArcEditingView.swift */,
+				7DF077E21E515ECD00BD43F4 /* ArcEditingView.swift */,
 			);
 			name = "Swift Styles";
 			sourceTree = "<group>";
@@ -372,6 +381,7 @@
 				7DC7311C1B4C3DDF00161DD1 /* BNRTransformsWindowController.m in Sources */,
 				7DEB131A1E411B3300B578EE /* ConvenienceView.swift in Sources */,
 				7D3908581A3648AE0005FA24 /* BNRSimpleWindowController.m in Sources */,
+				7DF077DF1E4FD59A00BD43F4 /* ArcToPointEditingView.swift in Sources */,
 				7D39089D1A3666F60005FA24 /* BNRCheckboxBox.m in Sources */,
 				7DC6D54B1A5DA4D8007AF35B /* NSView+CGStuff.swift in Sources */,
 				7DDEBD651B4C427900FA9855 /* TransformView.swift in Sources */,
@@ -379,10 +389,12 @@
 				7D9C7CD41B4B03A9000CF769 /* BNRRelativeArcEditingView.m in Sources */,
 				7D0BA72C1A4B367B0052A633 /* LinesView.swift in Sources */,
 				7D077FE019AEE01300E431A5 /* main.m in Sources */,
+				7DF077E11E51498200BD43F4 /* RelativeArcEditingView.swift in Sources */,
 				7D9C7CCD1B49BA89000CF769 /* BNRArcTypesWindowController.swift in Sources */,
 				7D9C7CD11B49BBAB000CF769 /* BNRArcEditingView.m in Sources */,
 				7D3908961A3655D50005FA24 /* BNRLinesView.m in Sources */,
 				7DC731181B4B3E7A00161DD1 /* PDFView.swift in Sources */,
+				7DF077E31E515ECD00BD43F4 /* ArcEditingView.swift in Sources */,
 				7D3908991A365CD20005FA24 /* BNRUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
