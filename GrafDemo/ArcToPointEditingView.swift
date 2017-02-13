@@ -25,8 +25,7 @@ class ArcToPointEditingView: NSView {
     
     let boxSize = 4
     var trackingPoint: ControlPoint?
-    var controlPoints: [CGPoint] = Array<CGPoint>(repeating: CGPoint(), count: ControlPoint.count.rawValue)
-
+    var controlPoints = [ControlPoint: CGPoint]()
 
     private func commonInit(withSize size: CGSize) {
         let defaultRadius: CGFloat = 25.0
@@ -43,13 +42,13 @@ class ArcToPointEditingView: NSView {
         let leftX = margin
         let rightX = size.width - margin
     
-        controlPoints[ControlPoint.pathStart.rawValue] = CGPoint(x: leftX, y: midY)
-        controlPoints[ControlPoint.firstSegment.rawValue] = CGPoint(x: leftX + lineLength, y: midY)
-        controlPoints[ControlPoint.secondSegment.rawValue] = CGPoint(x: rightX - lineLength, y: midY)
-        controlPoints[ControlPoint.pathEnd.rawValue] = CGPoint(x: rightX, y: midY)
-        controlPoints[ControlPoint.control1.rawValue] = control1
-        controlPoints[ControlPoint.control2.rawValue] = control2
-        controlPoints[ControlPoint.radiusHandle.rawValue] = CGPoint(x: midX, y: midY - defaultRadius)
+        controlPoints[.pathStart] = CGPoint(x: leftX, y: midY)
+        controlPoints[.firstSegment] = CGPoint(x: leftX + lineLength, y: midY)
+        controlPoints[.secondSegment] = CGPoint(x: rightX - lineLength, y: midY)
+        controlPoints[.pathEnd] = CGPoint(x: rightX, y: midY)
+        controlPoints[.control1] = control1
+        controlPoints[.control2] = control2
+        controlPoints[.radiusHandle] = CGPoint(x: midX, y: midY - defaultRadius)
     }
     
     override init(frame: NSRect) {
@@ -67,11 +66,13 @@ class ArcToPointEditingView: NSView {
         
         let path = CGMutablePath()
         
-        path.move(to: controlPoints[ControlPoint.pathStart.rawValue])
-        path.addLine(to: controlPoints[ControlPoint.firstSegment.rawValue])
-        path.addArc(tangent1End: controlPoints[ControlPoint.control1.rawValue], tangent2End: controlPoints[ControlPoint.control2.rawValue], radius: radius)
-        path.addLine(to: controlPoints[ControlPoint.secondSegment.rawValue])
-        path.addLine(to: controlPoints[ControlPoint.pathEnd.rawValue])
+        path.move(to: controlPoints[.pathStart]!)
+        path.addLine(to: controlPoints[.firstSegment]!)
+        path.addArc(tangent1End: controlPoints[.control1]!,
+	            tangent2End: controlPoints[.control2]!,
+		    radius: radius)
+        path.addLine(to: controlPoints[.secondSegment]!)
+        path.addLine(to: controlPoints[.pathEnd]!)
 
         context.addPath(path)
         context.strokePath()
@@ -89,9 +90,9 @@ class ArcToPointEditingView: NSView {
         let context = currentContext
         
         protectGState {
-            for controlPoint in ControlPoint.allPoints() {
+            for (type, point) in controlPoints {
                 let color: NSColor
-                switch controlPoint {
+                switch type {
                 case .pathStart, .firstSegment, .secondSegment, .pathEnd:
                     color = NSColor.blue
                 case .control1, .control2: 
@@ -102,8 +103,7 @@ class ArcToPointEditingView: NSView {
                     color = NSColor.magenta // it's a Magenta Alert
                 }
                 color.set()
-                let rect = boxForPoint(controlPoints[controlPoint.rawValue])
-                context.fill(rect)
+                context.fill(boxForPoint(point))
             }
         }
     }
@@ -121,13 +121,13 @@ class ArcToPointEditingView: NSView {
             let midY = self.bounds.midY
             
             let radiusSegments: [CGPoint] = [CGPoint(x: midX, y: midY),
-                                             controlPoints[ControlPoint.radiusHandle.rawValue]]
+                                             controlPoints[.radiusHandle]!]
             context.strokeLineSegments(between: radiusSegments)
             
-            let controlSegments: [CGPoint] = [controlPoints[ControlPoint.firstSegment.rawValue],
-                                              controlPoints[ControlPoint.control1.rawValue],
-                                              controlPoints[ControlPoint.control1.rawValue],
-                                              controlPoints[ControlPoint.control2.rawValue]]
+            let controlSegments: [CGPoint] = [controlPoints[.firstSegment]!,
+                                              controlPoints[.control1]!,
+                                              controlPoints[.control1]!,
+                                              controlPoints[.control2]!]
             context.strokeLineSegments(between: controlSegments)
         }
     }
@@ -142,6 +142,47 @@ class ArcToPointEditingView: NSView {
         drawPath()
         drawControlPoints()
     }
+    
+    override func mouseDown(with event: NSEvent) {
+        trackingPoint = nil
+
+        let localPoint = convert(event.locationInWindow, from: nil)
+        
+        for (type, point) in controlPoints {
+            let box = boxForPoint(point).insetBy(dx: -10, dy: -10)
+            
+            if box.contains(localPoint) {
+                trackingPoint = type
+                break
+            }
+        }
+    }
+    
+    private func dragTo(point: CGPoint) {
+        guard let trackingIndex = trackingPoint else {
+            return
+        }
+        
+        if trackingIndex == .radiusHandle {
+            let midX = bounds.midX
+            let midY = bounds.midY
+            radius = CGFloat(hypot(Double(midX - point.x), Double(midY - point.y)))
+        }
+        
+        controlPoints[trackingIndex] = point
+        
+        needsDisplay = true
+    }
+    
+    override func mouseDragged(with event: NSEvent) {
+        let localPoint = convert(event.locationInWindow, from: nil)
+        dragTo(point: localPoint)
+    }
+    
+    override func mouseUp(with event: NSEvent) {
+        trackingPoint = nil
+    }
+
 }
 
 
