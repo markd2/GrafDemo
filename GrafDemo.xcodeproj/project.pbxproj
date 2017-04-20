@@ -22,8 +22,6 @@
 		7D3908961A3655D50005FA24 /* BNRLinesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3908951A3655D50005FA24 /* BNRLinesView.m */; };
 		7D3908991A365CD20005FA24 /* BNRUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3908981A365CD20005FA24 /* BNRUtilities.m */; };
 		7D39089D1A3666F60005FA24 /* BNRCheckboxBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D39089C1A3666F60005FA24 /* BNRCheckboxBox.m */; };
-		7D9C7CC71B499EDB000CF769 /* BNRPathWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D9C7CC51B499EDB000CF769 /* BNRPathWindowController.m */; };
-		7D9C7CC81B499EDB000CF769 /* BNRPathWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D9C7CC61B499EDB000CF769 /* BNRPathWindowController.xib */; };
 		7D9C7CCA1B49AD0C000CF769 /* PathSamplerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9C7CC91B49AD0C000CF769 /* PathSamplerView.swift */; };
 		7D9C7CCD1B49BA89000CF769 /* BNRArcTypesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9C7CCB1B49BA89000CF769 /* BNRArcTypesWindowController.swift */; };
 		7D9C7CCE1B49BA89000CF769 /* BNRArcTypesWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D9C7CCC1B49BA89000CF769 /* BNRArcTypesWindowController.xib */; };
@@ -41,6 +39,12 @@
 		7DEB13181E411ADC00B578EE /* BNRPathPartsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DEB13161E411ADC00B578EE /* BNRPathPartsWindowController.xib */; };
 		7DEB131A1E411B3300B578EE /* ConvenienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEB13191E411B3300B578EE /* ConvenienceView.swift */; };
 		7DEB131C1E413FA400B578EE /* PathChunksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEB131B1E413FA400B578EE /* PathChunksView.swift */; };
+		7DF077DF1E4FD59A00BD43F4 /* ArcToPointEditingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF077DE1E4FD59A00BD43F4 /* ArcToPointEditingView.swift */; };
+		7DF077E11E51498200BD43F4 /* RelativeArcEditingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF077E01E51498200BD43F4 /* RelativeArcEditingView.swift */; };
+		7DF077E31E515ECD00BD43F4 /* ArcEditingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF077E21E515ECD00BD43F4 /* ArcEditingView.swift */; };
+		7DF077E51E52437200BD43F4 /* PathWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF077E41E52437200BD43F4 /* PathWindowController.swift */; };
+		7DF077E71E52443300BD43F4 /* PathWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DF077E61E52443300BD43F4 /* PathWindowController.xib */; };
+		7DF077E91E52496E00BD43F4 /* CGPath+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF077E81E52496E00BD43F4 /* CGPath+Utilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,9 +84,6 @@
 		7D3908981A365CD20005FA24 /* BNRUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRUtilities.m; sourceTree = "<group>"; };
 		7D39089B1A3666F60005FA24 /* BNRCheckboxBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRCheckboxBox.h; sourceTree = "<group>"; };
 		7D39089C1A3666F60005FA24 /* BNRCheckboxBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRCheckboxBox.m; sourceTree = "<group>"; };
-		7D9C7CC41B499EDB000CF769 /* BNRPathWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRPathWindowController.h; sourceTree = "<group>"; };
-		7D9C7CC51B499EDB000CF769 /* BNRPathWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRPathWindowController.m; sourceTree = "<group>"; };
-		7D9C7CC61B499EDB000CF769 /* BNRPathWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRPathWindowController.xib; sourceTree = "<group>"; };
 		7D9C7CC91B49AD0C000CF769 /* PathSamplerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathSamplerView.swift; sourceTree = "<group>"; };
 		7D9C7CCB1B49BA89000CF769 /* BNRArcTypesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BNRArcTypesWindowController.swift; sourceTree = "<group>"; };
 		7D9C7CCC1B49BA89000CF769 /* BNRArcTypesWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRArcTypesWindowController.xib; sourceTree = "<group>"; };
@@ -104,6 +105,12 @@
 		7DEB13161E411ADC00B578EE /* BNRPathPartsWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRPathPartsWindowController.xib; sourceTree = "<group>"; };
 		7DEB13191E411B3300B578EE /* ConvenienceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvenienceView.swift; sourceTree = "<group>"; };
 		7DEB131B1E413FA400B578EE /* PathChunksView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathChunksView.swift; sourceTree = "<group>"; };
+		7DF077DE1E4FD59A00BD43F4 /* ArcToPointEditingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArcToPointEditingView.swift; sourceTree = "<group>"; };
+		7DF077E01E51498200BD43F4 /* RelativeArcEditingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelativeArcEditingView.swift; sourceTree = "<group>"; };
+		7DF077E21E515ECD00BD43F4 /* ArcEditingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArcEditingView.swift; sourceTree = "<group>"; };
+		7DF077E41E52437200BD43F4 /* PathWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathWindowController.swift; sourceTree = "<group>"; };
+		7DF077E61E52443300BD43F4 /* PathWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PathWindowController.xib; sourceTree = "<group>"; };
+		7DF077E81E52496E00BD43F4 /* CGPath+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPath+Utilities.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +219,9 @@
 				7DDEBD641B4C427900FA9855 /* TransformView.swift */,
 				7DEB13191E411B3300B578EE /* ConvenienceView.swift */,
 				7DEB131B1E413FA400B578EE /* PathChunksView.swift */,
+				7DF077DE1E4FD59A00BD43F4 /* ArcToPointEditingView.swift */,
+				7DF077E01E51498200BD43F4 /* RelativeArcEditingView.swift */,
+				7DF077E21E515ECD00BD43F4 /* ArcEditingView.swift */,
 			);
 			name = "Swift Styles";
 			sourceTree = "<group>";
@@ -226,9 +236,8 @@
 				7D3908571A3648AE0005FA24 /* BNRSimpleWindowController.xib */,
 				7D3908901A3655BB0005FA24 /* BNRLinesWindowController.swift */,
 				7D3908911A3655BB0005FA24 /* BNRLinesWindowController.xib */,
-				7D9C7CC41B499EDB000CF769 /* BNRPathWindowController.h */,
-				7D9C7CC51B499EDB000CF769 /* BNRPathWindowController.m */,
-				7D9C7CC61B499EDB000CF769 /* BNRPathWindowController.xib */,
+				7DF077E41E52437200BD43F4 /* PathWindowController.swift */,
+				7DF077E61E52443300BD43F4 /* PathWindowController.xib */,
 				7D9C7CCB1B49BA89000CF769 /* BNRArcTypesWindowController.swift */,
 				7D9C7CCC1B49BA89000CF769 /* BNRArcTypesWindowController.xib */,
 				7DC731191B4C3DDF00161DD1 /* BNRTransformsWindowController.h */,
@@ -248,6 +257,7 @@
 				7D39089B1A3666F60005FA24 /* BNRCheckboxBox.h */,
 				7D39089C1A3666F60005FA24 /* BNRCheckboxBox.m */,
 				7DC6D54A1A5DA4D8007AF35B /* NSView+CGStuff.swift */,
+				7DF077E81E52496E00BD43F4 /* CGPath+Utilities.swift */,
 			);
 			name = "Useful Stuff";
 			sourceTree = "<group>";
@@ -340,8 +350,8 @@
 				7D3908931A3655BB0005FA24 /* BNRLinesWindowController.xib in Resources */,
 				7D9C7CDB1B4B34BD000CF769 /* BNRPostScriptWindowController.xib in Resources */,
 				7DC7311D1B4C3DDF00161DD1 /* BNRTransformsWindowController.xib in Resources */,
+				7DF077E71E52443300BD43F4 /* PathWindowController.xib in Resources */,
 				7D3908591A3648AE0005FA24 /* BNRSimpleWindowController.xib in Resources */,
-				7D9C7CC81B499EDB000CF769 /* BNRPathWindowController.xib in Resources */,
 				7DEB13181E411ADC00B578EE /* BNRPathPartsWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,12 +376,13 @@
 				7DEB131C1E413FA400B578EE /* PathChunksView.swift in Sources */,
 				7D9C7CCA1B49AD0C000CF769 /* PathSamplerView.swift in Sources */,
 				7D3908921A3655BB0005FA24 /* BNRLinesWindowController.swift in Sources */,
-				7D9C7CC71B499EDB000CF769 /* BNRPathWindowController.m in Sources */,
 				7D9C7CDA1B4B34BD000CF769 /* BNRPostScriptWindowController.swift in Sources */,
 				7D07800119AEE08100E431A5 /* BNRSimpleView.m in Sources */,
 				7DC7311C1B4C3DDF00161DD1 /* BNRTransformsWindowController.m in Sources */,
 				7DEB131A1E411B3300B578EE /* ConvenienceView.swift in Sources */,
 				7D3908581A3648AE0005FA24 /* BNRSimpleWindowController.m in Sources */,
+				7DF077E91E52496E00BD43F4 /* CGPath+Utilities.swift in Sources */,
+				7DF077DF1E4FD59A00BD43F4 /* ArcToPointEditingView.swift in Sources */,
 				7D39089D1A3666F60005FA24 /* BNRCheckboxBox.m in Sources */,
 				7DC6D54B1A5DA4D8007AF35B /* NSView+CGStuff.swift in Sources */,
 				7DDEBD651B4C427900FA9855 /* TransformView.swift in Sources */,
@@ -379,10 +390,13 @@
 				7D9C7CD41B4B03A9000CF769 /* BNRRelativeArcEditingView.m in Sources */,
 				7D0BA72C1A4B367B0052A633 /* LinesView.swift in Sources */,
 				7D077FE019AEE01300E431A5 /* main.m in Sources */,
+				7DF077E11E51498200BD43F4 /* RelativeArcEditingView.swift in Sources */,
 				7D9C7CCD1B49BA89000CF769 /* BNRArcTypesWindowController.swift in Sources */,
 				7D9C7CD11B49BBAB000CF769 /* BNRArcEditingView.m in Sources */,
 				7D3908961A3655D50005FA24 /* BNRLinesView.m in Sources */,
 				7DC731181B4B3E7A00161DD1 /* PDFView.swift in Sources */,
+				7DF077E31E515ECD00BD43F4 /* ArcEditingView.swift in Sources */,
+				7DF077E51E52437200BD43F4 /* PathWindowController.swift in Sources */,
 				7D3908991A365CD20005FA24 /* BNRUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

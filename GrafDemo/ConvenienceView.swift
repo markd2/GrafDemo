@@ -83,19 +83,19 @@ class ConvenienceView: NSView {
         protectGState {
             NSColor.gray.set()
             let pattern: [CGFloat] = [ 1.0, 1.0 ]
-            currentContext?.setLineDash(phase: 0.0, lengths: pattern)
+            currentContext.setLineDash(phase: 0.0, lengths: pattern)
 
             if type == .roundedRect {
                 let topLeft = controlPoints[0]
                 
-                currentContext?.move(to: topLeft)
-                currentContext?.addLine(to: controlPoints[2])
+                currentContext.move(to: topLeft)
+                currentContext.addLine(to: controlPoints[2])
                 
-                currentContext?.strokePath()
+                currentContext.strokePath()
             }
             
             if type == .roundedRect || type == .oval {
-                currentContext?.stroke(controlRect)
+                currentContext.stroke(controlRect)
             }
         }
 
@@ -106,26 +106,25 @@ class ConvenienceView: NSView {
         
         switch type {
         case .rect:
-            path = CGPath.init(rect: controlRect, transform: nil)
+            path = CGPath(rect: controlRect, transform: nil)
         case .oval:
-            path = CGPath.init(ellipseIn: controlRect, transform: nil)
+            path = CGPath(ellipseIn: controlRect, transform: nil)
         case .roundedRect:
-            path = CGPath.init(roundedRect: controlRect, 
-                               cornerWidth: controlDistance, 
-                               cornerHeight: controlDistance,
-                               transform: nil)
+            path = CGPath(roundedRect: controlRect, 
+                          cornerWidth: controlDistance, 
+                          cornerHeight: controlDistance,
+                          transform: nil)
         }
-        
+
         protectGState {
             NSColor.black.set()
-            currentContext?.addPath(path)
-            currentContext?.strokePath()
+            currentContext.addPath(path)
+            currentContext.strokePath()
         }
     }
 
-    fileprivate let BoxSize: CGFloat = 4.0
-
     fileprivate func boxForPoint(_ point: CGPoint) -> CGRect {
+        let BoxSize: CGFloat = 4.0
         let boxxy = CGRect(x: point.x - BoxSize / 2.0,
                            y: point.y - BoxSize / 2.0,
                            width: BoxSize, height: BoxSize)
@@ -140,11 +139,11 @@ class ConvenienceView: NSView {
             color.set()
             
             if filled {
-                currentContext?.addEllipse(in: rect)
-                currentContext?.fillPath()
+                currentContext.addEllipse(in: rect)
+                currentContext.fillPath()
             } else {
-                currentContext?.addRect(rect)
-                currentContext?.strokePath()
+                currentContext.addRect(rect)
+                currentContext.strokePath()
             }
         }
     }

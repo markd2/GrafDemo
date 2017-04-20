@@ -152,9 +152,9 @@ class PathSamplerView: NSView {
         let rect = boxForPoint(point);
 
         protectGState {
-            currentContext?.addRect(rect)
+            currentContext.addRect(rect)
             color.set()
-            currentContext?.fillPath()
+            currentContext.fillPath()
         }
     }
     
@@ -163,9 +163,9 @@ class PathSamplerView: NSView {
         let rect = bounds
 
         protectGState {
-            currentContext?.addRect(rect)
+            currentContext.addRect(rect)
             NSColor.white.set()
-            currentContext?.fillPath()
+            currentContext.fillPath()
         }
     }
     
@@ -175,7 +175,7 @@ class PathSamplerView: NSView {
         
         protectGState {
             NSColor.black.set()
-            context?.stroke (bounds)
+            context.stroke (bounds)
         }
     }
     
@@ -190,17 +190,17 @@ class PathSamplerView: NSView {
         let path = CGMutablePath()
         
         _ = chunks.map { $0.appendToPath(path) }
-
+        
         return path
     }
     
-
+    
     func drawPath() {
-         let path = buildPath()
+        let path = buildPath()
         
         protectGState {
-            currentContext?.addPath(path)
-            currentContext?.strokePath()
+            currentContext.addPath(path)
+            currentContext.strokePath()
         }
     }
     

@@ -18,7 +18,7 @@ class PDFView: NSView {
         if let pdf = pdfDocument {
             let page1 = pdf.page(at: 1)
  
-            currentContext?.drawPDFPage (page1!)
+            currentContext.drawPDFPage (page1!)
         }
         
         NSColor.black.set()

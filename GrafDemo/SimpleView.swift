@@ -13,10 +13,10 @@ class SimpleView: NSView {
     
     func drawSloppily () {
         
-        currentContext?.setStrokeColor (red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0) // Black
-        currentContext?.setFillColor (red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) // White
+        currentContext.setStrokeColor (red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0) // Black
+        currentContext.setFillColor (red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) // White
         
-        currentContext?.setLineWidth (3.0)
+        currentContext.setLineWidth (3.0)
         
         drawSloppyBackground()
         drawSloppyContents()
@@ -24,7 +24,7 @@ class SimpleView: NSView {
     }
     
     func drawSloppyBackground() {
-        currentContext?.fill (bounds)
+        currentContext.fill (bounds)
     }
     
     func drawSloppyContents() {
@@ -33,24 +33,24 @@ class SimpleView: NSView {
             return
         }
         
-        currentContext?.setFillColor (red: 0.0, green: 1.0, blue: 0.0, alpha: 1.0) // Green
-        currentContext?.fillEllipse (in: innerRect)
+        currentContext.setFillColor (red: 0.0, green: 1.0, blue: 0.0, alpha: 1.0) // Green
+        currentContext.fillEllipse (in: innerRect)
         
-        currentContext?.setStrokeColor (red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0) // Blue
-        currentContext?.setLineWidth (6.0)
-        currentContext?.strokeEllipse (in: innerRect)
+        currentContext.setStrokeColor (red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0) // Blue
+        currentContext.setLineWidth (6.0)
+        currentContext.strokeEllipse (in: innerRect)
     }
     
     func drawSloppyBorder() {
-        currentContext?.stroke (bounds)
+        currentContext.stroke (bounds)
     }
     
     // --------------------------------------------------
     
     func drawNicely () {
-        currentContext?.setStrokeColor (red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0) // Black
-        currentContext?.setFillColor (red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) // White
-        currentContext?.setLineWidth (3.0)
+        currentContext.setStrokeColor (red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0) // Black
+        currentContext.setFillColor (red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) // White
+        currentContext.setLineWidth (3.0)
         
         drawNiceBackground()
         drawNiceContents()
@@ -59,7 +59,7 @@ class SimpleView: NSView {
     
     func drawNiceBackground() {
         protectGState {
-            currentContext?.fill (bounds)
+            currentContext.fill (bounds)
         }
     }
     
@@ -71,18 +71,18 @@ class SimpleView: NSView {
         }
         
         protectGState {
-            currentContext?.setFillColor (red: 0.0, green: 1.0, blue: 0.0, alpha: 1.0) // Green
-            currentContext?.fillEllipse (in: innerRect)
+            currentContext.setFillColor (red: 0.0, green: 1.0, blue: 0.0, alpha: 1.0) // Green
+            currentContext.fillEllipse (in: innerRect)
             
-            currentContext?.setStrokeColor (red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0) // Blue
-            currentContext?.setLineWidth (6.0)
-            currentContext?.strokeEllipse (in: innerRect)
+            currentContext.setStrokeColor (red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0) // Blue
+            currentContext.setLineWidth (6.0)
+            currentContext.strokeEllipse (in: innerRect)
         }
     }
     
     func drawNiceBorder() {
         protectGState {
-            currentContext?.stroke (bounds)
+            currentContext.stroke (bounds)
         }
     }
     

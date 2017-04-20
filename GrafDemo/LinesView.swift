@@ -41,8 +41,8 @@ class LinesView : NSView {
         let context = currentContext
 
         protectGState {
-            context?.setFillColor (red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) // White
-            context?.fill (bounds)
+            context.setFillColor (red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) // White
+            context.fill (bounds)
         }
     }
     
@@ -50,8 +50,8 @@ class LinesView : NSView {
         let context = currentContext
         
         protectGState {
-            context?.setStrokeColor (red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0) // Black
-            context?.stroke (bounds)
+            context.setStrokeColor (red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0) // Black
+            context.stroke (bounds)
         }
     }
 
@@ -66,8 +66,8 @@ class LinesView : NSView {
             path.addLine(to: points[i])
         }
         
-        context?.addPath (path)
-        context?.strokePath ()
+        context.addPath (path)
+        context.strokePath ()
     }
     
     fileprivate func renderAsSinglePathByAddingLines() {
@@ -75,8 +75,8 @@ class LinesView : NSView {
         let path = CGMutablePath()
         
         path.addLines (between: points)
-        context?.addPath (path)
-        context?.strokePath ()
+        context.addPath (path)
+        context.strokePath ()
     }
 
      fileprivate func renderAsMultiplePaths() {
@@ -87,8 +87,8 @@ class LinesView : NSView {
             path.move (to: points[i])
             path.addLine (to: points[i + 1])
             
-            context?.addPath (path)
-            context?.strokePath ()
+            context.addPath (path)
+            context.strokePath ()
         }
     }
 
@@ -103,7 +103,7 @@ class LinesView : NSView {
         }
 
         // Strokes points 0->1 2->3 4->5
-        context?.strokeLineSegments (between: segments)
+        context.strokeLineSegments (between: segments)
     }
 
    fileprivate func renderPath() {
@@ -133,13 +133,13 @@ class LinesView : NSView {
             NSColor.green.set()
             
             if let hook = preRenderHook {
-                hook(self, context!)
+                hook(self, context)
             }
             renderPath()
         }
         
         if (showLogicalPath) {
-            context?.setStrokeColor (red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) // White
+            context.setStrokeColor (red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) // White
             renderPath()
         }
         

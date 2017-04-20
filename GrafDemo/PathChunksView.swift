@@ -64,15 +64,16 @@ class PathChunksView: NSView {
     
     fileprivate func drawBoxAt(_ point: CGPoint, color: NSColor, filled: Bool = true) {
         let rect = boxForPoint(point);
+        let context = currentContext
         
         protectGState {
-            currentContext?.addEllipse(in: rect)
+            context.addEllipse(in: rect)
             color.set()
             
             if filled {
-                currentContext?.fillPath()
+                context.fillPath()
             } else {
-                currentContext?.strokePath()
+                context.strokePath()
             }
         }
     }
@@ -87,24 +88,26 @@ class PathChunksView: NSView {
     
     func drawShape() {
         // draw the influence lines
+        let context = currentContext
+        
         protectGState {
             NSColor.gray.set()
             let pattern: [CGFloat] = [ 1.0, 1.0 ]
-            currentContext?.setLineDash(phase: 0.0, lengths: pattern)
+            context.setLineDash(phase: 0.0, lengths: pattern)
             
             if type == .quadCurve {
-                currentContext?.move(to: controlPoints[0])
-                currentContext?.addLine(to: controlPoints[2])
-                currentContext?.addLine(to: controlPoints[1])
+                context.move(to: controlPoints[0])
+                context.addLine(to: controlPoints[2])
+                context.addLine(to: controlPoints[1])
           
-                currentContext?.strokePath()
+                context.strokePath()
             } else if type == .bezierCurve {
-                currentContext?.move(to: controlPoints[0])
-                currentContext?.addLine(to: controlPoints[2])
-                currentContext?.addLine(to: controlPoints[3])
-                currentContext?.addLine(to: controlPoints[1])
+                context.move(to: controlPoints[0])
+                context.addLine(to: controlPoints[2])
+                context.addLine(to: controlPoints[3])
+                context.addLine(to: controlPoints[1])
 
-                currentContext?.strokePath()
+                context.strokePath()
             }
         }
         
@@ -114,23 +117,22 @@ class PathChunksView: NSView {
         protectGState {
             switch type {
             case .lineTo:
-                currentContext?.move(to: controlPoints[0])
-                currentContext?.addLine(to: controlPoints[1])
-                currentContext?.addLine(to: controlPoints[2])
+                context.move(to: controlPoints[0])
+                context.addLine(to: controlPoints[1])
+                context.addLine(to: controlPoints[2])
                 
             case .quadCurve:
-                currentContext?.move(to: controlPoints[0])
-                currentContext?.addQuadCurve(to: controlPoints[1], control: controlPoints[2])
+                context.move(to: controlPoints[0])
+                context.addQuadCurve(to: controlPoints[1], control: controlPoints[2])
                 
             case .bezierCurve:
-                currentContext?.move(to: controlPoints[0])
-                currentContext?.addCurve(to: controlPoints[1], 
-                                         control1: controlPoints[2], control2: controlPoints[3])
-                
+                context.move(to: controlPoints[0])
+                context.addCurve(to: controlPoints[1], 
+                                 control1: controlPoints[2], control2: controlPoints[3])
             }
             
             NSColor.black.set()
-            currentContext?.strokePath()
+            context.strokePath()
         }
     }
 
