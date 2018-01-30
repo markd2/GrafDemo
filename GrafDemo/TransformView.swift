@@ -43,7 +43,7 @@ class TransformView: NSView {
     fileprivate func drawBackground() {
         let rect = bounds
 
-        protectGState {
+        currentContext.protectGState {
             currentContext.addRect(rect)
             NSColor.white.set()
             currentContext.fillPath()
@@ -54,7 +54,7 @@ class TransformView: NSView {
     fileprivate func drawBorder() {
         let context = currentContext
         
-        protectGState {
+        context.protectGState {
             NSColor.black.set()
             context.stroke(bounds)
         }
@@ -105,7 +105,7 @@ class TransformView: NSView {
     fileprivate func drawGrid() {
         let context = currentContext
         
-        protectGState {
+        context.protectGState {
             context.setLineWidth(0.5)
             
             let lightGray = NSColor.lightGray.withAlphaComponent(0.3)
@@ -187,7 +187,7 @@ class TransformView: NSView {
         super.draw(dirtyRect)
         
         drawBackground()
-        protectGState() {
+        currentContext.protectGState() {
             applyTransforms()
             drawGrid()
             drawPath()

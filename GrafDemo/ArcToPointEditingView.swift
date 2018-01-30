@@ -86,7 +86,7 @@ class ArcToPointEditingView: NSView {
     func drawControlPoints() {
         let context = currentContext
         
-        protectGState {
+        context.protectGState {
             for (type, point) in controlPoints {
                 let color: NSColor
                 switch type {
@@ -110,7 +110,7 @@ class ArcToPointEditingView: NSView {
     func drawInfluenceLines() {
         let context = currentContext
         
-        protectGState {
+        context.protectGState {
             NSColor.lightGray.set()
             let pattern: [CGFloat] = [2.0, 2.0]
             context.setLineDash(phase: 0.0, lengths: pattern)

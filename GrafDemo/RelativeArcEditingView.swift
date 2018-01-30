@@ -101,7 +101,7 @@ class RelativeArcEditingView: NSView {
     func drawControlPoints() {
         let context = currentContext
         
-        protectGState {
+        context.protectGState {
             for (type, point) in controlPoints {
                 let color: NSColor
                 switch type {
@@ -127,7 +127,7 @@ class RelativeArcEditingView: NSView {
         
         let influenceOverspill: CGFloat = 20.0 // how many points beyond the circle
         
-        protectGState {
+        context.protectGState {
             NSColor.lightGray.set()
             let pattern: [CGFloat] = [2.0, 2.0]
             context.setLineDash(phase: 0.0, lengths: pattern)

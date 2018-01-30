@@ -40,7 +40,7 @@ class LinesView : NSView {
     fileprivate func drawNiceBackground() {
         let context = currentContext
 
-        protectGState {
+        context.protectGState {
             context.setFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) // White
             context.fill(bounds)
         }
@@ -49,7 +49,7 @@ class LinesView : NSView {
     fileprivate func drawNiceBorder() {
         let context = currentContext
         
-        protectGState {
+        context.protectGState {
             context.setStrokeColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0) // Black
             context.stroke(bounds)
         }
@@ -129,7 +129,7 @@ class LinesView : NSView {
         
         drawNiceBackground()
         
-        protectGState() {
+        context.protectGState() {
             NSColor.green.set()
             
             if let hook = preRenderHook {

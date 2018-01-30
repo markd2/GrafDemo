@@ -80,7 +80,7 @@ class ConvenienceView: NSView {
     func drawShape() {
    
         // draw the influence lines
-        protectGState {
+        currentContext.protectGState {
             NSColor.gray.set()
             let pattern: [CGFloat] = [ 1.0, 1.0 ]
             currentContext.setLineDash(phase: 0.0, lengths: pattern)
@@ -116,7 +116,7 @@ class ConvenienceView: NSView {
                           transform: nil)
         }
 
-        protectGState {
+        currentContext.protectGState {
             NSColor.black.set()
             currentContext.addPath(path)
             currentContext.strokePath()
@@ -135,7 +135,7 @@ class ConvenienceView: NSView {
     fileprivate func drawBoxAt(_ point: CGPoint, color: NSColor, filled: Bool = true) {
         let rect = boxForPoint(point);
         
-        protectGState {
+        currentContext.protectGState {
             color.set()
             
             if filled {
