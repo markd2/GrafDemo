@@ -47,11 +47,11 @@ open class BNRLinesWindowController: NSWindowController {
     }
     
     // Called by the line view prior to constructing and stroking the example path
-    open func setupContext (_ context: CGContext!) {
-        context.setLineWidth (CGFloat(lineWidthSlider.floatValue))
-        context.setMiterLimit (CGFloat(miterLimitSlider.floatValue))
-        context.setLineCap (CGLineCap(rawValue: Int32(endCapPopUp.indexOfSelectedItem))!)
-        context.setLineJoin (CGLineJoin(rawValue: Int32(lineJoinPopUp.indexOfSelectedItem))!)
+    open func setupContext(_ context: CGContext!) {
+        context.setLineWidth(CGFloat(lineWidthSlider.floatValue))
+        context.setMiterLimit(CGFloat(miterLimitSlider.floatValue))
+        context.setLineCap(CGLineCap(rawValue: Int32(endCapPopUp.indexOfSelectedItem))!)
+        context.setLineJoin(CGLineJoin(rawValue: Int32(lineJoinPopUp.indexOfSelectedItem))!)
         
         if self.lineAlphaCheckbox.state == NSOnState {
             NSColor.blue.withAlphaComponent(0.50).set()
@@ -67,7 +67,7 @@ open class BNRLinesWindowController: NSWindowController {
                 dash2Slider.floatValue, space2Slider.floatValue
             ].map { CGFloat($0) }
             
-            context.setLineDash (phase: phase, lengths: lengths)
+            context.setLineDash(phase: phase, lengths: lengths)
         }
     }
 
@@ -79,12 +79,12 @@ open class BNRLinesWindowController: NSWindowController {
     }
     
     // Two of the checkboxes actually change the lines view configuration.
-    @IBAction func toggleShowLogicalPath (_ sender: NSButton) {
+    @IBAction func toggleShowLogicalPath(_ sender: NSButton) {
         linesView.showLogicalPath = (sender.state == NSOnState)
         swiftLinesView.showLogicalPath = (sender.state == NSOnState)
     }
     
-    @IBAction func changeRenderMode (_ sender: NSPopUpButton) {
+    @IBAction func changeRenderMode(_ sender: NSPopUpButton) {
         linesView.renderMode = BNRLinesViewRenderMode(rawValue: sender.indexOfSelectedItem)!
         swiftLinesView.renderMode = LinesView.RenderMode(rawValue: sender.indexOfSelectedItem)!
     }

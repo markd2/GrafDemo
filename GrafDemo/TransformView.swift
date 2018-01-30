@@ -56,7 +56,7 @@ class TransformView: NSView {
         
         protectGState {
             NSColor.black.set()
-            context.stroke (bounds)
+            context.stroke(bounds)
         }
     }
     
@@ -72,9 +72,9 @@ class TransformView: NSView {
         for x in stride(from: bounds.minX - kBig, to: kBig, by: strideLength) {
             let start = CGPoint(x: x + 0.25, y: -kBig)
             let end = CGPoint(x: x + 0.25, y: kBig )
-            context.move (to: start)
-            context.addLine (to: end)
-            context.strokePath ()
+            context.move(to: start)
+            context.addLine(to: end)
+            context.strokePath()
             
             if (withLabels) {
                 var textOrigin = CGPoint(x: x + 0.25, y: bounds.minY + 0.25)
@@ -88,9 +88,9 @@ class TransformView: NSView {
         for y in stride(from: bounds.minY - kBig, to: kBig, by: strideLength) {
             let start = CGPoint(x: -kBig, y: y + 0.25)
             let end = CGPoint(x: kBig, y: y + 0.25)
-            context.move (to: start)
-            context.addLine (to: end)
-            context.strokePath ()
+            context.move(to: start)
+            context.addLine(to: end)
+            context.strokePath()
 
             if (withLabels) {
                 var textOrigin = CGPoint(x: bounds.minX + 0.25, y: y + 0.25)
@@ -106,7 +106,7 @@ class TransformView: NSView {
         let context = currentContext
         
         protectGState {
-            context.setLineWidth (0.5)
+            context.setLineWidth(0.5)
             
             let lightGray = NSColor.lightGray.withAlphaComponent(0.3)
             let darkGray = NSColor.darkGray.withAlphaComponent(0.3)
@@ -129,19 +129,19 @@ class TransformView: NSView {
             // P.S. "AND MY AXE" -- Gimli
             let bounds = self.bounds
             
-            let start = CGPoint (x: bounds.minX + 0.25, y: bounds.minY)
-            let horizontalEnd = CGPoint (x: bounds.maxX + 0.25, y: bounds.minY)
-            let verticalEnd = CGPoint (x: bounds.minX + 0.25, y: bounds.maxY)
+            let start = CGPoint(x: bounds.minX + 0.25, y: bounds.minY)
+            let horizontalEnd = CGPoint(x: bounds.maxX + 0.25, y: bounds.minY)
+            let verticalEnd = CGPoint(x: bounds.minX + 0.25, y: bounds.maxY)
             
-            context.setLineWidth (2.0)
+            context.setLineWidth(2.0)
             NSColor.black.setStroke()
-            context.move (to: CGPoint(x: -kBig, y: start.y))
-            context.addLine (to: CGPoint(x: kBig, y: horizontalEnd.y))
+            context.move(to: CGPoint(x: -kBig, y: start.y))
+            context.addLine(to: CGPoint(x: kBig, y: horizontalEnd.y))
             
-            context.move (to: CGPoint(x: start.x, y: -kBig))
-            context.addLine (to: CGPoint(x: verticalEnd.x, y: kBig))
+            context.move(to: CGPoint(x: start.x, y: -kBig))
+            context.addLine(to: CGPoint(x: verticalEnd.x, y: kBig))
             
-            context.strokePath ()
+            context.strokePath()
         }
     }
     

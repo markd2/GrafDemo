@@ -9,7 +9,7 @@
 #import "BNRCheckboxBox.h"
 
 @interface BNRCheckboxBox ()
-@property (strong) NSButtonCell *buttonCell; // for the checkbox
+@property(strong) NSButtonCell *buttonCell; // for the checkbox
 @end // extension
 
 

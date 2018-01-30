@@ -1,6 +1,5 @@
 import Cocoa
 
-
 class RelativeArcEditingView: NSView {
     enum ControlPoint: Int {
         case pathStart

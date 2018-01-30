@@ -1,12 +1,12 @@
 #import "BNRUtilities.h"
 
 
-CGContextRef CurrentContext () {
+CGContextRef CurrentContext() {
     return [NSGraphicsContext.currentContext graphicsPort];
 } // currentContext
 
 
-NSBezierPath *RanchLogoPath () {
+NSBezierPath *RanchLogoPath() {
     NSBezierPath *bezierPath = [NSBezierPath bezierPath];
 
     [bezierPath moveToPoint: CGPointMake(110.85, 45.5)];

@@ -184,7 +184,7 @@ class ConvenienceView: NSView {
 
 
 extension ConvenienceView {
-    override func mouseDown (with event: NSEvent) {
+    override func mouseDown(with event: NSEvent) {
         let localPoint = convert(event.locationInWindow, from: nil)
         
         for (index, point) in controlPoints.enumerated() {
@@ -196,7 +196,7 @@ extension ConvenienceView {
         }
     }
     
-    override func mouseDragged (with event: NSEvent) {
+    override func mouseDragged(with event: NSEvent) {
         guard let index = draggingIndex else { return }
         
         let localPoint = convert(event.locationInWindow, from: nil)
@@ -206,7 +206,7 @@ extension ConvenienceView {
     }
     
     
-    override func mouseUp (with event: NSEvent) {
+    override func mouseUp(with event: NSEvent) {
         draggingIndex = nil
     }
 }

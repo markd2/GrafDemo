@@ -44,7 +44,7 @@ class BNRPostScriptWindowController: NSWindowController {
     
     @IBAction func draw(_: AnyObject) {
         var callbacks = CGPSConverterCallbacks()
-        guard let converter = CGPSConverter (info: nil, callbacks: &callbacks, options: nil) else {
+        guard let converter = CGPSConverter(info: nil, callbacks: &callbacks, options: nil) else {
             return
         }
         
@@ -55,11 +55,11 @@ class BNRPostScriptWindowController: NSWindowController {
         
         let nsdata = NSMutableData(data:  codeData)
         
-        guard let consumer = CGDataConsumer (data: nsdata as CFMutableData) else {
+        guard let consumer = CGDataConsumer(data: nsdata as CFMutableData) else {
             return
         }
         
-        let converted = converter.convert (provider, consumer: consumer, options: nil)
+        let converted = converter.convert(provider, consumer: consumer, options: nil)
         if !converted {
             print("Could not convert postscript text")
         }

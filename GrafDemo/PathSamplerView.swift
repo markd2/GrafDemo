@@ -97,7 +97,7 @@ enum ChunkType {
             return .curveTo(point: point, control1: control1, control2: control2)
 
         case .quadCurveTo(var point, var control):
-            precondition (atElementIndex == 0 || atElementIndex == 1)
+            precondition(atElementIndex == 0 || atElementIndex == 1)
             if (atElementIndex == 0) { point = newPoint }
             if (atElementIndex == 1) { control = newPoint }
             return .quadCurveTo(point: point, control: control)
@@ -106,17 +106,17 @@ enum ChunkType {
             return .close
             
         case .arc(_, let radius, let startAngle, let endAngle, let clockwise):
-            precondition (atElementIndex == 0)
+            precondition(atElementIndex == 0)
             return .arc(center: newPoint, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: clockwise)
             
         case .arcToPoint(var control1, var control2, let radius):
-            precondition (atElementIndex == 0 || atElementIndex == 1)
+            precondition(atElementIndex == 0 || atElementIndex == 1)
             if (atElementIndex == 0) { control1 = newPoint }
             if (atElementIndex == 1) { control2 = newPoint }
             return .arcToPoint(control1: control1, control2: control2, radius: radius)
             
         case .relativeArc(_, let radius, let startAngle, let deltaAngle):
-            precondition (atElementIndex == 0)
+            precondition(atElementIndex == 0)
             return .relativeArc(center: newPoint, radius: radius,
                 startAngle: startAngle, deltaAngle: deltaAngle)
         }
@@ -175,7 +175,7 @@ class PathSamplerView: NSView {
         
         protectGState {
             NSColor.black.set()
-            context.stroke (bounds)
+            context.stroke(bounds)
         }
     }
     
@@ -245,7 +245,7 @@ class PathSamplerView: NSView {
     }
     
     
-    override func mouseDown (with event: NSEvent) {
+    override func mouseDown(with event: NSEvent) {
         let localPoint = convert(event.locationInWindow, from: nil)
         
         for (chunkIndex, chunk) in chunks.enumerated() {
@@ -258,13 +258,13 @@ class PathSamplerView: NSView {
         }
     }
     
-    override func mouseDragged (with event: NSEvent) {
+    override func mouseDragged(with event: NSEvent) {
         let localPoint = convert(event.locationInWindow, from: nil)
         updateDragWithPoint(localPoint)
     }
     
     
-    override func mouseUp (with event: NSEvent) {
+    override func mouseUp(with event: NSEvent) {
         trackingChunk = nil
         trackingChunkIndex = nil
         trackingChunkElementIndex = nil

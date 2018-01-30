@@ -12,9 +12,9 @@
 
 @interface BNRCheckboxBox : NSBox
 
-@property (assign, getter=isEnabled) BOOL enabled;
+@property(assign, getter=isEnabled) BOOL enabled;
 
-@property (weak) id target;
+@property(weak) id target;
 @property SEL action;
 
 @end // BNRCheckboxBox
