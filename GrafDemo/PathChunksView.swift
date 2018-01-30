@@ -66,7 +66,7 @@ class PathChunksView: NSView {
         let rect = boxForPoint(point);
         let context = currentContext
         
-        protectGState {
+        context.protectGState {
             context.addEllipse(in: rect)
             color.set()
             
@@ -90,7 +90,7 @@ class PathChunksView: NSView {
         // draw the influence lines
         let context = currentContext
         
-        protectGState {
+        context.protectGState {
             NSColor.gray.set()
             let pattern: [CGFloat] = [ 1.0, 1.0 ]
             context.setLineDash(phase: 0.0, lengths: pattern)
@@ -114,7 +114,7 @@ class PathChunksView: NSView {
         
         // draw the shape
         
-        protectGState {
+        context.protectGState {
             switch type {
             case .lineTo:
                 context.move(to: controlPoints[0])

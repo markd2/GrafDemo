@@ -151,7 +151,7 @@ class PathSamplerView: NSView {
     fileprivate func drawBoxAt(_ point: CGPoint, color: NSColor) {
         let rect = boxForPoint(point);
 
-        protectGState {
+        currentContext.protectGState {
             currentContext.addRect(rect)
             color.set()
             currentContext.fillPath()
@@ -162,7 +162,7 @@ class PathSamplerView: NSView {
     fileprivate func drawBackground() {
         let rect = bounds
 
-        protectGState {
+        currentContext.protectGState {
             currentContext.addRect(rect)
             NSColor.white.set()
             currentContext.fillPath()
@@ -173,7 +173,7 @@ class PathSamplerView: NSView {
     fileprivate func drawBorder() {
         let context = currentContext
         
-        protectGState {
+        context.protectGState {
             NSColor.black.set()
             context.stroke(bounds)
         }
@@ -198,7 +198,7 @@ class PathSamplerView: NSView {
     func drawPath() {
         let path = buildPath()
         
-        protectGState {
+        currentContext.protectGState {
             currentContext.addPath(path)
             currentContext.strokePath()
         }
@@ -218,7 +218,7 @@ class PathSamplerView: NSView {
         super.draw(dirtyRect)
         
         drawBackground()
-        protectGState {
+        currentContext.protectGState {
             drawControlPoints()
         }
         drawPath()

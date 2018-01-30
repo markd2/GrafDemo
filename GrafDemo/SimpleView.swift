@@ -57,7 +57,7 @@ class SimpleView: NSView {
     }
     
     func drawNiceBackground() {
-        protectGState {
+        currentContext.protectGState {
             currentContext.fill(bounds)
         }
     }
@@ -69,7 +69,7 @@ class SimpleView: NSView {
             return
         }
 
-        protectGState {
+        currentContext.protectGState {
             currentContext.setFillColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 1.0) // Green
             currentContext.fillEllipse(in: innerRect)
             
@@ -80,7 +80,7 @@ class SimpleView: NSView {
     }
     
     func drawNiceBorder() {
-        protectGState {
+        currentContext.protectGState {
             currentContext.stroke(bounds)
         }
     }
