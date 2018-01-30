@@ -1,11 +1,3 @@
-//
-//  BNRPostScriptWindowController.swift
-//  GrafDemo
-//
-//  Created by Mark Dalrymple on 7/6/15.
-//  Copyright © 2015 Big Nerd Ranch. All rights reserved.
-//
-
 import Cocoa
 
 let initialText = "" +
