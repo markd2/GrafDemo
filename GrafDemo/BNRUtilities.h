@@ -1,5 +1,5 @@
 #import <Cocoa/Cocoa.h>
 
-CGContextRef CurrentContext ();
+CGContextRef CurrentContext();
 
-NSBezierPath *RanchLogoPath ();
+NSBezierPath *RanchLogoPath();
