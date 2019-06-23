@@ -85,3 +85,29 @@
 
 
 @end // BNRCheckboxBox
+
+
+
+
+// Modern AppKits are dying when these calls are being made
+@interface NSButtonCell(ToolkitHack)
+// Getting a runtime error deep in appkit:
+//   -[NSButtonCell _isToolbarMode]: unrecognized selector sent to instance
+
+- (BOOL) _isToolbarMode;
+- (void) setTextColor: (NSColor *) color;
+
+@end // ToolkitHack
+
+
+@implementation NSButtonCell(ToolkitHack)
+- (BOOL) _isToolbarMode {
+    return NO;
+}
+
+
+- (void) setTextColor: (NSColor *) color {
+    // nom
+}
+
+@end // ToolkitHack
