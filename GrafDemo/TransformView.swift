@@ -29,11 +29,11 @@ class TransformView: NSView {
     fileprivate var animationFunction: (() -> Bool)?  // returns true when finished
 
     // until get a fancy UI
-    var shouldTranslate = true
-    var shouldRotate = true
-    var shouldScale = true
+    @objc var shouldTranslate = true
+    @objc var shouldRotate = true
+    @objc var shouldScale = true
 
-    func reset() {
+    @objc func reset() {
         translation = CGPoint()
         rotation = 0
         scale = CGSize(width: 1.0, height: 1.0)
@@ -65,8 +65,8 @@ class TransformView: NSView {
 
         let darkGray = NSColor.darkGray.withAlphaComponent(0.3)
 
-        let textAttributes: [String : AnyObject] = [ NSFontAttributeName : font,
-            NSForegroundColorAttributeName: darkGray]
+        let textAttributes: [String : AnyObject] = [ convertFromNSAttributedStringKey(NSAttributedString.Key.font) : font,
+            convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): darkGray]
 
         // draw vertical lines
         for x in stride(from: bounds.minX - kBig, to: kBig, by: strideLength) {
@@ -80,7 +80,7 @@ class TransformView: NSView {
                 var textOrigin = CGPoint(x: x + 0.25, y: bounds.minY + 0.25)
                 textOrigin.x += 2.0
                 let label = NSString(format: "%d", Int(x))
-                label.draw(at: textOrigin,  withAttributes: textAttributes)
+                label.draw(at: textOrigin,  withAttributes: convertToOptionalNSAttributedStringKeyDictionary(textAttributes))
             }
         }
         
@@ -97,7 +97,7 @@ class TransformView: NSView {
                 textOrigin.x += 3.0
                 
                 let label = NSString(format: "%d", Int(y))
-                label.draw(at: textOrigin,  withAttributes: textAttributes)
+                label.draw(at: textOrigin,  withAttributes: convertToOptionalNSAttributedStringKeyDictionary(textAttributes))
             }
         }
     }
@@ -199,7 +199,7 @@ class TransformView: NSView {
         return true
     }
     
-    func tick(_ timer: Timer) {
+    @objc func tick(_ timer: Timer) {
         guard let animator = animationFunction else {
             return
         }
@@ -212,7 +212,7 @@ class TransformView: NSView {
     }
     
     
-    func translationAnimator(_ from: CGPoint, to: CGPoint) -> () -> Bool {
+    @objc func translationAnimator(_ from: CGPoint, to: CGPoint) -> () -> Bool {
         translation = from
 
         let delta = CGPoint(x: (to.x - from.x) / animationSteps,
@@ -234,7 +234,7 @@ class TransformView: NSView {
     }
     
     
-    func rotationAnimator(_ from: CGFloat, to: CGFloat) -> () -> Bool {
+    @objc func rotationAnimator(_ from: CGFloat, to: CGFloat) -> () -> Bool {
         rotation = from
         
         let delta = (to - from) / animationSteps
@@ -251,7 +251,7 @@ class TransformView: NSView {
     }
     
 
-    func scaleAnimator(_ from: CGSize, to: CGSize) -> () -> Bool {
+    @objc func scaleAnimator(_ from: CGSize, to: CGSize) -> () -> Bool {
         scale = from
 
         let delta = CGSize(width: (to.width - from.width) / animationSteps,
@@ -301,7 +301,7 @@ class TransformView: NSView {
     }
     
     
-    func startAnimation() {
+    @objc func startAnimation() {
         // The worst possible way to animate, but I'm in a hurry right now prior
         // to cocoaconf/columbus. ++md 2015-07-07
         
@@ -364,4 +364,15 @@ class TransformView: NSView {
     }
     
     */
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

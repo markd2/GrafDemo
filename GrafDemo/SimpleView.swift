@@ -3,7 +3,7 @@ import Cocoa
 class SimpleView: NSView {
     
     // Should drawing be sloppy with graphic saves and restores?
-    var beSloppy : Bool = false {
+    @objc var beSloppy : Bool = false {
         willSet {
             needsDisplay = true
         }
