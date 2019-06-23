@@ -144,13 +144,13 @@ class PathChunksView: NSView {
         super.draw(dirtyRect)
         
         NSColor.white.set()
-        NSRectFill(bounds)
+        bounds.fill()
         
         drawShape()
         drawControlPoints()
         
         NSColor.black.set()
-        NSFrameRect(bounds)
+        bounds.frame()
     }
     
     

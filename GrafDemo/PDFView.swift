@@ -13,7 +13,7 @@ class PDFView: NSView {
         super.draw(dirtyRect)
 
         NSColor.white.set()
-        NSRectFill(bounds)
+        bounds.fill()
         
         if let pdf = pdfDocument {
             let page1 = pdf.page(at: 1)
@@ -22,7 +22,7 @@ class PDFView: NSView {
         }
         
         NSColor.black.set()
-        NSFrameRect(bounds)
+        bounds.frame()
     }
 }
 

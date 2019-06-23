@@ -40,7 +40,7 @@ class BNRPostScriptWindowController: NSWindowController {
             return
         }
         
-        guard let codeData = self.codeText.string?.data(using: .utf8),
+        guard let codeData = self.codeText.string.data(using: .utf8),
             let provider = CGDataProvider(data: codeData as CFData) else {
                 return
         }

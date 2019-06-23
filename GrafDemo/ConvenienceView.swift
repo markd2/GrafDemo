@@ -167,13 +167,13 @@ class ConvenienceView: NSView {
         super.draw(dirtyRect)
         
         NSColor.white.set()
-        NSRectFill(bounds)
+        bounds.fill()
         
         drawShape()
         drawControlPoints()
         
         NSColor.black.set()
-        NSFrameRect(bounds)
+        bounds.frame()
     }
 
     // Behave more like iOS, or most sane toolkits.

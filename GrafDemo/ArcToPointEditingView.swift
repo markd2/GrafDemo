@@ -131,9 +131,9 @@ class ArcToPointEditingView: NSView {
     
     override func draw(_ rect: NSRect) {
         NSColor.white.set()
-        NSRectFill(bounds)
+        bounds.fill()
         NSColor.black.set()
-        NSFrameRect(bounds)
+        bounds.frame()
         
         drawInfluenceLines()
         drawPath()

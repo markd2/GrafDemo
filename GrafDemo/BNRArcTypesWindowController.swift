@@ -46,7 +46,7 @@ class BNRArcTypesWindowController: NSWindowController {
     }
     
     @IBAction func toggleArcClockwise(_ toggle: NSButton) {
-        arcEditingView.clockwise = toggle.state == NSOnState
+        arcEditingView.clockwise = toggle.state == NSControl.StateValue.on
     }
     
     

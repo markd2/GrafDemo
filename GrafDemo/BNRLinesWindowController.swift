@@ -45,7 +45,7 @@ open class BNRLinesWindowController: NSWindowController {
         context.setLineCap(CGLineCap(rawValue: Int32(endCapPopUp.indexOfSelectedItem))!)
         context.setLineJoin(CGLineJoin(rawValue: Int32(lineJoinPopUp.indexOfSelectedItem))!)
         
-        if self.lineAlphaCheckbox.state == NSOnState {
+        if self.lineAlphaCheckbox.state == NSControl.StateValue.on {
             NSColor.blue.withAlphaComponent(0.50).set()
         } else {
             NSColor.blue.set()
@@ -72,8 +72,8 @@ open class BNRLinesWindowController: NSWindowController {
     
     // Two of the checkboxes actually change the lines view configuration.
     @IBAction func toggleShowLogicalPath(_ sender: NSButton) {
-        linesView.showLogicalPath = (sender.state == NSOnState)
-        swiftLinesView.showLogicalPath = (sender.state == NSOnState)
+        linesView.showLogicalPath = (sender.state == NSControl.StateValue.on)
+        swiftLinesView.showLogicalPath = (sender.state == NSControl.StateValue.on)
     }
     
     @IBAction func changeRenderMode(_ sender: NSPopUpButton) {
