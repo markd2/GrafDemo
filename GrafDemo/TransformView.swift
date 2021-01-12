@@ -63,7 +63,7 @@ class TransformView: NSView {
     fileprivate func drawGridLinesWithStride(_ strideLength: CGFloat, withLabels: Bool, context: CGContext) {
         let font = NSFont.systemFont(ofSize: 10.0)
 
-        let darkGray = NSColor.darkGray.withAlphaComponent(0.3)
+        let darkGray = NSColor.darkGray.withAlphaComponent(0.5)
 
         let textAttributes: [String : AnyObject] = [ convertFromNSAttributedStringKey(NSAttributedString.Key.font) : font,
             convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): darkGray]
@@ -312,24 +312,24 @@ class TransformView: NSView {
         let rotator = rotationAnimator(0.0, to: rotation + π / 12)
         
         let scaleFrom = CGSize(width: 1.0, height: 1.0)
-        let scaleTo = CGSize(width: 1.5, height: 0.75)
+        let scaleTo = CGSize(width: 3.0, height: 1.5)
         let scaler = scaleAnimator(scaleFrom, to: scaleTo)
         
         var things: [(() -> Bool)] = []
 
-        if shouldTranslate {
-            things += [translator]
+        if shouldScale {
+            things += [scaler]
         }
         if shouldRotate {
             things += [rotator]
         }
-        if shouldScale {
-            things += [scaler]
+        if shouldTranslate {
+            things += [translator]
         }
         
         animationFunction = compositeAnimator(things)
 
-        animationTimer = Timer.scheduledTimer(timeInterval: 1 / 30, target: self, selector: #selector(TransformView.tick(_:)), userInfo: nil, repeats: true)
+        animationTimer = Timer.scheduledTimer(timeInterval: 1 / 15, target: self, selector: #selector(TransformView.tick(_:)), userInfo: nil, repeats: true)
     }
     
     

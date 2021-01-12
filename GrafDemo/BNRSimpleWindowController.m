@@ -26,8 +26,8 @@
 
 
 - (IBAction) toggleSloppy: (NSButton *) toggle {
-    self.simpleView.beSloppy = (toggle.state == NSOnState);
-    self.swSimpleView.beSloppy = (toggle.state == NSOnState);
+    self.simpleView.beSloppy = (toggle.state == NSControlStateValueOn);
+    self.swSimpleView.beSloppy = (toggle.state == NSControlStateValueOn);
     
 } // toggleSloppy
 

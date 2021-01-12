@@ -14,7 +14,7 @@
     
     self.buttonCell = [[NSButtonCell alloc] initTextCell: self.title];
     [self.buttonCell setButtonType: NSSwitchButton];
-    self.buttonCell.state = NSOnState;
+    self.buttonCell.state = NSControlStateValueOn;
 
     self.buttonCell.target = self;
     self.buttonCell.action = @selector(toggleEnabledState:);
@@ -22,7 +22,7 @@
     [self.buttonCell setControlView:self];
 
     // TODO(markd): find a better way than whacking the cell directly.
-    _titleCell = self.buttonCell;
+//    _titleCell = self.buttonCell;
 
 } // awakeFromNib
 
@@ -59,7 +59,7 @@
 - (void) setEnabled: (BOOL) enabled {
     _enabled = enabled;
     [self setContentEnabledState: enabled];
-    self.buttonCell.state = enabled ? NSOnState : NSOffState;
+    self.buttonCell.state = enabled ? NSControlStateValueOn : NSOffState;
 } // setEnabled
 
 
