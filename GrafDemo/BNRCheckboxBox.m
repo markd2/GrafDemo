@@ -22,7 +22,7 @@
     [self.buttonCell setControlView:self];
 
     // TODO(markd): find a better way than whacking the cell directly.
-    _titleCell = self.buttonCell;
+//    _titleCell = self.buttonCell;
 
 } // awakeFromNib
 
