@@ -25,17 +25,17 @@
 
 
 - (IBAction) toggleTranslate: (NSButton *) sender {
-    self.transformView.shouldTranslate = sender.state == NSOnState;
+    self.transformView.shouldTranslate = sender.state == NSControlStateValueOn;
 } // toggleTranslate
 
 
 - (IBAction) toggleRotate: (NSButton *) sender {
-    self.transformView.shouldRotate = sender.state == NSOnState;
+    self.transformView.shouldRotate = sender.state == NSControlStateValueOn;
 } // toggleRotate
 
 
 - (IBAction) toggleScale: (NSButton *) sender {
-    self.transformView.shouldScale = sender.state == NSOnState;
+    self.transformView.shouldScale = sender.state == NSControlStateValueOn;
 } // toggleScale
 
 

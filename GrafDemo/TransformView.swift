@@ -317,14 +317,14 @@ class TransformView: NSView {
         
         var things: [(() -> Bool)] = []
 
-        if shouldTranslate {
-            things += [translator]
+        if shouldScale {
+            things += [scaler]
         }
         if shouldRotate {
             things += [rotator]
         }
-        if shouldScale {
-            things += [scaler]
+        if shouldTranslate {
+            things += [translator]
         }
         
         animationFunction = compositeAnimator(things)
